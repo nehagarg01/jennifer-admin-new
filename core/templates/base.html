@@ -1,0 +1,210 @@
+{% load static from staticfiles %}
+{% load i18n %}
+{% load kwacros %}
+
+{% kwacro title %}
+    {% block title %}Dashboard{% endblock %}
+{% endkwacro %}
+
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- Page title -->
+  <title>{% usekwacro title %}</title>
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
+
+  <!-- Vendor styles -->
+  <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/font-awesome.css' %}" />
+  <link rel="stylesheet" href="{% static 'vendor/metisMenu/dist/metisMenu.css' %}" />
+  <link rel="stylesheet" href="{% static 'vendor/animate.css/animate.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap/dist/css/bootstrap.css' %}" />
+  <link rel="stylesheet" href="{% static 'vendor/select2-3.5.2/select2.css' %}" />
+  <link rel="stylesheet" href="{% static 'vendor/select2-bootstrap/select2-bootstrap.css' %}" />
+  <link rel="stylesheet" href="{% static 'vendor/toastr/build/toastr.min.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'vendor/sweetalert/lib/sweetalert.css' %}">
+  <link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css' %}" />
+
+  <!-- App styles -->
+  <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}" />
+  <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/helper.css' %}" />
+  <link rel="stylesheet" href="{% static 'styles/static_custom.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+  {% block custom_css %}
+  {% endblock %}
+
+</head>
+
+<body>
+
+  <!-- Header -->
+  <div id="header">
+    <div class="color-line">
+  </div>
+  <div id="logo" class="light-version">
+      <span>
+          Jennifer
+      </span>
+  </div>
+  <nav role="navigation">
+      <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+      <div class="small-logo">
+          <span class="text-primary">Jennifer Convertibles</span>
+      </div>
+      <form role="search" class="navbar-form-custom" method="post" action="#">
+          <div class="form-group">
+              <input type="text" placeholder="Search something special" class="form-control" name="search">
+          </div>
+      </form>
+      <div class="mobile-menu">
+        <button type="button" class="navbar-toggle mobile-menu-toggle" data-toggle="collapse" data-target="#mobile-collapse">
+          <i class="fa fa-chevron-down"></i>
+        </button>
+        <div class="collapse mobile-navbar" id="mobile-collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a class="" href="">Changelog</a>
+            </li>
+            <li>
+              <a class="" href="{% url 'user:logout' %}">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="navbar-right">
+        {% include 'components/toolbar.html' %}
+      </div>
+  </nav>
+  </div>
+
+  <!-- Navigation -->
+  <aside id="menu">
+    {% include 'components/navigation.html' %}
+  </aside>
+
+  <!-- Main Wrapper -->
+  <div id="wrapper">
+    {% block header %}
+    <div class="normalheader">
+      <div class="hpanel">
+        <div class="panel-body">
+          <a class="small-header-action" href="">
+              <div class="clip-header">
+                  <i class="fa fa-arrow-up"></i>
+              </div>
+          </a>
+
+          <div id="hbreadcrumb" class="pull-right m-t-lg">
+            <ol class="hbreadcrumb breadcrumb">
+              <li><a href="{% url 'index' %}">{% trans "Dashboard" %}</a></li>
+              {% block breadcrumbs %}
+              {% endblock %}
+            </ol>
+          </div>
+          <h2 class="font-light m-b-xs">{% usekwacro title %}</h2>
+
+          <small>{% block subtitle %}{% endblock %}</small>
+        </div>
+        {% block header_extra %}{% endblock %}
+      </div>
+    </div>
+    {% endblock %}
+    <!-- main page elements -->
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <!-- Right Sidebar -->
+    <div id="right-sidear">
+        <!-- right sidebar elements -->
+    </div>
+
+    <!-- Main Wrapper -->
+    <footer class="footer">
+      <span class="pull-right">
+        v{{ version }} (Under Development)
+      </span>
+      Jennifer Convertibles
+    </footer>
+
+  </div>
+  <script src="{% static 'vendor/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/underscore/underscore-min.js' %}"></script>
+  <script src="{% static 'vendor/jquery-ui/jquery-ui.min.js' %}"></script>
+  <script src="{% static 'vendor/slimScroll/jquery.slimscroll.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'vendor/metisMenu/dist/metisMenu.min.js' %}"></script>
+  <script src="{% static 'vendor/iCheck/icheck.min.js' %}"></script>
+  <script src="{% static 'vendor/peity/jquery.peity.min.js' %}"></script>
+  <script src="{% static 'vendor/sparkline/index.js' %}"></script>
+  <script src="{% static 'vendor/nestable/jquery.nestable.js' %}"></script>
+  <script src="{% static 'vendor/select2-3.5.2/select2.min.js' %}"></script>
+  <script src="{% static 'vendor/toastr/build/toastr.min.js' %}"></script>
+  <script src="{% static 'vendor/sweetalert/lib/sweetalert.min.js' %}"></script>
+  <script src="{% static 'js-cookie/src/js.cookie.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
+
+
+  <!-- App scripts -->
+  <script src="{% static 'js/homer.js' %}"></script>
+  <script src="{% static 'js/base.js' %}"></script>
+  <script>
+    $(function(){
+      $('select').select2();
+      toastr.options = {
+        "debug": false,
+        "newestOnTop": false,
+        "positionClass": "toast-top-center",
+        "closeButton": true,
+        "debug": false,
+        "toastClass": "animated fadeInDown",
+      };
+
+      $('[data-toggle="tooltip"]').tooltip();
+      $('.date').datepicker();
+    })
+  </script>
+
+  {% for message in messages %}
+
+  <script type="text/javascript">
+    $(function(){
+      toastr["{{ message.tags }}"]("{{ message }}");
+    })
+  </script>
+  {% endfor %}
+  <!--  Feedback form submission -->
+  <script>
+  $(function(){
+
+    $('form#feedback').submit(function(ev){
+      ev.preventDefault();
+      var form = $(this);
+      $.ajax({
+        //url: '',
+        data: form.serialize(),
+        method: 'POST',
+        beforeSend: function(xhr, data) {
+          xhr.setRequestHeader("X-CSRFToken", Cookies.get('csrftoken'));
+        }
+      }).done(function(data){
+        $(':input', form).val('');
+        sweetAlert("Sent!", "Thanks for the feedback!", "success");
+      })
+    })
+  })
+  </script>
+
+  {% block custom_js %}{% endblock %}
+
+</body>
+
+</html>

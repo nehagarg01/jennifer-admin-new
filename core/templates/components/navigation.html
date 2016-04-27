@@ -1,0 +1,102 @@
+{% load static from staticfiles %}
+{% load i18n %}
+
+<div id="navigation">
+  <div class="profile-picture">
+    {# <a href="{% url 'user:details' %}"> #}
+      <img src="{{ user.image.crop.75x75 }}" class="img-circle m-b" alt="logo">
+    {# </a> #}
+
+    <div class="stats-label text-color">
+      <span class="font-extra-bold font-uppercase">{{ user.get_full_name }}</span>
+
+      <div class="dropdown">
+        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+          <small class="text-muted">{{ user.position }} <b class="caret"></b></small>
+        </a>
+        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+          {# <li><a href="{% url 'user:details' %}">Profile</a></li> #}
+          <li class="divider"></li>
+          <li><a href="{% url 'user:logout' %}">Logout</a></li>
+        </ul>
+      </div>
+
+      {% comment %}
+      <div id="sparkline1" class="small-chart m-t-sm"></div>
+      <div>
+        <h4 class="font-extra-bold m-b-xs">
+          $260 104,200
+        </h4>
+        <small class="text-muted">Your income from the last year in sales product X.</small>
+      </div>
+      {% endcomment %}
+    </div>
+  </div>
+
+  <ul class="nav" id="side-menu">
+    <li {% if module = "dashboard" %}class="active"{% endif %}>
+      <a href="{% url 'index' %}">
+        <span class="nav-label"> Dashboard</span>
+      </a>
+    </li>
+    {% if user.is_superuser %}
+    <li>
+      <a href="{% url 'admin:index' %}" target="_blank">
+        <span class="nav-label"> Admin Interface</span>
+      </a>
+    </li>
+    {% endif %}
+    {% comment %}
+    <li {% if module = "catalogue" %}class="active"{% endif %}>
+      <a href="#">
+        <span class="nav-label"><i class="fa fa-box"></i> Catalogue</span><span class="fa arrow"></span>
+      </a>
+      <ul class="nav nav-second-level">
+        <li {% if submodule = "products" %}class="active"{% endif %}><a href="{% url 'dashboard:product-list' %}">{% trans "Products" %}</a></li>
+        <li {% if submodule = "attributes" %}class="active"{% endif %}><a href="{% url 'dashboard:product-attributes' %}">{% trans "Attributes" %}</a></li>
+        <li {% if submodule = "categories" %}class="active"{% endif %}><a href="{% url 'dashboard:category-list' %}">{% trans "Categories" %}</a></li>
+        <li {% if submodule = "collections" %}class="active"{% endif %}><a href="{% url 'dashboard:collection-list' %}">{% trans "Collections" %}</a></li>
+        <li {% if submodule = "vendors" %}class="active"{% endif %}><a href="{% url 'dashboard:vendor-list' %}">{% trans "Vendors" %}</a></li>
+      </ul>
+    </li>
+    <li {% if module = "sales" %}class="active"{% endif %}>
+      <a href="#"><span class="nav-label">Sales</span><span class="fa arrow"></span> </a>
+      <ul class="nav nav-second-level">
+        <li {% if submodule = "payments" %}class="active"{% endif %}><a href="{% url 'dashboard:payments' %}">{% trans "Payments" %}</a></li>
+      </ul>
+    </li>
+    <li {% if module = "customers" %}class="active"{% endif %}>
+      <a href="{% url 'dashboard:customers' %}">
+        <span class="nav-label"> Customers</span>
+      </a>
+    </li>
+    <li {% if module = "orders" %}class="active"{% endif %}>
+      <a href="{% url 'dashboard:orders' %}">
+        <span class="nav-label"> Orders</span>
+      </a>
+    </li>
+
+    <li {% if module = "inventory" %}class="active"{% endif %}>
+      <a href="#"><span class="nav-label">Inventory</span><span class="fa arrow"></span> </a>
+      <ul class="nav nav-second-level">
+        <li {% if submodule = "stock_adjustment" %}class="active"{% endif %}><a href="{% url 'dashboard:stock-adjustment-list' %}">{% trans "Stock Adjustment" %}</a></li>
+        <li {% if submodule = "purchase_order" %}class="active"{% endif %}><a href="{% url 'dashboard:purchase-order-list' %}">{% trans "Purchase Order" %}</a></li>
+        <li {% if submodule = "invoice" %}class="active"{% endif %}><a href="{% url 'dashboard:invoice-list' %}">{% trans "Invoices" %}</a></li>
+      </ul>
+    </li>
+    <li {% if module = "delivery" %}class="active"{% endif %}>
+      <a href="#"><span class="nav-label">Delivery</span><span class="fa arrow"></span> </a>
+      <ul class="nav nav-second-level">
+        <li {% if submodule = "outgoing" %}class="active"{% endif %}><a href="{% url 'dashboard:delivery-calendar' %}">Outgoing</a></li>
+      </ul>
+    </li>
+    <li {% if module = "locations" %}class="active"{% endif %}>
+      <a href="#"><span class="nav-label">Locations</span><span class="fa arrow"></span> </a>
+      <ul class="nav nav-second-level">
+        <li {% if submodule = "stores" %}class="active"{% endif %}><a href="{% url 'dashboard:store-list' %}">{% trans "Stores" %}</a></li>
+        <li {% if submodule = "warehouses" %}class="active"{% endif %}><a href="{% url 'dashboard:warehouse-list' %}">{% trans "Warehouse" %}</a></li>
+      </ul>
+    </li>
+    {% endcomment %}
+  </ul>
+</div>

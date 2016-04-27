@@ -1,0 +1,7 @@
+<div>
+  {% for attachment in object.files.all %}
+  <a href="{{ attachment.file.url }}" class="text-info">
+    <i class="fa fa-paperclip"></i>
+    {{ attachment.name }}</a>{% if not forloop.last %},{% endif %}
+  {% endfor %}
+</div>

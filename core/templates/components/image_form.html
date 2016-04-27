@@ -1,0 +1,18 @@
+{% load bootstrap3 %}
+{% load i18n %}
+
+<form method="post" enctype="multipart/form-data">
+  <div class="row">
+    <div class="col-lg-8">
+      {% csrf_token %}
+      {{ form.image }}
+      {% bootstrap_field form.alt %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8 right-align">
+      <button type="submit" class="btn btn-primary">{% trans "Update" %}</button>
+    </div>
+  </div>
+</form>

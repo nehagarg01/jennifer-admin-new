@@ -1,0 +1,16 @@
+{% extends "registration/base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block title %}{% trans "Login" %}{% endblock %}
+
+{% block content %}
+<form action="{% url 'user:login' %}" id="loginForm" method="post">
+  {% csrf_token %}
+  {% bootstrap_field form.username %}
+  {% bootstrap_field form.password %}
+  <input type="hidden" name="next" value="{{ next }}" />
+  <button class="btn btn-success btn-block">Login</button>
+  <a href="{% url 'user:request_reset_password' %}" class="btn btn-default btn-block">{% trans "I don't know my password" %}</a>
+</form>
+{% endblock %}

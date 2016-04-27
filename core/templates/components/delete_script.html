@@ -1,0 +1,37 @@
+<script>
+$(function(){
+
+  $('[data-toggle="{{ id }}"]').click(function(ev){
+    ev.preventDefault();
+    var elem = $(this);
+    swal({
+      title: "Are you sure?",
+      // text: "All information will be lost.",
+      type: "warning",
+      showCancelButton: true,
+      showLoaderOnConfirm: true,
+      confirmButtonText: "Yes, delete it!",
+      closeOnConfirm: false,
+    }, function(isConfirm){
+      if (isConfirm) {
+        $.ajax({
+          url: elem.attr('href'),
+          type: 'DELETE',
+          dataType: 'json',
+          beforeSend: function(xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", Cookies.get('csrftoken'));
+          }
+        }).done(function(data){
+          if (_.has(data, 'redirectUrl')){
+            window.location.replace(data.redirectUrl);
+          } else {
+            window.location.reload();
+          }
+        }).fail(function(data) {
+          swal("Error!", data.responseText, "error");
+        });
+      }
+    });
+  })
+})
+</script>

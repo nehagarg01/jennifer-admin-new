@@ -1,0 +1,20 @@
+{% extends 'email_base.html' %}
+{% load i18n %}
+
+{% block content %}
+<p> Hi there!</p>
+
+<p>
+  You have requested to set a new password.
+  To continue, <a href="{{ reset_url }}">click here</a>.
+</p>
+
+<p>
+  If you didn't try to login, please ignore this message. We apologise for inconvenience.
+</p>
+
+<p>
+  Sincerely,<br/>
+  Jennifer Convertibles
+</p>
+{% endblock %}

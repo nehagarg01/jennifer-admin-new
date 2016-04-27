@@ -1,0 +1,9 @@
+{% load bootstrap3 %}
+
+{% if form.non_field_errors %}
+  <div class="alert alert-danger alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <i class="icon-multiply fa-3x pull-left"></i>
+    {{ form.non_field_errors|join:'. ' }}
+  </div>
+{% endif %}
