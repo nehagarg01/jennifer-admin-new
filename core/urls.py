@@ -15,5 +15,6 @@ urlpatterns = [
     url(r'^accounts/', include(user_urls, namespace='user')),
     url(r'^dashboard', Dashboard.as_view(), name="dashboard"),
     url(r'^vendors/', include(vendor_urls)),
+    url(r'^products/', include('products.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+<div class="hpanel">
+  <div class="panel-body">
+    <div>
+      <a class="btn btn-primary" href="{% url 'product-create' %}">Add Product</a>
+    </div>
+    <input type="text" class="form-control input-sm m-b-md" id="filter" placeholder="Search in table">
+    <table class="table footable table-striped" data-filter="#filter">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Vendor</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for object in object_list %}
+      <tr>
+        <td>{{ object.title }}</td>
+        <td>{{ object.vendor }}</td>
+        <td>{{ object.product_type }}</td>
+        <td class="text-right">
+          <a href="{% url 'product-detail' object.pk %}"><i class="fa fa-eye"></i></a>
+          <a href="{% url 'product-update' object.pk %}"><i class="fa fa-pencil"></i></a>
+          <a href="{% url 'product-delete' object.pk %}"><i class="fa fa-trash"></i></a>
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

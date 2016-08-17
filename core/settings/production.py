@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'authentication',
     'dashboard',
     'vendors',
+    'products',
 
     # External apps
     'django_extensions',
