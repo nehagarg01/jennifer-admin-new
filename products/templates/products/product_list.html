@@ -2,12 +2,14 @@
 
 {% block title %}Products{% endblock %}
 
+{% block actions %}
+<a class="btn btn-primary" href="{% url 'product-create' %}">Add Product</a>
+
+{% endblock %}
+
 {% block content %}
 <div class="hpanel">
   <div class="panel-body">
-    <div>
-      <a class="btn btn-primary" href="{% url 'product-create' %}">Add Product</a>
-    </div>
     <input type="text" class="form-control input-sm m-b-md" id="filter" placeholder="Search in table">
     <table class="table footable table-striped" data-filter="#filter">
       <thead>

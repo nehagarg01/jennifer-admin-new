@@ -12,8 +12,8 @@ from vendors.urls import urlpatterns as vendor_urls
 # url(r'^blog/', include('blog.urls')),
 
 urlpatterns = [
+    url(r'^$', Dashboard.as_view(), name="dashboard"),
     url(r'^accounts/', include(user_urls, namespace='user')),
-    url(r'^dashboard', Dashboard.as_view(), name="dashboard"),
     url(r'^vendors/', include(vendor_urls)),
     url(r'^products/', include('products.urls')),
     url(r'^admin/', include(admin.site.urls)),

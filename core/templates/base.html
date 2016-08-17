@@ -93,23 +93,24 @@
   <!-- Main Wrapper -->
   <div id="wrapper">
     {% block header %}
-    <div class="normalheader">
+    <div class="normalheader normalheader small-header">
       <div class="hpanel">
         <div class="panel-body">
-          <a class="small-header-action" href="">
-              <div class="clip-header">
-                  <i class="fa fa-arrow-up"></i>
-              </div>
-          </a>
-
-          <div id="hbreadcrumb" class="pull-right m-t-lg">
+          <div class="row">
+            <div class="col-sm-9">
+              <h2 class="font-light m-b-xs">{% usekwacro title %}</h2>
+            </div>
+            <div class="col-sm-3 text-right">
+              {% block actions %}{% endblock %}
+            </div>
+          </div>
+          <div id="hbreadcrumb">
             <ol class="hbreadcrumb breadcrumb">
               <li><a href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a></li>
               {% block breadcrumbs %}
               {% endblock %}
             </ol>
           </div>
-          <h2 class="font-light m-b-xs">{% usekwacro title %}</h2>
 
           <small>{% block subtitle %}{% endblock %}</small>
         </div>
