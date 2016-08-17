@@ -42,8 +42,8 @@ INSTALLED_APPS = (
 
     # Local apps
     'core',
-    'hello',
     'authentication',
+    'dashboard',
 
     # External apps
     'django_extensions',
@@ -195,3 +195,5 @@ BOWER_INSTALLED_APPS = (
     'moment',
     'fullcalendar',
 )
+
+LOGIN_REDIRECT_URL = '/dashboard'

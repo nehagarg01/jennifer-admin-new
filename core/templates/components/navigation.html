@@ -34,20 +34,20 @@
   </div>
 
   <ul class="nav" id="side-menu">
-    <li {% if module = "dashboard" %}class="active"{% endif %}>
-      <a href="{% url 'index' %}">
+    <li {% if module == "dashboard" %}class="active"{% endif %}>
+      <a href="{% url 'dashboard' %}">
         <span class="nav-label"> Dashboard</span>
       </a>
     </li>
     {% if user.is_superuser %}
     <li>
-      <a href="{% url 'admin:index' %}" target="_blank">
+      <a href="/admin" target="_blank">
         <span class="nav-label"> Admin Interface</span>
       </a>
     </li>
     {% endif %}
     {% comment %}
-    <li {% if module = "catalogue" %}class="active"{% endif %}>
+    <li {% if module == "catalogue" %}class="active"{% endif %}>
       <a href="#">
         <span class="nav-label"><i class="fa fa-box"></i> Catalogue</span><span class="fa arrow"></span>
       </a>
