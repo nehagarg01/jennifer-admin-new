@@ -2,6 +2,10 @@
 
 {% block title %}Vendors{% endblock %}
 
+{% block breadcrumbs %}
+<li><a href="{% url 'vendor-list' %}">Vendors</a></li>
+{% endblock %}
+
 {% block content %}
 <div class="row">
   <div class="col-lg-3">

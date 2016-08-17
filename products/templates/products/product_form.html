@@ -1,12 +1,37 @@
-{% extends 'base.html' %}
+{% extends 'products/product_list.html' %}
 {% load bootstrap3 %}
 
 {% block title %}{{ object|default:"Create Product" }}{% endblock %}
 
+{% block actions %}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+{% if object %}
+	<li><a href="{% url 'product-update' object.pk %}">{{ object }}</a></li>
+{% else %}
+	<li><a href="{% url 'product-create' %}">Create</a></li>
+{% endif %}
+{% endblock %}
+
 {% block content %}
 <form method="post">
 	{% csrf_token %}
-	{% bootstrap_form form %}
+	<div class="row">
+		<div class="col-sm-3">
+			{% bootstrap_field form.title %}
+		</div>
+		<div class="col-sm-3">
+			{% bootstrap_field form.handle %}
+		</div>
+		<div class="col-sm-3">
+			{% bootstrap_field form.vendor %}
+		</div>
+		<div class="col-sm-3">
+			{% bootstrap_field form.product_type %}
+		</div>
+	</div>
+	{% bootstrap_field form.body_html %}
 	{% bootstrap_button "Save" button_type="submit" button_class="btn-primary" %}
 </form>
 

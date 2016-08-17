@@ -11,7 +11,7 @@ class ProductType(TitleDescriptionModel):
 
 
 class Product(models.Model):
-    body_html = models.TextField()
+    body_html = models.TextField(verbose_name="Description")
     handle = models.CharField(max_length = 255, db_index = True)
     product_type = models.ForeignKey(ProductType)
     published_at = models.DateTimeField(null = True)

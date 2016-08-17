@@ -1,7 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'products/product_list.html' %}
 {% load bootstrap3 %}
 
 {% block title %}{{ object }}{% endblock %}
+
+{% block actions %}
+<a class="btn btn-primary btn-sm" href="{% url 'product-update' object.pk %}">Edit</a>
+<a class="btn btn-danger btn-sm" href="{% url 'product-delete' object.pk %}">Delete</a>
+{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'product-detail' object.pk %}">{{ object }}</a></li>
+{% endblock %}
 
 {% block content %}
 <div class="hpanel">

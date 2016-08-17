@@ -2,9 +2,12 @@
 
 {% block title %}Products{% endblock %}
 
+{% block breadcrumbs %}
+<li><a href="{% url 'product-list' %}">Products</a></li>
+{% endblock %}
+
 {% block actions %}
 <a class="btn btn-primary" href="{% url 'product-create' %}">Add Product</a>
-
 {% endblock %}
 
 {% block content %}
@@ -17,6 +20,7 @@
           <th>Name</th>
           <th>Vendor</th>
           <th>Type</th>
+          <th class="text-right">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +35,8 @@
           <a href="{% url 'product-delete' object.pk %}"><i class="fa fa-trash"></i></a>
         </td>
       </tr>
+      {% empty %}
+      <tr><td colspan="4" class="text-center">There are no products.</td></tr>
       {% endfor %}
       </tbody>
     </table>
