@@ -7,3 +7,4 @@ django-emailit>=0.2.2
 django-bootstrap3
 django-extensions==1.7.2
 markdown
+django-localflavor

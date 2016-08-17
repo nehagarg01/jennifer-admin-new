@@ -46,6 +46,11 @@
       </a>
     </li>
     {% endif %}
+    <li>
+      <a href="{% url 'vendor-list' %}">
+        <span class="nav-label"> Vendors</span>
+      </a>
+    </li>
     {% comment %}
     <li {% if module == "catalogue" %}class="active"{% endif %}>
       <a href="#">
