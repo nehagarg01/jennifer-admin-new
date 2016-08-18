@@ -10,6 +10,20 @@ class ProductType(TitleDescriptionModel):
          return self.title
 
 
+class ProductAttribute(models.Model):
+    ATTRIBUTE_TYPES = (
+        ('MA', 'Material'),
+        ('ST', 'Style'),
+        ('FT', 'Feature'),
+    )
+    attribute_type = models.CharField(max_length=3, choices=ATTRIBUTE_TYPES)
+    title = models.CharField(max_length=255)
+    handle = models.CharField(max_length=255, help_text="shopify tag")
+
+    def __unicode__(self):
+        return self.title
+
+
 class Product(models.Model):
     body_html = models.TextField(verbose_name="Description")
     handle = models.CharField(max_length = 255, db_index = True)
@@ -19,6 +33,7 @@ class Product(models.Model):
     template_suffix = models.CharField(max_length = 255, null = True)
     title = models.CharField(max_length = 255, db_index = True)
     vendor = models.ForeignKey('vendors.Vendor')
+    attributes = models.ManyToManyField(ProductAttribute)
 
     def __unicode__(self):
         return self.title

@@ -5,11 +5,11 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Product
+from .forms import ProductForm
 
 
 class ProductMixin(LoginRequiredMixin):
     model = Product
-    fields = ['title', 'body_html', 'handle', 'product_type', 'vendor']
     success_url = reverse_lazy('product-list')
 
 
@@ -17,7 +17,20 @@ class ProductList(ProductMixin, ListView):
     pass
 
 
-class ProductCreate(ProductMixin, CreateView):
+class ProductFormMixin(ProductMixin):
+    form_class = ProductForm
+
+    def form_valid(self, form):
+        product = form.save()
+        product.attributes.clear()
+        attributes = form.cleaned_data['style'] | form.cleaned_data['material']\
+            | form.cleaned_data['feature']
+        for att in attributes:
+            product.attributes.add(att)
+        return super(ProductFormMixin, self).form_valid(form)
+
+
+class ProductCreate(ProductFormMixin, CreateView):
     pass
 
 
@@ -25,7 +38,7 @@ class ProductDetail(ProductMixin, DetailView):
     pass
 
 
-class ProductUpdate(ProductMixin, UpdateView):
+class ProductUpdate(ProductFormMixin, UpdateView):
     pass
 
 

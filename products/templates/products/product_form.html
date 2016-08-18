@@ -15,24 +15,52 @@
 {% endblock %}
 
 {% block content %}
-<form method="post">
-	{% csrf_token %}
-	<div class="row">
-		<div class="col-sm-3">
-			{% bootstrap_field form.title %}
-		</div>
-		<div class="col-sm-3">
-			{% bootstrap_field form.handle %}
-		</div>
-		<div class="col-sm-3">
-			{% bootstrap_field form.vendor %}
-		</div>
-		<div class="col-sm-3">
-			{% bootstrap_field form.product_type %}
-		</div>
+<div class="hpanel">
+	<div class="panel-body">
+		<form method="post">
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-sm-3">
+					{% bootstrap_field form.title %}
+				</div>
+				<div class="col-sm-3">
+					{% bootstrap_field form.handle %}
+				</div>
+				<div class="col-sm-3">
+					{% bootstrap_field form.vendor %}
+				</div>
+				<div class="col-sm-3">
+					{% bootstrap_field form.product_type %}
+				</div>
+			</div>
+			{% bootstrap_field form.body_html %}
+			<div class="row">
+				<div class="col-sm-3">
+					{% bootstrap_field form.material %}
+				</div>
+				<div class="col-sm-3">
+					{% bootstrap_field form.style %}
+				</div>
+				<div class="col-sm-3">
+					{% bootstrap_field form.feature %}
+				</div>
+			</div>
+
+
+			<hr/>
+			<div class="radio radio-inline">
+        <input type="radio" id="inlineRadio1" value="single" name="radioInline" checked="">
+        <label for="inlineRadio1"> Single Product </label>
+      </div>
+			<div class="radio radio-inline">
+        <input type="radio" id="inlineRadio2" value="multiple" name="radioInline">
+        <label for="inlineRadio2"> Multiple Options </label>
+      </div>
+			<div class="clearfix"></div>
+
+			{% bootstrap_button "Save" button_type="submit" button_class="btn-primary" %}
+		</form>
 	</div>
-	{% bootstrap_field form.body_html %}
-	{% bootstrap_button "Save" button_type="submit" button_class="btn-primary" %}
-</form>
+</div>
 
 {% endblock %}

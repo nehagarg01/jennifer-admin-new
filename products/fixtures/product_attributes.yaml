@@ -1,0 +1,42 @@
+- model: products.ProductAttribute
+  pk: 1
+  fields:
+    attribute_type: MA
+    title: Fabric
+    handle: material-fabric
+- model: products.ProductAttribute
+  pk: 2
+  fields:
+    attribute_type: MA
+    title: Wood
+    handle: material-wood
+- model: products.ProductAttribute
+  pk: 3
+  fields:
+    attribute_type: MA
+    title: Leather
+    handle: material-Leather
+- model: products.ProductAttribute
+  pk: 4
+  fields:
+    attribute_type: MA
+    title: Wood
+    handle: material-wood
+- model: products.ProductAttribute
+  pk: 5
+  fields:
+    attribute_type: ST
+    title: Contemporary
+    handle: style-contemporary
+- model: products.ProductAttribute
+  pk: 6
+  fields:
+    attribute_type: ST
+    title: Casual
+    handle: style-casual
+- model: products.ProductAttribute
+  pk: 7
+  fields:
+    attribute_type: FT
+    title: Extendable
+    handle: feature-extendable
