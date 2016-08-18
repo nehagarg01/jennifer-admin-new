@@ -8,7 +8,9 @@ $ cd jennifer-admin
 $ pip install -r requirements.txt
 
 $ createdb jennifer
+$ psql jennifer -c "CREATE ROLE jenniferadmin PASSWORD 'jennifer-db-letmein' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;"
 
+$ export DJANGO_SETTINGS_MODULE='core.settings.local'
 $ python manage.py migrate
 $ python manage.py collectstatic
 $ python manage.py createsuperuser
