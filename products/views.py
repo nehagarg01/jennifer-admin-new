@@ -23,8 +23,8 @@ class ProductFormMixin(ProductMixin):
     def form_valid(self, form):
         product = form.save()
         product.attributes.clear()
-        attributes = form.cleaned_data['style'] | form.cleaned_data['material']\
-            | form.cleaned_data['feature']
+        attributes = form.cleaned_data['styles'] | form.cleaned_data['materials']\
+            | form.cleaned_data['features']
         for att in attributes:
             product.attributes.add(att)
         return super(ProductFormMixin, self).form_valid(form)

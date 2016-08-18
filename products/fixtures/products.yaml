@@ -1,3 +1,16 @@
+- model: vendors.Vendor
+  pk: 1
+  fields:
+    code: Test
+    name: Test Vendor
+    contact_person: Test Person
+    email: email@email.com
+    phone: 123-123-1234
+- model: products.ProductType
+  pk: 1
+  fields:
+    title: Sofa
+    description: Test
 - model: products.ProductAttribute
   pk: 1
   fields:

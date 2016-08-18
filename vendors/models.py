@@ -5,9 +5,8 @@ from localflavor.us.models import PhoneNumberField
 
 # Create your models here.
 class Vendor(models.Model):
-    code = models.CharField(max_length=10, unique=True)
-    name = models.CharField(max_length=128)
-    contact_person = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, unique=True)
+    contact_person = models.CharField(max_length=128, blank=True)
     email = models.EmailField()
     phone = PhoneNumberField()
 
