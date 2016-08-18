@@ -37,3 +37,12 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def materials(self):
+        return self.attributes.filter(attribute_type="MA")
+
+    def styles(self):
+        return self.attributes.filter(attribute_type="ST")
+
+    def features(sellf):
+        return self.attributes.filter(attribute_type="FT")
