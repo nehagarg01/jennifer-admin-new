@@ -7,8 +7,8 @@ from localflavor.us.models import PhoneNumberField
 class Vendor(models.Model):
     name = models.CharField(max_length=128, unique=True)
     contact_person = models.CharField(max_length=128, blank=True)
-    email = models.EmailField()
-    phone = PhoneNumberField()
+    email = models.EmailField(blank=True, null=True)
+    phone = PhoneNumberField(blank=True, null=True)
 
     def __unicode__(self):
         return self.name

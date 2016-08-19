@@ -29,7 +29,7 @@ class Product(models.Model):
     title = models.CharField(max_length = 255, db_index = True)
     body_html = models.TextField(verbose_name="Description")
     handle = models.CharField(max_length = 255)
-    product_type = models.ForeignKey(ProductType)
+    product_type = models.CharField(max_length = 255)
     published_at = models.DateTimeField(null = True)
     published_scope = models.CharField(max_length = 64, default = 'global')
     vendor = models.ForeignKey('vendors.Vendor')
