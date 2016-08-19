@@ -8,7 +8,7 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ['title', 'body_html', 'handle', 'product_type', 'vendor',
-                  'materials', 'styles', 'features']
+                  'shopify_id', 'materials', 'styles', 'features']
 
     materials = forms.ModelMultipleChoiceField(
         queryset=ProductAttribute.objects.filter(attribute_type="MA"))

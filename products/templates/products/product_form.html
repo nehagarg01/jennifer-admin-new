@@ -20,17 +20,20 @@
 		<form method="post">
 			{% csrf_token %}
 			<div class="row">
-				<div class="col-sm-3">
+				<div class="col-sm-4">
 					{% bootstrap_field form.title %}
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					{% bootstrap_field form.handle %}
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					{% bootstrap_field form.vendor %}
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					{% bootstrap_field form.product_type %}
+				</div>
+				<div class="col-sm-2">
+					{% bootstrap_field form.shopify_id %}
 				</div>
 			</div>
 			{% bootstrap_field form.body_html %}
