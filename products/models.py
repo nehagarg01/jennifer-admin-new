@@ -33,7 +33,7 @@ class Product(models.Model):
     published_scope = models.CharField(max_length = 64, default = 'global')
     vendor = models.ForeignKey('vendors.Vendor')
     attributes = models.ManyToManyField(ProductAttribute)
-
+    dimension = models.TextField(max_length = 255, db_index = True)
     def __unicode__(self):
         return self.title
 
