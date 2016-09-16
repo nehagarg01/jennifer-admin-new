@@ -64,3 +64,11 @@ class Variant(models.Model):
     option2 = models.CharField(max_length=255, blank=True)
     option3 = models.CharField(max_length=255, blank=True)
     shopify_id = models.IntegerField(null=True, blank=True)
+
+
+class Dimension(models.Model):
+    product = models.ForeignKey(Product, related_name="dimensions")
+    title = models.CharField(max_length=255, default="default")
+    width = models.DecimalField(max_digits=12, decimal_places=2)
+    depth = models.DecimalField(max_digits=12, decimal_places=2)
+    height = models.DecimalField(max_digits=12, decimal_places=2)
