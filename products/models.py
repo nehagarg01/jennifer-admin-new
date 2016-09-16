@@ -34,7 +34,7 @@ class Product(models.Model):
     published_scope = models.CharField(max_length = 64, default = 'global')
     vendor = models.ForeignKey('vendors.Vendor')
     attributes = models.ManyToManyField(ProductAttribute)
-    shopify_id = models.IntegerField(null=True, blank=True)
+    shopify_id = models.BigIntegerField(null=True, blank=True)
 
     def __unicode__(self):
         return self.title
@@ -45,7 +45,7 @@ class Product(models.Model):
     def styles(self):
         return self.attributes.filter(attribute_type="ST")
 
-    def features(sellf):
+    def features(self):
         return self.attributes.filter(attribute_type="FT")
 
 

@@ -1,7 +1,6 @@
 - model: vendors.Vendor
   pk: 1
   fields:
-    code: Test
     name: Test Vendor
     contact_person: Test Person
     email: email@email.com

@@ -1,0 +1,952 @@
+- fields: {body_html: '<p>Modern and edgy looking, this recliner is for those who
+      treasure modern design without compromising on features and comfort. Great looking
+      fabric with a smooth reclining motion, you can definitely have it all.</p>
+
+      <p><strong>DIMENSIONS</strong></p>
+
+      <p>30" W x 37" D x 41.75" H</p>', handle: auron-swivel-glider-recliner-1, product_type: recliners,
+    shopify_id: 7180385031, title: Auron Swivel Glider Recliner, vendor: 1}
+  model: products.Product
+  pk: 1
+- fields: {body_html: '<p>Modern and edgy looking, this recliner is for those who
+      treasure modern design without compromising on features and comfort. Great looking
+      fabric with a smooth reclining motion, you can definitely have it all.</p>
+
+      <p><strong>DIMENSIONS</strong></p>
+
+      <p>30" W x 37" D x 41.75" H</p>', handle: auron-swivel-glider-recliner, product_type: recliners,
+    shopify_id: 7064688711, title: Auron Swivel Glider Recliner, vendor: 1}
+  model: products.Product
+  pk: 2
+- fields: {body_html: "<p>The Branson Reclining Leather Match Collection is beautiful\
+      \ and elegant. The nailhead trim elevates the series, giving it a luxurious\
+      \ look. The best part is that it reclines with ease.</p>\r\n<p><strong style=\"\
+      line-height: 1.4;\">DIMENSIONS</strong></p>\r\n\r\n<p>40\" W x 39\" D x 40\"\
+      \ H</p>", handle: branson-reclining-chair, product_type: recliners, shopify_id: 5827032135,
+    title: Branson Reclining Chair, vendor: 1}
+  model: products.Product
+  pk: 3
+- fields: {body_html: "<p>The Branson Reclining Leather Match Collection is beautiful\
+      \ and elegant. The nailhead trim elevates the series, giving it a luxurious\
+      \ look. The best part is that it reclines with ease.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n\r\n<p>Sofa - 87\" W x 38\" D x 40\" H</p>\r\n<p>Loveseat -\_65\" W x 38\"\
+      \ D x 40\" H</p>\r\n<p>Recliner -\_40\" W x 39\" D x 40\" H</p>", handle: branson-reclining-set,
+    product_type: living room sets, shopify_id: 6821367239, title: Branson Reclining
+      Living Room Set, vendor: 1}
+  model: products.Product
+  pk: 4
+- fields: {body_html: "<p>The Branson Reclining Leather Match Collection is beautiful\
+      \ and elegant. The nailhead trim elevates the series, giving it a luxurious\
+      \ look. The best part is that it reclines with ease.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n\r\n<p>65\" W x 38\" D x 40\" H</p>", handle: branson-reclining-loveseat,
+    product_type: loveseats, shopify_id: 5827032263, title: Branson Reclining Loveseat,
+    vendor: 1}
+  model: products.Product
+  pk: 5
+- fields: {body_html: "<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>87\" W x 38\"\
+      \ D x 40\" H</p>", handle: branson-reclining-sofa, product_type: sofas, shopify_id: 5827032711,
+    title: Branson Reclining Sofa, vendor: 1}
+  model: products.Product
+  pk: 6
+- fields: {body_html: "<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>87\" W x 41\"\
+      \ D x 40\" H</p>", handle: branson-sleeper-sofa, product_type: sofas, shopify_id: 5827032327,
+    title: Branson Sleeper Sofa, vendor: 1}
+  model: products.Product
+  pk: 7
+- fields: {body_html: "<p>The Bucco Upholstery Collection is all about simplicity,\
+      \ comfort and affordable. Sink into the plush microfiber seatings. The Bucco\
+      \ will bring a warm timeless style into your living room.</p>\r\n<p>This Living\
+      \ Room Set includes Sofa, Loveseat, Chair &amp; Ottoman. Queen Sleeper option\
+      \ available for sofa.</p>\r\n<p>*Ottoman shown in collection picture is incorrect.\_\
+      <a href=\"#\" onclick=\"$('[data-image-id=15843813895]').click()\">Click here</a>\
+      \ to view ottoman.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>Sofa - 87\"\
+      \ W x 35\" D x 38\" H</p>\r\n<p>Loveseat -\_56\" W x 35\" D x 38\" H</p>\r\n\
+      <p>Chair -\_43\" W \_x 35\" D x 38\" H</p>\r\n<p>Ottoman -\_29.5\" W x 25.5\"\
+      \ D x 18.5\" H</p>", handle: bucco-living-room-set-1, product_type: living room
+      sets, shopify_id: 7731507719, title: Bucco Living Room Set, vendor: 1}
+  model: products.Product
+  pk: 8
+- fields: {body_html: "<p>The Bucco Upholstery Collection is all about simplicity,\
+      \ comfort and affordable. Sink into the plush microfiber seatings. The Bucco\
+      \ will bring a warm timeless style into your living room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>56\" W x 35\" D x 38\" H</p>", handle: bucco-loveseat, product_type: loveseats,
+    shopify_id: 6315847303, title: Bucco Loveseat, vendor: 1}
+  model: products.Product
+  pk: 9
+- fields: {body_html: "<p>The Bucco Upholstery Collection is all about simplicity,\
+      \ comfort and affordable. Sink into the plush microfiber seatings. The Bucco\
+      \ will bring a warm timeless style into your living room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>43\" W x 35\" D x 38\" H</p>", handle: bucco-ottoman, product_type: ottomans,
+    shopify_id: 6316151687, title: Bucco Ottoman, vendor: 1}
+  model: products.Product
+  pk: 10
+- fields: {body_html: "<p>The Bucco Upholstery Collection is all about simplicity,\
+      \ comfort and affordable. Sink into the plush microfiber seatings. The Bucco\
+      \ will bring a warm timeless style into your living room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>87\" W x 35\" D x 38\" H</p>", handle: bucco-sofa, product_type: sofas,
+    shopify_id: 6315769543, title: Bucco Sofa, vendor: 1}
+  model: products.Product
+  pk: 11
+- fields: {body_html: "<p>The Bucco Upholstery Collection is all about simplicity,\
+      \ comfort and affordable. Sink into the plush microfiber seatings. The Bucco\
+      \ will bring a warm timeless style into your living room.</p>\r\n<p>This Living\
+      \ Room Set includes Sofa and Loveseat. Queen Sleeper option available for sofa.</p>\r\
+      \n<p><strong>DIMENSIONS</strong></p>\r\n<p>Sofa - 87\" W x 35\" D x 38\" H</p>\r\
+      \n<p>Loveseat -\_56\" W x 35\" D x 38\" H</p>", handle: bucco-living-room-set,
+    product_type: living room sets, shopify_id: 6496340999, title: Bucco Sofa & Loveseat,
+    vendor: 1}
+  model: products.Product
+  pk: 12
+- fields: {body_html: "<p>The Bucco Upholstery Collection is all about simplicity,\
+      \ comfort and affordable. Sink into the plush microfiber seatings. The Bucco\
+      \ will bring a warm timeless style into your living room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>43\" W x 35\" D x 38\" H</p>", handle: bucco-sofa-chair, product_type: sofa
+      chairs, shopify_id: 6316034631, title: Bucco Sofa Chair, vendor: 1}
+  model: products.Product
+  pk: 13
+- fields: {body_html: "<p>Covered in dark brown microfiber fabric, this is a power\
+      \ recliner that is all about comfort.\_</p>\n<p><strong>DIMENSIONS</strong></p>\n\
+      <p>43\" W x 41.5\" D x 41\" H</p>", handle: champion-power-recliner-1, product_type: recliners,
+    shopify_id: 7882445319, title: Champion Power Recliner, vendor: 1}
+  model: products.Product
+  pk: 14
+- fields: {body_html: "<p>Covered in dark brown microfiber fabric, this is a power\
+      \ recliner that is all about comfort.\_</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>43\" W x 41.5\" D x 41\" H</p>", handle: champion-power-recliner, product_type: recliners,
+    shopify_id: 6536044423, title: Champion Power Recliner, vendor: 1}
+  model: products.Product
+  pk: 15
+- fields: {body_html: "<p>Available in black and cream, the Dawson Leather Match Power\
+      \ Reclining Collection just looks spectacular. Luxury upholstery, simple power\
+      \ controls,\_this collection speaks volumes.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n\r\n<p>42\" W x 41\" D x 40\" H</p>", handle: dawson-reclining-chair, product_type: recliners,
+    shopify_id: 5827030535, title: Dawson Power Reclining Chair, vendor: 1}
+  model: products.Product
+  pk: 16
+- fields: {body_html: "<p>Available in black and cream,\_the Dawson Leather Match\
+      \ Power Reclining Collection just looks spectacular. Luxury upholstery, simple\
+      \ power controls,\_this collection speaks volumes.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n\r\n<p>68\" W x 40\" D x 41\" H</p>", handle: dawson-reclining-loveseat, product_type: loveseats,
+    shopify_id: 5827031047, title: Dawson Power Reclining Loveseat, vendor: 1}
+  model: products.Product
+  pk: 17
+- fields: {body_html: "<p>Available in black and cream, the Dawson Leather Match Power\
+      \ Reclining Collection just looks spectacular. Luxury upholstery, simple power\
+      \ controls,\_this collection speaks volumes.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n\r\n<p>Sofa -\_<span>91\" W x 40\" D x 41\" H</span></p>\r\n<p>Loveseat -\_\
+      <span>68\" W x 40\" D x 41\" H</span></p>\r\n<p>Recliner -\_<span>42\" W x 41\"\
+      \ D x 40\" H</span></p>", handle: dawson-power-reclining-set, product_type: living
+      room sets, shopify_id: 6817246855, title: Dawson Power Reclining Set, vendor: 1}
+  model: products.Product
+  pk: 18
+- fields: {body_html: "<p>Available in black and cream, the Dawson Leather Match Power\
+      \ Reclining Collection just looks spectacular. Luxury upholstery, simple power\
+      \ controls,\_this collection speaks volumes.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n\r\n<p>91\" W x 40\" D x 41\" H</p>", handle: dawson-reclining-sofa, product_type: sofas,
+    shopify_id: 5827031559, title: Dawson Power Reclining Sofa, vendor: 1}
+  model: products.Product
+  pk: 19
+- fields: {body_html: "<p>Available in black and cream, the Dawson Leather Match Collection\
+      \ just looks spectacular. Luxury upholstery with a pullout sleeper,\_this collection\
+      \ speaks volumes.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>91\" W\
+      \ x 43\" D x 41\" H</p>", handle: dawson-sofa-sleeper, product_type: sofas,
+    shopify_id: 5827032071, title: Dawson Sleeper Sofa, vendor: 1}
+  model: products.Product
+  pk: 20
+- fields: {body_html: "<p>The Flip Sleeper Chaise is all about the contemporary. Clean\
+      \ design, neutral beige leather match, plush cushions, concealing the superior\
+      \ Jennipedic deluxe innerspring mattress, the Flip is what you want in your\
+      \ living room. With the reversible chaise, you have the freedom to change the\
+      \ configuration whenever you want. Just flip.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>84\" W x 59\" D x 36\" H</p>", handle: flip-sleeper-chaise, product_type: sofa
+      chaises, shopify_id: 7025456519, title: Flip Sleeper Chaise, vendor: 1}
+  model: products.Product
+  pk: 21
+- fields: {body_html: '<p>The Grayson Barrel Chair is a simple way to add some contemporary
+      flair to your living room without tearing a hole in your wallet. Mocha fabric
+      with plush cushioning, it matches with other pieces easily.</p>
+
+      <p><strong>DIMENSIONS</strong></p>
+
+      <p>30" W x 30" D x 28" H</p>', handle: grayson-barrel-chair, product_type: accent
+      chairs, shopify_id: 6526316679, title: Grayson Barrel Chair, vendor: 1}
+  model: products.Product
+  pk: 22
+- fields: {body_html: "<p>You won't be able to get a better deal than this. The simple\
+      \ contemporary fabric ottoman\_comes in a beautiful mocha brown, and the cushions\
+      \ are plush and comfortable. It is the perfect companion to the Haney Sectional.</p>\n\
+      <p><strong>DIMENSIONS</strong></p>\n<p>34\" W x 24\" D x 19\" H</p>", handle: haney-ottoman,
+    product_type: ottomans, shopify_id: 6363810183, title: Haney Ottoman, vendor: 1}
+  model: products.Product
+  pk: 23
+- fields: {body_html: '<p>You won''t be able to get a better deal than this. The simple
+      contemporary fabric sectional comes in a beautiful mocha brown, and the cushions
+      are plush and comfortable. This is one of the best bang for your buck sectional
+      in the market.</p>
+
+      <p><strong>DIMENSIONS</strong></p>
+
+      <p>99" W x 83" D x 35" H</p>', handle: haney-sectional, product_type: sectionals,
+    shopify_id: 6315662407, title: Haney Sectional, vendor: 1}
+  model: products.Product
+  pk: 24
+- fields: {body_html: "<p>You won't be able to get a better deal than this. The simple\
+      \ contemporary fabric sectional comes in a beautiful mocha brown, and the cushions\
+      \ are plush and comfortable. This is one of the best bang for your buck sectional\
+      \ in the market.</p>\r\n<p>*Sectional includes bonus ottoman</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>Sectional - 99\" W x 83\" D x 35\" H</p>\r\n<p>Ottoman -\_34\" W x 24\"\
+      \ D x 19\" H</p>", handle: haney-living-room-set, product_type: sectionals,
+    shopify_id: 6544305031, title: Haney Sectional & Bonus Ottoman, vendor: 1}
+  model: products.Product
+  pk: 25
+- fields: {body_html: "<p>Plush khaki fabric upholstery, quality built and just handsome,\
+      \ this recliner is a perfect addition to any living room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>37\" W x 40\" D x 40\" H</p>", handle: henri-recliner, product_type: recliners,
+    shopify_id: 7064292103, title: Henri Recliner, vendor: 1}
+  model: products.Product
+  pk: 26
+- fields: {body_html: '<p>Plush khaki fabric upholstery, quality built and just handsome,
+      this recliner is a perfect addition to any living room.</p>
+
+      <p><strong>DIMENSIONS</strong></p>
+
+      <p>37" W x 40" D x 40" H</p>', handle: henri-recliner-1, product_type: recliners,
+    shopify_id: 7880173319, title: Henri Recliner, vendor: 1}
+  model: products.Product
+  pk: 27
+- fields: {body_html: "<p>The Jennipedic Aircoil Mattress is the ultimate upgrade\
+      \ to any sleeper sofa. This innovative technology combines spring coil support\
+      \ with a cushioning layer of air, creating a luxurious feel of a premium mattress.\
+      \ Adjust the firmness with the remote control, creating the mattress feel of\
+      \ your choice. The mattress inflates in 45 seconds and deflates in 30 seconds.\_\
+      </p>\r\n<p>*Mattress only. Sofa sold separately.</p>", handle: jennipedic-aircoil-mattress,
+    product_type: sleeper mattresses, shopify_id: 6270257031, title: Jennipedic Aircoil
+      Upgrade Mattress, vendor: 1}
+  model: products.Product
+  pk: 28
+- fields: {body_html: "<p>Upgrade your sleeper mattress to the Jennipedic Deluxe.\
+      \ This 5.25\" innerspring mattress has 2 additional layers of form from the\
+      \ Venic Royalton Mattress. Both top and bottom pads are insulated with a 3/8\"\
+      \ quilting foam.</p>\r\n\r\n<p><span>*Mattress only. Sofa sold separately.</span></p>",
+    handle: jennipedic-deluxe-mattress, product_type: sleeper mattresses, shopify_id: 6270221767,
+    title: Jennipedic Deluxe Upgrade Mattress, vendor: 1}
+  model: products.Product
+  pk: 29
+- fields: {body_html: "<p>Sofabed mattresses are shorter and thinner than bedroom\
+      \ mattresses, hence regular bedroom sheets will not fit nicely. The Percale\
+      \ sofabed sheets is 100% cotton and fits perfectly on your sleeper mattress.</p>\r\
+      \n<p>Color: Beige</p>", handle: jennifer-sofabed-sheets, product_type: sleeper
+      sheets, shopify_id: 6270300231, title: Jennipedic Percale Sofabed Sheets, vendor: 1}
+  model: products.Product
+  pk: 30
+- fields: {body_html: "<p>Originally developed by NASA for astronauts, this is \"\
+      memory foam\" like the tempurpedic mattress. Memory foam is known for relieving\
+      \ the pressure points sometimes caused by innerspring mattresses. No one waking\
+      \ up with backaches and stiff necks. Give your guests a good night sleep.</p>\r\
+      \n\r\n<p><span>*Mattress only. Sofa sold separately.</span></p>", handle: jennipedic-visco-memory-foam-mattress,
+    product_type: sleeper mattresses, shopify_id: 6270226375, title: Jennipedic Visco
+      Memory Foam Upgrade Mattress, vendor: 1}
+  model: products.Product
+  pk: 31
+- fields: {body_html: "<p>If you got a big room, the Kahuna Sectional is what you\
+      \ need. This sectional is BIG\_without making a dent on your wallet. The stylish\
+      \ charcoal and round arms gives it a contemporary look.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>134\" x 91\" x 66\" by 36\" H</p>", handle: kahuna-sectional, product_type: sectionals,
+    shopify_id: 6377340423, title: Kahuna Sectional, vendor: 1}
+  model: products.Product
+  pk: 32
+- fields: {body_html: "<p><span>Available in caramel or gray leather match upholstery,\
+      \ the Mabella Plaza Reclining Collection's rich look is simply beautiful. Pull\
+      \ the lever and sink in to the reclined position. How relaxing!</span></p>\r\
+      \n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>42.5\" W x 40\" D x 39\" H</p>",
+    handle: mabella-plaza-recliner, product_type: recliners, shopify_id: 5827028807,
+    title: Mabella Plaza Recliner, vendor: 1}
+  model: products.Product
+  pk: 33
+- fields: {body_html: "<p>Available in caramel or gray leather match upholstery, the\
+      \ Mabella Plaza Reclining Collection's rich look is simply beautiful. Pull the\
+      \ lever and sink in to the reclined position. How relaxing!</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n\r\n<p>Sofa - 89\" W x 40.5\" D x 39\" H</p>\r\n<p>Loveseat -\_80\" W x 40.5\"\
+      \ D x 39\" H</p>\r\n<p>Recliner -\_42.5\" W x 40\" D x 39\" H</p>", handle: mabella-plaza-reclining-living-room-set,
+    product_type: living room sets, shopify_id: 6821590599, title: Mabella Plaza Reclining
+      Living Room Set, vendor: 1}
+  model: products.Product
+  pk: 34
+- fields: {body_html: "<p><span>Available in caramel or gray leather match upholstery,\
+      \ the Mabella Plaza Reclining Collection's rich look is simply beautiful. Pull\
+      \ the lever and sink in to the reclined position. How relaxing!</span></p>\r\
+      \n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>80\" W x 40.5\" D x 39\" H</p>",
+    handle: mabella-plaza-loveseat, product_type: loveseats, shopify_id: 5827029255,
+    title: Mabella Plaza Reclining Loveseat with Console, vendor: 1}
+  model: products.Product
+  pk: 35
+- fields: {body_html: "<p><span>Available in caramel or gray leather match upholstery,\
+      \ the Mabella Plaza Reclining Collection's rich look is simply beautiful. Pull\
+      \ the lever and sink in to the reclined position. How relaxing!</span></p>\r\
+      \n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>89\" W x 40.5\" D x 39\" H</p>",
+    handle: mabella-plaza-motion-sofa, product_type: sofas, shopify_id: 5827029831,
+    title: Mabella Plaza Reclining Sofa, vendor: 1}
+  model: products.Product
+  pk: 36
+- fields: {body_html: "<p>The Mantova\_chair\_is effortless elegance at it's best!\
+      \ Give your home a fresh contemporary look with the refined style and endless\
+      \ comfort of the Mantova chair\_covered in a chic midnight leather.</p>\r\n\
+      <p><strong>DIMENSIONS</strong></p>\r\n<p>44\" W x 38.5\" D x 36\" H</p>", handle: mantova-sofa-chair,
+    product_type: DISCONTINUED, shopify_id: 5827020807, title: Mantova Chair, vendor: 1}
+  model: products.Product
+  pk: 37
+- fields: {body_html: "<p>The Mantova Leather Match Collection\_is effortless elegance\
+      \ at it's best! Give your home a fresh contemporary look with the refined style\
+      \ and endless comfort of the\_chic midnight leather.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>Sofa - 88\" W x 38.5\" D x 36\" H</p>\r\n<p>\_</p>", handle: mantova-living-room-set,
+    product_type: living room sets, shopify_id: 7045189063, title: Mantova Living
+      Room Set, vendor: 1}
+  model: products.Product
+  pk: 38
+- fields: {body_html: "<p>The Mantova loveseat\_is effortless elegance at it's best!\
+      \ Give your home a fresh contemporary look with the refined style and endless\
+      \ comfort of the Mantova loveseat covered in a chic midnight leather.</p>\r\n\
+      <p><strong>DIMENSIONS</strong></p>\r\n<p>66\" W x 38.5\" D x 36\" H</p>", handle: mantova-loveseat,
+    product_type: DISCONTINUED, shopify_id: 5827021191, title: Mantova Loveseat, vendor: 1}
+  model: products.Product
+  pk: 39
+- fields: {body_html: "<p>The Mantova sofa is effortless elegance at it's best! Give\
+      \ your home a fresh contemporary look with the refined style and endless comfort\
+      \ of the Mantova sofa covered in a chic midnight leather.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n\r\n<p>88\" W x 38.5\" D x 36\" H</p>", handle: mantova-sofa, product_type: sofas,
+    shopify_id: 5831307591, title: Mantova Sofa, vendor: 1}
+  model: products.Product
+  pk: 40
+- fields: {body_html: "<p>Kick back and relax in the ultimate comfort of the Mapello\
+      \ Sectional. Generous seating provides the perfect place to enjoy hours of lounging\
+      \ with family and friends.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>Sectional\
+      \ - 119\" W x 88.5\" D x 37\" H</p>\r\n<p>Ottoman -\_42\" W x 42\" D x 20\"\
+      \ H</p>", handle: mapello-4-piece-sectional, product_type: sectionals, shopify_id: 5831627015,
+    title: Mapello 4-Piece Sectional, vendor: 1}
+  model: products.Product
+  pk: 41
+- fields: {body_html: "<meta charset=\"utf-8\">\r\n<p>Kick back and relax in the ultimate\
+      \ comfort of the Mapello Living Room collection. Generous seating provides the\
+      \ perfect place to enjoy hours of lounging with family and friends.</p>\r\n\
+      <p><strong>DIMENSIONS</strong></p>\r\n<p>42\" W x 42\" D x 20\" H</p>", handle: mapello-ottoman,
+    product_type: ottomans, shopify_id: 5827028423, title: Mapello Ottoman, vendor: 1}
+  model: products.Product
+  pk: 42
+- fields: {body_html: '<p>The Marino Chair is perfect for any living space. It''s
+      rolled arms and big cushions make it the ultimate spot to relax in. Upholstered
+      in leather match materials, the Marino looks as regal as it is comfortable.</p>
+
+      <p><strong>DIMENSIONS</strong></p>
+
+      <p>44" W x 36.5" D x 35.75" H</p>', handle: marino-chair, product_type: sofas,
+    shopify_id: 8465827783, title: Marino Chair, vendor: 1}
+  model: products.Product
+  pk: 43
+- fields: {body_html: '<p>The Marino Loveseat is perfect for any living space. It''s
+      rolled arms and big cushions make it the ultimate spot to relax in. Upholstered
+      in leather match materials, the Marino looks as regal as it is comfortable.</p>
+
+      <p><strong>DIMENSIONS</strong></p>
+
+      <p>67.5" W x 36.5" D x 35.75" H</p>', handle: marino-loveseat, product_type: sofas,
+    shopify_id: 8465803847, title: Marino Loveseat, vendor: 1}
+  model: products.Product
+  pk: 44
+- fields: {body_html: '<p>The Marino Sofa is perfect for any living space. It''s rolled
+      arms and big cushions make it the ultimate spot to relax in. Upholstered in
+      leather match materials, the Marino looks as regal as it is comfortable.</p>
+
+      <p><strong>DIMENSIONS</strong></p>
+
+      <p>92" W x 36.5" D x 35.75" H</p>', handle: marino-sofa, product_type: sofas,
+    shopify_id: 8465795975, title: Marino Sofa, vendor: 1}
+  model: products.Product
+  pk: 45
+- fields: {body_html: '<p>Available in cream and black, the exquisite leather match
+      Marko Recliner is just a gorgeous looking chair. Swivel around, enjoy the smooth
+      reclining mechanism, it is the recliner to have.</p>
+
+      <p><strong>DIMENSIONS</strong></p>
+
+      <p>35" W x 40" D x 43" H</p>', handle: marko-recliner-1, product_type: recliners,
+    shopify_id: 7880183559, title: Marko Recliner, vendor: 1}
+  model: products.Product
+  pk: 46
+- fields: {body_html: '<p>Available in cream and black, the exquisite leather match
+      Marko Recliner is just a gorgeous looking chair. Swivel around, enjoy the smooth
+      reclining mechanism, it is the recliner to have.</p>
+
+      <p><strong>DIMENSIONS</strong></p>
+
+      <p>35" W x 40" D x 43" H</p>', handle: marko-recliner, product_type: recliners,
+    shopify_id: 5827028231, title: Marko Recliner, vendor: 1}
+  model: products.Product
+  pk: 47
+- fields: {body_html: "<p>Luxurious top grain leather where it matters, the Marshall\
+      \ Avenue Leather Match Power Reclining collection will bring class and comfort\
+      \ to your living room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>43\"\
+      \ W x 41.25\" D x 40\" H</p>", handle: marshall-avenue-recliner, product_type: recliners,
+    shopify_id: 5827022087, title: Marshall Avenue Power Recliner, vendor: 1}
+  model: products.Product
+  pk: 48
+- fields: {body_html: "<p>Luxurious top grain leather where it matters, the Marshall\
+      \ Avenue Leather Match Power Reclining collection will bring class and comfort\
+      \ to your living room.\_</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>78.5\"\
+      \ W x 40\" D x 41\" H</p>", handle: marshall-avenue-reclining-loveseat, product_type: loveseats,
+    shopify_id: 5831308615, title: Marshall Avenue Power Reclining Loveseat with Console,
+    vendor: 1}
+  model: products.Product
+  pk: 49
+- fields: {body_html: "<p>Luxurious top grain leather where it matters, the Marshall\
+      \ Avenue Leather Match Power Reclining collection will bring class and comfort\
+      \ to your living room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>Sofa\
+      \ - 89.5\" W x 40\" D x 41\" H</p>\r\n<p>Loveseat -\_78.5\" W x 40\" D x 41\"\
+      \ H</p>\r\n<p>Recliner -\_43\" W x 41.25\" D x 40\" H</p>", handle: marshall-avenue-power-reclining-set,
+    product_type: living room sets, shopify_id: 6802269703, title: Marshall Avenue
+      Power Reclining Set, vendor: 1}
+  model: products.Product
+  pk: 50
+- fields: {body_html: "<p>Luxurious top grain leather where it matters, the Marshall\
+      \ Avenue Leather Match Power Reclining collection will bring class and comfort\
+      \ to your living room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>89.5\"\
+      \ W x 40\" D x 41\" H</p>", handle: marshall-avenue-reclining-sofa, product_type: sofas,
+    shopify_id: 5831625223, title: Marshall Avenue Power Reclining Sofa, vendor: 1}
+  model: products.Product
+  pk: 51
+- fields: {body_html: '<p>DIMENSIONS</p>
+
+
+      <p>77.5" W x 39" D x 40" H</p>', handle: mason-city-loveseat, product_type: loveseats,
+    shopify_id: 5827028039, title: Mason City Loveseat, vendor: 1}
+  model: products.Product
+  pk: 52
+- fields: {body_html: '<p>DIMENSIONS</p>
+
+
+      <p>39" W x 40" D x 39.75" H</p>', handle: mason-city-recliner, product_type: recliners,
+    shopify_id: 5827028167, title: Mason City Recliner, vendor: 1}
+  model: products.Product
+  pk: 53
+- fields: {body_html: '<p>DIMENSIONS</p>
+
+
+      <p>89" W x 39" D x 40" H</p>', handle: mason-city-sofa, product_type: sofas,
+    shopify_id: 5827027911, title: Mason City Sofa, vendor: 1}
+  model: products.Product
+  pk: 54
+- fields: {body_html: "<p>Available in\_gray and brown, the Leather Match Matera Living\
+      \ Room Collection is simple and fits nicely in any living room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>Sofa - 89.5\" W x 37\" D x 39.5\" H</p>\r\n<p>Loveseat -\_76\" W x 37\"\
+      \ D x 39.5\" H</p>\r\n<p>Chair -\_43.5\" W x 37\" D x 39.5\" H</p>", handle: matera-living-room-set,
+    product_type: living room sets, shopify_id: 7157963207, title: Matera Living Room
+      Set, vendor: 1}
+  model: products.Product
+  pk: 55
+- fields: {body_html: "<meta charset=\"utf-8\">\r\n<p>Available in\_gray and brown,\
+      \ the Leather Match Matera Living Room Collection is simple and fits nicely\
+      \ in any living room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>76\" W\
+      \ x 37\" D x 39.5\" H</p>", handle: matera-loveseat, product_type: loveseats,
+    shopify_id: 5827024647, title: Matera Loveseat, vendor: 1}
+  model: products.Product
+  pk: 56
+- fields: {body_html: "<p>Available in\_gray and brown, the Leather Match Matera Living\
+      \ Room Collection is simple and fits nicely in any living room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>89.5\" W x 37\" D x 39.5\" H</p>", handle: matera-sofa, product_type: sofas,
+    shopify_id: 5827025223, title: Matera Sofa, vendor: 1}
+  model: products.Product
+  pk: 57
+- fields: {body_html: "<meta charset=\"utf-8\">\r\n<p>Available in\_gray and brown,\
+      \ the Leather Match Matera Living Room Collection is simple and fits nicely\
+      \ in any living room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>43.5\"\
+      \ W x 37\" D x 39.5\" H</p>", handle: matera-sofa-chair, product_type: accent
+      chairs, shopify_id: 5831310023, title: Matera Sofa Chair, vendor: 1}
+  model: products.Product
+  pk: 58
+- fields: {body_html: '<p>Kick back and relax in the ultimate comfort of the Max Lane
+      Sectional. Generous seating provides the perfect place to enjoy hours of lounging
+      with family and friends.</p>
+
+      <p>This 6 piece sectional includes 4 reclining seats and a console with USB
+      Port.</p>
+
+      <p><strong>DIMENSIONS</strong></p>
+
+      <p>Overall - 129.5 x 116.5 by 38.5"H</p>', handle: max-lane-sectional, product_type: sectionals,
+    shopify_id: 5827023879, title: Max Lane Sectional, vendor: 1}
+  model: products.Product
+  pk: 59
+- fields: {body_html: "<p>The Maxwell Ave Leather Match Collection is one of our most\
+      \ affordable motion pieces. Covered in luxurious burgundy leather, it is pleasing\
+      \ to the eyes and easy on the wallet.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>40\" W x 39\" D x 40\" H\_</p>", handle: maxwell-ave-recliner, product_type: loveseats,
+    shopify_id: 7290031495, title: Maxwell Ave Recliner, vendor: 1}
+  model: products.Product
+  pk: 60
+- fields: {body_html: "<p>The Maxwell Ave Leather Match Collection is one of our most\
+      \ affordable motion pieces. Covered in luxurious burgundy leather, it is pleasing\
+      \ to the eyes and easy on the wallet.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>Sofa - 90\" W x 39\" D x 40\" H</p>\r\n<p>Loveseat -\_79\" W x 39\" D x\
+      \ 40\" H</p>\r\n<p>Recliner - 40\" W x 39\" D x 40\" H</p>", handle: maxwell-ave-reclining-living-room-set,
+    product_type: living room sets, shopify_id: 7290098055, title: Maxwell Ave Reclining
+      Living Room Set, vendor: 1}
+  model: products.Product
+  pk: 61
+- fields: {body_html: "<p>The Maxwell Ave Leather Match Collection is one of our most\
+      \ affordable motion pieces. Covered in luxurious burgundy leather, it is pleasing\
+      \ to the eyes and easy on the wallet.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>79\" W x 39\" D x 40\" H\_</p>", handle: maxwell-ave-loveseat-recliner-with-console,
+    product_type: loveseats, shopify_id: 7290009543, title: Maxwell Ave Reclining
+      Loveseat with Console, vendor: 1}
+  model: products.Product
+  pk: 62
+- fields: {body_html: "<p>The Maxwell Ave Leather Match Collection is one of our most\
+      \ affordable motion pieces. Covered in luxurious burgundy leather, it is pleasing\
+      \ to the eyes and easy on the wallet.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>90\" W x 39\" D x 40\" H\_</p>", handle: maxwell-ave-reclining-sofa, product_type: sofas,
+    shopify_id: 7289682055, title: Maxwell Ave Reclining Sofa, vendor: 1}
+  model: products.Product
+  pk: 63
+- fields: {body_html: "<p>The Midtown\_Leather Match Sofa is effortless elegance at\
+      \ it's best! Give your home a fresh contemporary look with the refined style\
+      \ and endless comfort.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>Sofa\
+      \ - 87\" W x 39\" D x 33\" H</p>\r\n<p>Loveseat -\_68\" W x 39\" D x 33\" H</p>\r\
+      \n<p>Chair -\_45\" W x 39\" D x 33\" H</p>", handle: midtown-living-room-set,
+    product_type: living room sets, shopify_id: 8014029959, title: Midtown Living
+      Room Set, vendor: 1}
+  model: products.Product
+  pk: 64
+- fields: {body_html: "<p>The Midtown\_Leather Match Loveseat\_is effortless elegance\
+      \ at it's best! Give your home a fresh contemporary look with the refined style\
+      \ and endless comfort.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>68\"\
+      \ W x 39\" D x 33\" H</p>", handle: midtown-loveseat, product_type: loveseats,
+    shopify_id: 6470249159, title: Midtown Loveseat, vendor: 1}
+  model: products.Product
+  pk: 65
+- fields: {body_html: "<p>The Midtown\_Leather Match Sofa is effortless elegance at\
+      \ it's best! Give your home a fresh contemporary look with the refined style\
+      \ and endless comfort.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>87\"\
+      \ W x 39\" D x 33\" H</p>", handle: midtown-sofa, product_type: sofas, shopify_id: 6386677447,
+    title: Midtown Sofa, vendor: 1}
+  model: products.Product
+  pk: 66
+- fields: {body_html: "<p>The Midtown\_Leather Match Sofa Chair\_is effortless elegance\
+      \ at it's best! Give your home a fresh contemporary look with the refined style\
+      \ and endless comfort.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>45\"\
+      \ W x 39\" D x 33\" H</p>", handle: midtown-sofa-chair, product_type: sofa chairs,
+    shopify_id: 6470341575, title: Midtown Sofa Chair, vendor: 1}
+  model: products.Product
+  pk: 67
+- fields: {body_html: "<p>Covered in khaki\_microfiber fabric, this is a recliner\
+      \ that is all about comfort.\_</p>\n<p><strong>DIMENSIONS</strong></p>\n<p>39\"\
+      \ W x 39\" D x 39.5\" H</p>", handle: mila-recliner-1, product_type: recliners,
+    shopify_id: 7880175175, title: Mila Recliner, vendor: 1}
+  model: products.Product
+  pk: 68
+- fields: {body_html: "<p>Covered in khaki\_microfiber fabric, this is a recliner\
+      \ that is all about comfort.\_</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\
+      <p>39\" W x 39\" D x 39.5\" H</p>", handle: mila-recliner, product_type: recliners,
+    shopify_id: 6536088519, title: Mila Recliner, vendor: 1}
+  model: products.Product
+  pk: 69
+- fields: {body_html: "<p>Make a bold statement with the Leather Match Milena Lipstick\
+      \ Sectional. This gorgeous red brings an undeniable appeal to any living room,\
+      \ while the leather match upholstery makes it a luxurious piece at an affordable\
+      \ price.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>99\" W x 81\" D x 35\"\
+      \ H</p>", handle: milena-lipstick-2-piece-sectional, product_type: sectionals,
+    shopify_id: 7195273287, title: Milena Lipstick 2 Piece Sectional, vendor: 1}
+  model: products.Product
+  pk: 70
+- fields: {body_html: "<p><span>With the look and feel of top grain leather, the Milton\
+      \ Place Living Room will bring you comfort for years to come. With a power reclining\
+      \ system and beautiful dark chocolate bonded leather upholstery, this collection\
+      \ is a steal.</span></p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>42\"\
+      \ W x 40.5\" D x 41\" H</p>", handle: milton-place-recliner, product_type: recliners,
+    shopify_id: 5827023559, title: Milton Place Power Recliner, vendor: 1}
+  model: products.Product
+  pk: 71
+- fields: {body_html: "<p>With the look and feel of top grain leather, the Milton\
+      \ Place Living Room will bring you comfort for years to come. With a power reclining\
+      \ system and beautiful dark chocolate bonded leather upholstery, this collection\
+      \ is a steal.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>Sofa - 92\"\
+      \ W x 39\" D x 38\" H</p>\r\n<p>Loveseat -\_80.5\" W x 39\" D x 38\" H</p>\r\
+      \n<p>Chair -\_42\" W x 40.5\" D x 41\" H</p>", handle: milton-place-power-reclining-sofa,
+    product_type: living room sets, shopify_id: 6772529607, title: Milton Place Power
+      Reclining Living Room Set, vendor: 1}
+  model: products.Product
+  pk: 72
+- fields: {body_html: "<p><span>With the look and feel of top grain leather, the Milton\
+      \ Place Living Room will bring you comfort for years to come. With a power reclining\
+      \ system and beautiful dark chocolate bonded leather upholstery, this collection\
+      \ is a steal.</span></p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>80.5\"\
+      \ W x 39\" D x 38\" H</p>", handle: milton-place-reclining-loveseat, product_type: loveseats,
+    shopify_id: 5827023815, title: Milton Place Power Reclining Loveseat, vendor: 1}
+  model: products.Product
+  pk: 73
+- fields: {body_html: "<p>With the look and feel of top grain leather, the Milton\
+      \ Place Living Room will bring you comfort for years to come. With a power reclining\
+      \ system and beautiful dark chocolate bonded leather upholstery, this collection\
+      \ is a steal.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>92\" W x 39\"\
+      \ D x 38\" H</p>", handle: milton-place-reclining-sofa, product_type: sofas,
+    shopify_id: 5831309127, title: Milton Place Power Reclining Sofa, vendor: 1}
+  model: products.Product
+  pk: 74
+- fields: {body_html: "<p>The Modena chair\_is covered in a luxurious Venetian Red.\
+      \ Add a vibrant pop of color to your home. This\_chair\_will not only bring\
+      \ style to your home, it will also delivery superior comfort for years to come.</p>\r\
+      \n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>36\" W x 36.5\" D x 37\" H</p>",
+    handle: modena-sofa-chair, product_type: accent chairs, shopify_id: 5827020423,
+    title: Modena Chair, vendor: 1}
+  model: products.Product
+  pk: 75
+- fields: {body_html: "<p>The Modena\_Loveseat\_is covered in a luxurious Venetian\
+      \ Red. Add a vibrant pop of color to your home. This loveseat\_will not only\
+      \ bring style to your home, it will also delivery superior comfort for years\
+      \ to come.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>58\" W x 36.5\"\
+      \ D x 37\" H</p>", handle: modena-loveseat, product_type: loveseats, shopify_id: 5831307079,
+    title: Modena Loveseat, vendor: 1}
+  model: products.Product
+  pk: 76
+- fields: {body_html: "<p>The Modena Sofa\_is covered in a luxurious Venetian Red.\
+      \ Add a vibrant pop of color to your home. This sofa will not only bring style\
+      \ to your home, it will also delivery superior comfort for years to come.</p>\r\
+      \n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>80\" W x 36.5\" D x 37\" H</p>",
+    handle: modena-sofa, product_type: sofas, shopify_id: 5827020039, title: Modena
+      Sofa, vendor: 1}
+  model: products.Product
+  pk: 77
+- fields: {body_html: "<p>The Modena Living Room collection\_is covered in a luxurious\
+      \ Venetian Red. Add a vibrant pop of color to your home. This sofa will not\
+      \ only bring style to your home, it will also delivery superior comfort for\
+      \ years to come.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>Sofa - 80\"\
+      \ W x 36.5\" D x 37\" H</p>\r\n<p>Loveseat -\_58\" W x 36.5\" D x 37\" H</p>\r\
+      \n<p>Chair -\_36\" W x 36.5\" D x 37\" H</p>", handle: modena-sofa-loveseat-chair,
+    product_type: living room sets, shopify_id: 7780595783, title: 'Modena Sofa, Loveseat
+      & Chair', vendor: 1}
+  model: products.Product
+  pk: 78
+- fields: {body_html: "<p>The Modesto Motion Loveseat is perfect if you're looking\
+      \ for comfortable and stylish living room furniture. With reclining seats and\
+      \ upholstered in a beige faux leather, the Modesto will surely be your new favorite\
+      \ spot to relax. The loveseat also features a center console.</p>\n<p><strong>DIMENSIONS</strong></p>\n\
+      <p>\uFEFF80.5\" W x 38\" D x 40.5\" H</p>", handle: modesto-motion-loveseat,
+    product_type: loveseats, shopify_id: 8441550919, title: Modesto Motion Loveseat,
+    vendor: 1}
+  model: products.Product
+  pk: 79
+- fields: {body_html: "<p>The Modesto Motion Recliner is perfect if you're looking\
+      \ for comfortable and stylish living room furniture. Upholstered in a beige\
+      \ faux leather, the Modesto will surely be your new favorite spot to relax.</p>\n\
+      <p><strong>DIMENSIONS</strong></p>\n<p>\uFEFF81.5\" W x 39.5\" D x 39.5\" H</p>",
+    handle: modesto-motion-recliner, product_type: recliners, shopify_id: 8441633415,
+    title: Modesto Motion Recliner, vendor: 1}
+  model: products.Product
+  pk: 80
+- fields: {body_html: "<p>The Modesto Motion Sofa is perfect if you're looking for\
+      \ comfortable and stylish living room furniture. With reclining seats and upholstered\
+      \ in a beige faux leather, the Modesto will surely be your new favorite spot\
+      \ to relax.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>\uFEFF90\" W x 38\"\
+      \ D x 40.5\" H</p>", handle: modesto-reclining-sofa, product_type: sofas, shopify_id: 8441500231,
+    title: Modesto Reclining Sofa, vendor: 1}
+  model: products.Product
+  pk: 81
+- fields: {body_html: "<p>The Monaldo Sectional is contemporary leather match sectional\
+      \ with midcentury flair.\_The rich burgundy leather is just gorgeous.</p>\r\n\
+      <p><strong>DIMENSIONS</strong></p>\r\n<p>127\" W x 116\" D x 35\" H</p>", handle: monaldo-sectional,
+    product_type: sectionals, shopify_id: 7289049159, title: Monaldo Sectional, vendor: 1}
+  model: products.Product
+  pk: 82
+- fields: {body_html: "<p>The Monday Night Field\_Sectional offers a sleek, contemporary\
+      \ look for your living room, covered in a luxurious gray <span>100% Leather\
+      \ Seating</span>. Generous seating and comfort provides the perfect place to\
+      \ relax with friends and family for years to come. \_This is 100% Leather Seating.\_\
+      </p>\n<p>Pieces include 2 end reclining chairs,\_2 Consoles, 2 Armless Chairs\
+      \ and a storage ottoman.</p>\n<p><strong>DIMENSIONS</strong></p>\n<p>147\" Long</p>",
+    handle: monday-night-field-sectional, product_type: sectionals, shopify_id: 5827027207,
+    title: Monday Night Field 7-Piece Sectional, vendor: 1}
+  model: products.Product
+  pk: 83
+- fields: {body_html: "<p>The Monday Night Field\_Sectional offers a sleek, contemporary\
+      \ look for your living room, covered in a luxurious gray <span>100% Leather\
+      \ Seating</span>. Generous seating and comfort provides the perfect place to\
+      \ relax with friends and family for years to come. \_This is 100% Leather Seating.\_\
+      </p>\n<p>Pieces include 2 end reclining chairs,\_2 Consoles, 2 Armless Chairs\
+      \ and a storage ottoman.</p>\n<p><strong>DIMENSIONS</strong></p>\n<p>147\" Long</p>",
+    handle: monday-night-field-living-room-set, product_type: living room sets, shopify_id: 6591550087,
+    title: Monday Night Field Living Room Set, vendor: 1}
+  model: products.Product
+  pk: 84
+- fields: {body_html: <p><strong>DIMENSIONS</strong></p><p>36" W x 34" D x 35" H</p>,
+    handle: monroe-chair, product_type: accent chairs, shopify_id: 5827026567, title: Monroe
+      Chair, vendor: 1}
+  model: products.Product
+  pk: 85
+- fields: {body_html: "<p>\_</p><p><strong>DIMENSIONS</strong></p><p>57\" W x 34\"\
+      \ D x 35\" H</p>", handle: monroe-loveseat, product_type: loveseats, shopify_id: 5827026631,
+    title: Monroe Loveseat, vendor: 1}
+  model: products.Product
+  pk: 86
+- fields: {body_html: <p><strong>DIMENSIONS</strong></p><p>26" W x 23" D x 18" H</p>,
+    handle: monroe-ottoman, product_type: ottomans, shopify_id: 5827026439, title: Monroe
+      Ottoman, vendor: 1}
+  model: products.Product
+  pk: 87
+- fields: {body_html: <p><strong>DIMENSIONS</strong></p><p>77" W x 34" D x 35" H</p>,
+    handle: monroe-sofa-sleeper, product_type: sofas, shopify_id: 5827026759, title: Monroe
+      Sofa, vendor: 1}
+  model: products.Product
+  pk: 88
+- fields: {body_html: '<p><strong>DIMENSIONS</strong></p>
+
+
+      <p>43" W x 40" D x 37.75" H</p>', handle: monta-chair, product_type: accent
+      chairs, shopify_id: 5827026247, title: Monta Chair, vendor: 1}
+  model: products.Product
+  pk: 89
+- fields: {body_html: '<p><strong>DIMENSIONS</strong></p>
+
+
+      <p>67" W x 40" D x 37.75" H</p>', handle: monta-loveseat, product_type: loveseats,
+    shopify_id: 5827026311, title: Monta Loveseat, vendor: 1}
+  model: products.Product
+  pk: 90
+- fields: {body_html: '<p><strong>DIMENSIONS</strong></p>
+
+
+      <p>91" W x 40" D x 37.75" H</p>', handle: monta-sofa, product_type: sofas, shopify_id: 5827026375,
+    title: Monta Sofa, vendor: 1}
+  model: products.Product
+  pk: 91
+- fields: {body_html: "<p>The Morgan Creek collection is the perfect addition to any\
+      \ Living Room. It is power recliner that transitions smoothly to the reclining\
+      \ position with little effort. Lay back and sink into the plush cushions that\
+      \ give extra support and comfort.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>37\" W x 41\" D x 38\" H</p>", handle: morgan-creek-power-recliner, product_type: recliners,
+    shopify_id: 5827095367, title: Morgan Creek Power Recliner, vendor: 1}
+  model: products.Product
+  pk: 92
+- fields: {body_html: "<p>Microfibre - Dual Reclining loveseat with plush cushions\
+      \ giving extra support and comfort. Transition smoothly to the reclining position\
+      \ with little effort. The Morgan Creek collection is the perfect addition to\
+      \ any Living Room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>77\"\
+      \ W x 38\" D x 40.75\" H</p>", handle: morgan-creek-reclining-loveseat, product_type: loveseats,
+    shopify_id: 5827019591, title: Morgan Creek Power Reclining Loveseat, vendor: 1}
+  model: products.Product
+  pk: 93
+- fields: {body_html: "<p>Microfiber\_Dual Reclining sofa and loveseat with plush\
+      \ cushions giving extra support and comfort. Transition smoothly to the reclining\
+      \ position with little effort. The Morgan Creek collection is the perfect addition\
+      \ to any Living Room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>Sofa -\
+      \ 82\" W x 38\" D x 40.75\" H</p>\r\n<p>Loveseat -\_77\" W x 38\" D x 40.75\"\
+      \ H</p>\r\n<p>Recliner -\_37\" W x 41\" D x 38\" H</p>", handle: morgan-creek-power-reclining-set,
+    product_type: living room sets, shopify_id: 6816992583, title: Morgan Creek Power
+      Reclining Set, vendor: 1}
+  model: products.Product
+  pk: 94
+- fields: {body_html: "<meta charset=\"utf-8\">\r\n<p>Microfibre - Dual Reclining\
+      \ sofa and loveseat with plush cushions giving extra support and comfort. Transition\
+      \ smoothly to the reclining position with little effort. The Morgan Creek collection\
+      \ is the perfect addition to any Living Room.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<meta charset=\"utf-8\">\r\n<p>82\" W x 38\" D x 40.75\" H</p>", handle: morgan-creek-reclining-sofa,
+    product_type: sofas, shopify_id: 5827019783, title: Morgan Creek Power Reclining
+      Sofa, vendor: 1}
+  model: products.Product
+  pk: 95
+- fields: {body_html: "<p>The Murray Road Recliner\_is covered in a rich chocolate\
+      \ leather with padded arms for extra comfort. Guaranteed to bring hours of relaxation\
+      \ to your home!</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>40\" W x\
+      \ 41\" D x 38\" H</p>", handle: murray-road-recliner, product_type: recliners,
+    shopify_id: 5827023303, title: Murray Road Recliner, vendor: 1}
+  model: products.Product
+  pk: 96
+- fields: {body_html: "<p>The Murray Road Dual Reclining Sofa is covered in a rich\
+      \ chocolate leather with padded arms for extra comfort. Guaranteed to bring\
+      \ hours of relaxation to your home!</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>Sofa - 88\" W x 40.5\" D x 39\" H</p>\r\n<p>Loveseat -\_77\" W x 40.5\"\
+      \ D x 39\" H</p>\r\n<p>Chair -\_40\" W x 41\" D x 38\" H</p>", handle: murray-road-reclining-living-room-set,
+    product_type: living room sets, shopify_id: 6773295815, title: Murray Road Reclining
+      Living Room Set, vendor: 1}
+  model: products.Product
+  pk: 97
+- fields: {body_html: "<p>The Murray Road Reclining Loveseat with console is covered\
+      \ in a rich chocolate leather with padded arms for extra comfort. Guaranteed\
+      \ to bring hours of relaxation to your home!</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n\r\n<p>77\" W x 40.5\" D x 39\" H</p>", handle: murray-road-reclining-loveseat,
+    product_type: loveseats, shopify_id: 5827023175, title: Murray Road Reclining
+      Loveseat, vendor: 1}
+  model: products.Product
+  pk: 98
+- fields: {body_html: "<p>The Murray Road Dual Reclining Sofa is covered in a rich\
+      \ chocolate leather with padded arms for extra comfort. Guaranteed to bring\
+      \ hours of relaxation to your home!</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n\r\n<p>88\" W x 40.5\" D x 39\" H</p>", handle: murray-road-reclining-sofa,
+    product_type: sofas, shopify_id: 5827022919, title: Murray Road Reclining Sofa,
+    vendor: 1}
+  model: products.Product
+  pk: 99
+- fields: {body_html: "<p><span>This Power Reclining\_Collection is covered in\_beautiful\
+      \ ash brown microfiber-life fabric. Sink into the plush cushion and recline\
+      \ to your comfort level. The only problem now is whether you can get out of\
+      \ it.</span></p>\r\n<p><strong style=\"line-height: 1.4;\">DIMENSIONS</strong></p>\r\
+      \n\r\n<p>41\" W x 40\" D x 41.5\" H</p>", handle: myron-court-recliner, product_type: recliners,
+    shopify_id: 5827025927, title: Myron Court Power Recliner, vendor: 1}
+  model: products.Product
+  pk: 100
+- fields: {body_html: "<p>This Power Reclining\_Collection is covered in\_beautiful\
+      \ ash brown microfiber-life fabric. Sink into the plush cushion and recline\
+      \ to your comfort level. The only problem now is whether you can get out of\
+      \ it.</p>\r\n<p>*Coffee Table not\_available\_</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n\r\n<p>Sofa -\_90\" W x 40\" D x 41.5\" H</p>\r\n<p>Loveseat -\_80.5\" W x\
+      \ 40\" D x 41.5\" H</p>\r\n<p>Recliner -\_41\" W x 40\" D x 41.5\" H</p>", handle: myron-court-reclining-living-room-set,
+    product_type: living room sets, shopify_id: 6310855239, title: Myron Court Power
+      Reclining Living Room Set, vendor: 1}
+  model: products.Product
+  pk: 101
+- fields: {body_html: "<p><span>This Power Reclining\_Collection is covered in\_beautiful\
+      \ ash brown microfiber-life fabric. Sink into the plush cushion and recline\
+      \ to your comfort level. The only problem now is whether you can get out of\
+      \ it.</span></p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>80.5\" W x\
+      \ 40\" D x 41.5\" H</p>", handle: myron-court-reclining-loveseat, product_type: loveseats,
+    shopify_id: 5827025991, title: Myron Court Power Reclining Loveseat with Console,
+    vendor: 1}
+  model: products.Product
+  pk: 102
+- fields: {body_html: "<p><span>This Power Reclining\_Collection is covered in\_beautiful\
+      \ ash brown microfiber-life fabric. Sink into the plush cushion and recline\
+      \ to your comfort level. The only problem now is whether you can get out of\
+      \ it.</span></p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n\r\n<p>90\" W x 40\"\
+      \ D x 41.5\" H</p>", handle: myron-court-reclining-sofa, product_type: sofas,
+    shopify_id: 5827026119, title: Myron Court Power Reclining Sofa, vendor: 1}
+  model: products.Product
+  pk: 103
+- fields: {body_html: "<p>The Opus\_Upholstery Collection's contemporary design brings\
+      \ a splash of conservative warm colors to the living room.\_</p>\n<p><strong>DIMENSIONS</strong></p>\n\
+      <p>28\" W x 39\" D x 34\" H</p>", handle: opus-accent-chair, product_type: accent
+      chairs, shopify_id: 6364333575, title: Opus Accent Chair, vendor: 1}
+  model: products.Product
+  pk: 104
+- fields: {body_html: "<p>The Opus\_Upholstery Collection's contemporary design brings\
+      \ a splash of conservative warm colors to the living room.\_</p>\r\n<p>The living\
+      \ room set consists of sofa and loveseat. Queen sleeper option available for\
+      \ sofa.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>Sofa - 83\" W x 38\"\
+      \ D x 38\" H</p>\r\n<p>Loveseat -\_60\" W x 38\" D x 38\" H</p>", handle: opus-living-room-set,
+    product_type: living room sets, shopify_id: 6364395207, title: Opus Living Room
+      Set, vendor: 1}
+  model: products.Product
+  pk: 105
+- fields: {body_html: "<p>The Opus\_Upholstery Collection's contemporary design brings\
+      \ a splash of conservative warm colors to the living room.\_</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>60\" W x 38\" D x 38\" H</p>", handle: opus-loveseat, product_type: loveseats,
+    shopify_id: 6364007559, title: Opus Loveseat, vendor: 1}
+  model: products.Product
+  pk: 106
+- fields: {body_html: "<p>The Opus\_Upholstery Collection's contemporary design brings\
+      \ a splash of conservative warm colors to the living room.\_</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>83\" W x 38\" D x 38\" H</p>", handle: opus-sofa, product_type: sofas,
+    shopify_id: 6316257287, title: Opus Sofa, vendor: 1}
+  model: products.Product
+  pk: 107
+- fields: {body_html: "<p>Covered in luscious chocolate 100% leather, the Riley Sofa\
+      \ is the modern contemporary sofa that speaks volume of class and status.</p>\r\
+      \n<p><strong>DIMENSIONS</strong></p>\r\n<p>Sofa - 76\" W x 34.5\" D x 35\" H</p>\r\
+      \n<p>Loveseat -\_55.5\" W x 34.5\" D x 35\" H</p>\r\n<p>Chair -\_34.5\" W x\
+      \ 34.5\" D x 35\" H</p>", handle: riley-living-room-set, product_type: living
+      room sets, shopify_id: 8014586887, title: Riley Living Room Set, vendor: 1}
+  model: products.Product
+  pk: 108
+- fields: {body_html: "<p>Covered in luscious chocolate 100% leather, the Riley Sofa\
+      \ is the modern contemporary sofa that speaks volume of class and status.</p>\r\
+      \n<p><strong>DIMENSIONS</strong></p>\r\n<p>76\" W x 34.5\" D x 35\" H</p>",
+    handle: riley-sofa, product_type: sofas, shopify_id: 7290364231, title: Riley
+      Sofa, vendor: 1}
+  model: products.Product
+  pk: 109
+- fields: {body_html: "<p>Covered in plush khaki\_fabric, this is a rocker recliner\
+      \ that is all about comfort. Classic rounded arm rests, sink in, relax, and\
+      \ rock away.</p>\n<p><strong>DIMENSIONS</strong></p>\n<p>39\" W x 41\" D x 43\"\
+      \ H</p>", handle: royce-recliner-1, product_type: recliners, shopify_id: 7880162311,
+    title: Royce Rocker Recliner, vendor: 1}
+  model: products.Product
+  pk: 110
+- fields: {body_html: "<p>Covered in plush khaki\_fabric, this is a rocker recliner\
+      \ that is all about comfort. Classic rounded arm rests, sink in, relax, and\
+      \ rock away.</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\n<p>39\" W x 41\" D\
+      \ x 43\" H</p>", handle: royce-recliner, product_type: recliners, shopify_id: 6536326791,
+    title: Royce Rocker Recliner, vendor: 1}
+  model: products.Product
+  pk: 111
+- fields: {body_html: "<p><strong></strong>The Softee Full Size Sofabed has been a\
+      \ best selling staple of our company for many years, and there is a reason why\
+      \ it is that popular. It is simple, classic, comfortable and fits perfectly\
+      \ in any room. A full innerspring sleeper at only 65\" wide, this sofabed offers\
+      \ you the best bang for your buck. It comes in two colors with different fabric\
+      \ - Brown\_Corduroy and Beige Microfiber.\_</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>65\" W x 36\" D x 35\" H</p>", handle: softee-sleeper-sofa, product_type: sofas,
+    shopify_id: 5826452167, title: Softee Full Sleeper Sofa, vendor: 1}
+  model: products.Product
+  pk: 112
+- fields: {body_html: "<p>The chocolate brown faux leather look and feels just like\
+      \ genuine top grain leather without hurting your wallet. Along with the smooth\
+      \ reclining feature,\_this recliner is stylish, classy and oh so comfortable.</p>\n\
+      <p><strong>DIMENSIONS</strong></p>\n<p>33\" W x 37\" D x 39\" H</p>", handle: stevenson-recliner-1,
+    product_type: recliners, shopify_id: 7880180295, title: Stevenson Recliner, vendor: 1}
+  model: products.Product
+  pk: 113
+- fields: {body_html: "<p>The chocolate brown faux leather look and feels just like\
+      \ genuine top grain leather without hurting your wallet. Along with the smooth\
+      \ reclining feature,\_this recliner is stylish, classy and oh so comfortable.</p>\r\
+      \n<p><strong>DIMENSIONS</strong></p>\r\n<p>33\" W x 37\" D x 39\" H</p>", handle: stevenson-recliner,
+    product_type: recliners, shopify_id: 7063215431, title: Stevenson Recliner, vendor: 1}
+  model: products.Product
+  pk: 114
+- fields: {body_html: "<meta charset=\"utf-8\">\r\n<p>The Wilton Brown Leather Match<span>\_\
+      sectional</span>\_is all about simplicity and class. The beautiful upholstery\
+      \ has a luxurious look without compromising on comfort.\_</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>124\" W x 100\" D x 38.75\" H</p>", handle: wilton-2-piece-sleeper-sectional,
+    product_type: sectionals, shopify_id: 5827025543, title: Wilton 2-Piece Sleeper
+      Sectional, vendor: 1}
+  model: products.Product
+  pk: 115
+- fields: {body_html: "<p>The Wilton Leather Match<span>\_</span>living room collection\
+      \ is all about simplicity and class. The beautiful upholstery has a luxurious\
+      \ look without compromising on comfort.</p>\n<p>For a limited time, buy one\
+      \ get one free! While stocks last!</p>\n<p><strong>DIMENSIONS</strong></p>\n\
+      <p>Chair -\_44\" W x 41\" D x 39\" H</p>\n<p>Ottoman -\_26\" W x 22\" D x 19\"\
+      \ H</p>", handle: wilton-burgundy-chair-ottoman, product_type: living room sets,
+    shopify_id: 7588187655, title: Wilton Burgundy Chair & Ottoman, vendor: 1}
+  model: products.Product
+  pk: 116
+- fields: {body_html: "<p>The Wilton Leather Match<span>\_</span>living room collection\
+      \ is all about simplicity and class. The beautiful upholstery has a luxurious\
+      \ look without compromising on comfort.\_</p>\n<p><strong>DIMENSIONS</strong></p>\n\
+      <p>Sofa - 88\" W x 41\" D x 39\" H</p>\n<p>Chair -\_44\" W x 41\" D x 39\" H</p>\n\
+      <p>Ottoman -\_26\" W x 22\" D x 19\" H</p>", handle: wilton-burgundy-living-room-set,
+    product_type: living room sets, shopify_id: 7020350535, title: Wilton Burgundy
+      Living Room Set, vendor: 1}
+  model: products.Product
+  pk: 117
+- fields: {body_html: "<p>The Wilton\_leather match\_living room collection is all\
+      \ about simplicity and class. The beautiful upholstery has a luxurious look\
+      \ without compromising on comfort.\_</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>44\" W x 41\" D x 39\" H</p>", handle: wilton-chair, product_type: accent
+      chairs, shopify_id: 5831306759, title: Wilton Chair, vendor: 1}
+  model: products.Product
+  pk: 118
+- fields: {body_html: "<p>The Wilton\_leather match\_living room collection is all\
+      \ about simplicity and class. The beautiful upholstery has a luxurious look\
+      \ without compromising on comfort.\_</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>66\" W x 41\" D x 39\" H</p>", handle: wilton-loveseat, product_type: loveseats,
+    shopify_id: 5827019271, title: Wilton Loveseat, vendor: 1}
+  model: products.Product
+  pk: 119
+- fields: {body_html: "<p>The Wilton\_leather match\_living room collection is all\
+      \ about simplicity and class. The beautiful upholstery has a luxurious look\
+      \ without compromising on comfort.\_</p>\r\n<p><strong>DIMENSIONS</strong></p>\r\
+      \n<p>26\" W x 22\" D x 19\" H</p>", handle: wilton-ottoman, product_type: ottomans,
+    shopify_id: 6491325191, title: Wilton Ottoman, vendor: 1}
+  model: products.Product
+  pk: 120
+- fields: {body_html: "<p><strong>DIMENSIONS</strong></p>\r\n<p>88\" W x 41\" D x\
+      \ 39\" H</p>", handle: wilton-sofa, product_type: sofas, shopify_id: 6265203591,
+    title: Wilton Sofa, vendor: 1}
+  model: products.Product
+  pk: 121

@@ -9,7 +9,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('products', '0003_auto_20160819_1559'),
+        ('products', '0003_auto_20160819_1635'),
     ]
 
     operations = [
@@ -22,10 +22,6 @@ class Migration(migrations.Migration):
                 ('depth', models.DecimalField(decimal_places=2, max_digits=12)),
                 ('height', models.DecimalField(decimal_places=2, max_digits=12)),
             ],
-        ),
-        migrations.RemoveField(
-            model_name='product',
-            name='dimension',
         ),
         migrations.AddField(
             model_name='dimension',

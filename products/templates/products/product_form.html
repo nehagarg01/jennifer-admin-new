@@ -48,7 +48,26 @@
 					{% bootstrap_field form.features %}
 				</div>
 			</div>
-
+			<hr/>
+			<h3>DIMENSIONS</h3>
+			{{ formset.management_form }}
+			{% for dimension_form in formset %}
+			{{ dimension_form.id }}
+			<div class="row">
+				<div class="col-lg-3">
+					{% bootstrap_field dimension_form.title %}
+				</div>
+				<div class="col-lg-1">
+					{% bootstrap_field dimension_form.width %}
+				</div>
+				<div class="col-lg-1">
+					{% bootstrap_field dimension_form.depth %}
+				</div>
+				<div class="col-lg-1">
+					{% bootstrap_field dimension_form.height %}
+				</div>
+			</div>
+			{% endfor %}
 
 			<hr/>
 			<div class="radio radio-inline">
@@ -61,7 +80,7 @@
       </div>
 			<div class="clearfix"></div>
 
-			{% bootstrap_button "Save" button_type="submit" button_class="btn-primary" %}
+			<button type="submit" class="btn btn-success">Save Changes</button>
 		</form>
 	</div>
 </div>

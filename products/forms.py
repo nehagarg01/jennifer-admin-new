@@ -21,6 +21,6 @@ class ProductForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
         if self.instance.pk:
-            self.fields['materials'].initial = self.materials()
-            self.fields['styles'].initial = self.styles()
-            self.fields['features'].initial = self.features()
+            self.fields['materials'].initial = self.instance.materials()
+            self.fields['styles'].initial = self.instance.styles()
+            self.fields['features'].initial = self.instance.features()
