@@ -43,6 +43,21 @@ def sync_products():
                                 'option3': v.option3,
                                 'position': v.position,
                             })
+                    attributes = []
+                    for tag in product.tags:
+                        if 'style' in tag:
+                            att, created = ProductAttribute.objects.get_or_create(
+                                attribute_type='ST', title=tag.split('-')[1],
+                                handle=tag
+                            )
+                            attributes.append(att)
+                        elif 'material' in tag:
+                            att, created = ProductAttribute.objects.get_or_create(
+                                attribute_type='MA', title=tag.split('-')[1],
+                                handle=tag
+                            )
+                            attributes.append(att)
+                    product.attributes.add(*attributes)
             page += 1
         else:
             incomplete = False
