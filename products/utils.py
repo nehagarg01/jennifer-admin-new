@@ -29,6 +29,20 @@ def sync_products():
                             'published_scope': sp.published_scope,
                             'vendor': Vendor.objects.get_or_create(name=sp.vendor)[0],
                         })
+                    for v in sp.variants:
+                        variant, created = Variant.objects.update_or_create(
+                            shopify_id=v.id, product=product,
+                            defaults={
+                                'sku': v.sku,
+                                'barcode': v.barcode,
+                                'compare_at_price': v.compare_at_price,
+                                'price': v.price,
+                                'pieces': v.grams,
+                                'option1': v.option1,
+                                'option2': v.option2,
+                                'option3': v.option3,
+                                'position': v.position,
+                            })
             page += 1
         else:
             incomplete = False

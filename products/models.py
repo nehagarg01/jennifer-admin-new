@@ -65,6 +65,7 @@ class Variant(models.Model):
     option2 = models.CharField(max_length=255, blank=True)
     option3 = models.CharField(max_length=255, blank=True)
     shopify_id = models.IntegerField(null=True, blank=True)
+    position = models.IntegerField(default=1)
 
 
 class Dimension(models.Model):
