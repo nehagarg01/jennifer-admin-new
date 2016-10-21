@@ -6,13 +6,8 @@ from .models import *
 from vendors.models import Vendor
 
 
-shop_url = "https://%s:%s@%s.myshopify.com/admin" % (
-    settings.SHOPIFY_API_KEY,
-    settings.SHOPIFY_PASSWORD,
-    settings.SHOPIFY_SHOP_NAME,)
-
-shopify.ShopifyResource.set_site(shop_url)
-shop = shopify.Shop.current()
+shopify.ShopifyResource.set_site(settings.SHOPIFY_URL)
+# shop = shopify.Shop.current()
 
 
 def sync_products():

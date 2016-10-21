@@ -4,6 +4,10 @@ from django.views.generic import (ListView, CreateView, UpdateView,
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
+from django.conf import settings
+
+import shopify
+from .utils import shopify
 
 from .models import *
 from .forms import ProductForm
@@ -55,7 +59,13 @@ class ProductDetail(ProductMixin, DetailView):
 
 
 class ProductUpdate(ProductFormMixin, UpdateView):
-    pass
+
+    def get_success_url(self):
+        product = shopify.Product.find(self.object.shopify_id)
+        for k in ['title', 'body_html']:
+            setattr(product, k, getattr(self.object, k))
+        product.save()
+        return super(ProductUpdate, self).get_success_url()
 
 
 class ProductDelete(ProductMixin, DeleteView):
