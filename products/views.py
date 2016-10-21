@@ -15,7 +15,7 @@ class ProductMixin(LoginRequiredMixin):
 
 
 class ProductList(ProductMixin, ListView):
-    pass
+    paginate_by = 25
 
 
 class ProductFormMixin(ProductMixin):

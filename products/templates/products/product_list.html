@@ -13,6 +13,16 @@
 {% block content %}
 <div class="hpanel">
   <div class="panel-body">
+    <form>
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-md-4"></div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="hpanel">
+  <div class="panel-body">
     <input type="text" class="form-control input-sm m-b-md" id="filter" placeholder="Search in table">
     <table class="table footable table-striped" data-filter="#filter">
       <thead>
@@ -26,7 +36,7 @@
       <tbody>
       {% for object in object_list %}
       <tr>
-        <td>{{ object.title }}</td>
+        <td><a href="{% url 'product-detail' object.pk %}">{{ object.title }}</a></td>
         <td>{{ object.vendor }}</td>
         <td>{{ object.product_type }}</td>
         <td class="text-right">
