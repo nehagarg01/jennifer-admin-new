@@ -44,4 +44,36 @@
 	</div>
 </div>
 
+<div class="hpanel">
+	<div class="panel-body">
+		<h2>Variants</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Sku</th>
+					<th>Option 1</th>
+					<th>Option 2</th>
+					<th>Option 3</th>
+					<th>Sale Price</th>
+					<th>Price</th>
+					<th>Compare</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for v in object.variants.all %}
+				<tr>
+					<td>{{ v.sku }}</td>
+					<td>{{ v.option1 }}</td>
+					<td>{{ v.option2 }}</td>
+					<td>{{ v.option3 }}</td>
+					<td>{{ v.sale_price }}</td>
+					<td>{{ v.price }}</td>
+					<td>{{ v.compare_at_price }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
 {% endblock %}

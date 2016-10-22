@@ -46,11 +46,13 @@ INSTALLED_APPS = (
     'dashboard',
     'vendors',
     'products',
+    'schedule',
 
     # External apps
     'django_extensions',
     'bootstrap3',
     'localflavor',
+    # 'bootstrap3_datetime',
 )
 
 MIDDLEWARE_CLASSES = (

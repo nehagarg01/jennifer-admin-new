@@ -5,6 +5,8 @@ from django.db import models
 from localflavor.us.models import PhoneNumberField
 from django_extensions.db.models import TitleDescriptionModel
 
+from .managers import *
+
 
 class ProductType(models.Model):
     title = models.CharField(max_length=250)
@@ -52,20 +54,28 @@ class Product(models.Model):
 
 class Variant(models.Model):
     product = models.ForeignKey(Product, related_name='variants')
-    sku = models.CharField(max_length=255, blank=True)
-    barcode = models.CharField(max_length=255)
+    sku = models.CharField(max_length=255, blank=True, null=True)
+    barcode = models.CharField(max_length=255, blank=True, null=True)
     compare_at_price = models.DecimalField(max_digits=14, decimal_places=2,
                                            default=Decimal('0.00'))
     price = models.DecimalField(max_digits=14, decimal_places=2,
                                 default=Decimal('0.00'))
+    sale_price = models.DecimalField(max_digits=14, decimal_places=2,
+                                     default=Decimal('0.00'))
     pieces = models.IntegerField(default=1)
     weight = models.DecimalField(max_digits=14, decimal_places=2,
                                  blank=True, null=True)
     option1 = models.CharField(max_length=255, default="Default Title")
-    option2 = models.CharField(max_length=255, blank=True)
-    option3 = models.CharField(max_length=255, blank=True)
-    shopify_id = models.IntegerField(null=True, blank=True)
+    option2 = models.CharField(max_length=255, blank=True, null=True)
+    option3 = models.CharField(max_length=255, blank=True, null=True)
+    shopify_id = models.BigIntegerField(null=True, blank=True)
     position = models.IntegerField(default=1)
+
+    objects = models.Manager()
+    main_products = MainProductManager()
+
+    class Meta:
+        ordering = ['position']
 
 
 class Dimension(models.Model):

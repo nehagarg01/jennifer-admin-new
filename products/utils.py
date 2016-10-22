@@ -35,8 +35,8 @@ def sync_products():
                             defaults={
                                 'sku': v.sku,
                                 'barcode': v.barcode,
-                                'compare_at_price': v.compare_at_price,
-                                'price': v.price,
+                                'compare_at_price': v.compare_at_price or 0,
+                                'price': v.price or 0,
                                 'pieces': v.grams,
                                 'option1': v.option1,
                                 'option2': v.option2,
@@ -44,7 +44,7 @@ def sync_products():
                                 'position': v.position,
                             })
                     attributes = []
-                    for tag in product.tags:
+                    for tag in sp.tags:
                         if 'style' in tag:
                             att, created = ProductAttribute.objects.get_or_create(
                                 attribute_type='ST', title=tag.split('-')[1],

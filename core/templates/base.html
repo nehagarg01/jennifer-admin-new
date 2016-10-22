@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="{% static 'vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css' %}" />
   <link rel="stylesheet" href="{% static 'vendor/fooTable/css/footable.core.min.css' %}" />
   <link rel="stylesheet" href="{% static 'vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css' %}" />
+  <link rel="stylesheet" href="{% static 'vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css' %}" />
 
   <!-- App styles -->
   <link rel="stylesheet" href="{% static 'fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css' %}" />
@@ -153,8 +154,10 @@
   <script src="{% static 'vendor/toastr/build/toastr.min.js' %}"></script>
   <script src="{% static 'vendor/sweetalert/lib/sweetalert.min.js' %}"></script>
   <script src="{% static 'js-cookie/src/js.cookie.js' %}"></script>
+  <script src="{% static 'vendor/moment/min/moment.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js' %}"></script>
   <script src="{% static 'vendor/fooTable/dist/footable.all.min.js' %}"></script>
+  <script src="{% static 'vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}"></script>
 
 
   <!-- App scripts -->
@@ -174,6 +177,7 @@
 
       $('[data-toggle="tooltip"]').tooltip();
       $('.date').datepicker();
+      // $('.datetime').datetimepicker();
 
       $('.footable').footable();
     })

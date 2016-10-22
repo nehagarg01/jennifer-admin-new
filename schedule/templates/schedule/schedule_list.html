@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Schedules{% endblock %}
+
+{% block breadcrumbs %}
+<li><a href="{% url 'schedule-list' %}">Schedule</a></li>
+{% endblock %}
+
+{% block actions %}
+<a class="btn btn-primary" href="{% url 'schedule-create' %}">Add Schedule</a>
+{% endblock %}
+
+{% block content %}
+<div class="hpanel">
+  <div class="panel-body">
+    <input type="text" class="form-control input-sm m-b-md" id="filter" placeholder="Search in table">
+    <table class="table footable table-striped" data-filter="#filter">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Changes</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for object in object_list %}
+      <tr>
+        <td><a href="">{{ object.title }}</a></td>
+        <td>{{ object.date }}</td>
+        <td>{{ object.get_schedule_type_display }}</td>
+        <td>{{ object.changes.count }}</td>
+        <td>{{ object.get_status_display }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="4" class="text-center">There are no schedules.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

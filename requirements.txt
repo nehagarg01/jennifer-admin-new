@@ -10,3 +10,4 @@ markdown
 django-localflavor
 pyyaml
 ShopifyAPI
+django-bootstrap3-datetimepicker

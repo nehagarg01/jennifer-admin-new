@@ -1,0 +1,38 @@
+{% extends 'products/product_list.html' %}
+{% load bootstrap3 %}
+
+{% block title %}{{ object|default:"Create Schedule" }}{% endblock %}
+
+{% block actions %}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+{% if object %}
+	<li><a href="{% url 'schedule-update' object.pk %}">{{ object }}</a></li>
+{% else %}
+	<li><a href="{% url 'schedule-create' %}">Create</a></li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="hpanel">
+	<div class="panel-body">
+		<form method="post">
+			{% csrf_token %}
+      {% bootstrap_field form.title %}
+      <div class="row">
+        <div class="col-md-4">
+          {% bootstrap_field form.date %}
+        </div>
+        <div class="col-md-4">
+          {% bootstrap_field form.schedule_type %}
+        </div>
+        <div class="col-md-4">
+          {% bootstrap_field form.discount %}
+        </div>
+      </div>
+			<button class="btn btn-success">Save Changes</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
