@@ -22,6 +22,7 @@
           <th>Type</th>
           <th>Changes</th>
           <th>Status</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -32,9 +33,10 @@
         <td>{{ object.get_schedule_type_display }}</td>
         <td>{{ object.changes.count }}</td>
         <td>{{ object.get_status_display }}</td>
+        <td>{% if object.status == 'p' %}<a class="btn btn-xs btn-primary" href="{% url 'schedule-execute' object.pk %}">Execute</a>{% endif %}</td>
       </tr>
       {% empty %}
-      <tr><td colspan="4" class="text-center">There are no schedules.</td></tr>
+      <tr><td colspan="5" class="text-center">There are no schedules.</td></tr>
       {% endfor %}
       </tbody>
     </table>

@@ -17,7 +17,7 @@ def sync_products():
         products = shopify.Product.find(page=page)
         if len(products):
             for sp in products:
-                if sp.product_type not in ['living room sets', 'dining sets']:
+                if sp.product_type in ['living room sets', 'dining sets']:
                     product, created = Product.objects.update_or_create(
                         shopify_id=sp.id,
                         defaults={

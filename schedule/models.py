@@ -2,8 +2,12 @@ from __future__ import unicode_literals
 from decimal import Decimal
 
 from django.db import models
+from django.forms.models import model_to_dict
 
-# Create your models here.
+from .tasks import execute_change, discount_product
+from products.models import Product
+
+
 class Schedule(models.Model):
     SCHEDULE_STATUS = (
         ('p', 'pending'),
@@ -20,9 +24,20 @@ class Schedule(models.Model):
     status = models.CharField(max_length=2, choices=SCHEDULE_STATUS, default='p')
     schedule_type = models.CharField(max_length=25, choices=SCHEDULE_TYPE,
                                      default='manual')
+    discount = models.IntegerField(blank=True, null=True)
+    clearance_discount = models.IntegerField(blank=True, null=True)
 
     def __unicode__(self):
         return self.title
+
+    def run_schedule(self):
+        if self.schedule_type == 'manual':
+            for change in self.changes.all():
+                change.execute()
+        elif self.schedule_type == 'storewide':
+            for product in Product.main_products.all():
+                discount_product.delay(
+                    model_to_dict(product), model_to_dict(self))
 
 
 class Change(models.Model):
@@ -34,3 +49,7 @@ class Change(models.Model):
                                 default=Decimal('0.00'))
     sale_price = models.DecimalField(max_digits=14, decimal_places=2,
                                      default=Decimal('0.00'))
+
+    def run(self):
+        execute_change.delay(
+            self.variant.shopify_id, model_to_dict(self))

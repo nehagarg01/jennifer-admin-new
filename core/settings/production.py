@@ -52,7 +52,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'bootstrap3',
     'localflavor',
-    # 'bootstrap3_datetime',
+    'djcelery',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -210,3 +210,6 @@ SHOPIFY_SHOP_NAME = "jennifer-convertibles"
 
 SHOPIFY_URL = "https://%s:%s@%s.myshopify.com/admin" % (
     SHOPIFY_API_KEY, SHOPIFY_PASSWORD, SHOPIFY_SHOP_NAME,)
+
+CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
+CELERY_DEFAULT_RATE_LIMIT = 2

@@ -39,6 +39,9 @@ class Product(models.Model):
     attributes = models.ManyToManyField(ProductAttribute)
     shopify_id = models.BigIntegerField(null=True, blank=True)
 
+    objects = models.Manager()
+    main_products = MainProductManager()
+
     def __unicode__(self):
         return self.title
 
@@ -70,9 +73,6 @@ class Variant(models.Model):
     option3 = models.CharField(max_length=255, blank=True, null=True)
     shopify_id = models.BigIntegerField(null=True, blank=True)
     position = models.IntegerField(default=1)
-
-    objects = models.Manager()
-    main_products = MainProductManager()
 
     class Meta:
         ordering = ['position']
