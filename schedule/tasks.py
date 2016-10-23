@@ -74,3 +74,10 @@ def restore_product(product):
         for v in s_product.variants:
             v.price = float(v_map[v.id])
         s_product.save()
+
+
+@shared_task
+def update_theme(theme_id):
+    theme = shopify.Theme.find(theme_id)
+    theme.role = 'main'
+    theme.save()
