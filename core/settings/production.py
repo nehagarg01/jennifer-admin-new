@@ -213,3 +213,12 @@ SHOPIFY_URL = "https://%s:%s@%s.myshopify.com/admin" % (
 
 CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
 CELERY_DEFAULT_RATE_LIMIT = 2
+from celery.schedules import crontab
+CELERYBEAT_SCHEDULE = {
+    'run-schedule-of-the-day': {
+        'task': 'schedule.tasks.run_schedule',
+        'schedule': crontab(hour=3, minute=0),
+    },
+}
+
+CELERY_TIMEZONE = 'US/Eastern'

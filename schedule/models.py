@@ -4,7 +4,7 @@ from decimal import Decimal
 from django.db import models
 from django.forms.models import model_to_dict
 
-from .tasks import execute_change, discount_product
+from .tasks import execute_change, discount_product, restore_product
 from products.models import Product
 
 
@@ -18,6 +18,8 @@ class Schedule(models.Model):
         ('manual', 'manual'),
         ('storewide', 'storewide discount'),
         ('collection', 'collection discount'),
+        ('restore', 'restore'),
+        ('theme', 'theme change'),
     )
     title = models.CharField(max_length=250)
     date = models.DateField()
@@ -38,6 +40,9 @@ class Schedule(models.Model):
             for product in Product.main_products.all():
                 discount_product.delay(
                     model_to_dict(product), model_to_dict(self))
+        elif self.schedule_type == 'restore':
+            for product in Product.main_products.all():
+                restore_product.delay(model_to_dict(product))
 
 
 class Change(models.Model):

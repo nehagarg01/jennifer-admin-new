@@ -1,10 +1,29 @@
 from __future__ import absolute_import
 from decimal import Decimal, ROUND_UP
 
+from django.utils.timezone import now
 from celery import shared_task
 
 from products.utils import shopify
 from products.models import Variant
+
+
+@shared_task
+def run_schedule():
+    from schedule.models import Schedule
+    date = now().date()
+    for schedule in Schedule.objects.filter(date=date):
+        schedule.run_schedule()
+
+
+@shared_task
+def test_hello():
+    print 'helo'
+    from schedule.models import Schedule
+    date = now().date()
+    for schedule in Schedule.objects.filter(date=date):
+        schedule.run_schedule()
+        print 'hellooooo'
 
 
 @shared_task
@@ -41,4 +60,17 @@ def discount_product(product, schedule):
             price = (v_map[v.id] * discount).quantize(
                 Decimal('1.'), rounding=ROUND_UP) - Decimal('0.01')
             v.price = float(price)
+        s_product.save()
+
+
+@shared_task
+def restore_product(product):
+    s_product = shopify.Product.find(product['shopify_id'])
+    if s_product:
+        variants = Variant.objects.filter(product_id=product['id']).values('shopify_id', 'price')
+        v_map = {}
+        for d in variants:
+            v_map[d['shopify_id']] = d['price']
+        for v in s_product.variants:
+            v.price = float(v_map[v.id])
         s_product.save()
