@@ -1,5 +1,6 @@
 from django.conf.urls import include, url
 
+from shopify_webhook.views import WebhookView
 from django.contrib import admin
 admin.autodiscover()
 
@@ -13,4 +14,5 @@ urlpatterns = [
     url(r'^products/', include('products.urls')),
     url(r'^schedule/', include('schedule.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^webhook/', WebhookView.as_view(), name = 'webhook'),
 ]
