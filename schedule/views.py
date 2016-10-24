@@ -11,6 +11,7 @@ from .forms import *
 
 class ScheduleMixin(LoginRequiredMixin):
     model = Schedule
+    success_url = reverse_lazy('schedule-list')
 
 
 class ScheduleListView(ScheduleMixin, ListView):
@@ -19,7 +20,10 @@ class ScheduleListView(ScheduleMixin, ListView):
 
 class ScheduleCreateView(ScheduleMixin, CreateView):
     form_class = ScheduleForm
-    success_url = reverse_lazy('schedule-list')
+
+
+class ScheduleDeleteView(ScheduleMixin, DeleteView):
+    pass
 
 
 class ScheduleExecute(ScheduleMixin, RedirectView):

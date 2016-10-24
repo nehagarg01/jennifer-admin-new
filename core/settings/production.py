@@ -211,7 +211,7 @@ SHOPIFY_SHOP_NAME = "jennifer-convertibles"
 SHOPIFY_URL = "https://%s:%s@%s.myshopify.com/admin" % (
     SHOPIFY_API_KEY, SHOPIFY_PASSWORD, SHOPIFY_SHOP_NAME,)
 
-CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
+
 CELERY_DEFAULT_RATE_LIMIT = 2
 from celery.schedules import crontab
 CELERYBEAT_SCHEDULE = {
@@ -222,3 +222,6 @@ CELERYBEAT_SCHEDULE = {
 }
 
 CELERY_TIMEZONE = 'US/Eastern'
+
+BROKER_URL = os.environ.get('REDIS_URL', '')
+CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL', '')

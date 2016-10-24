@@ -13,3 +13,4 @@ ShopifyAPI
 django-bootstrap3-datetimepicker
 celery
 django-celery
+redis
