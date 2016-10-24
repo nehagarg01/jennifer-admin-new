@@ -14,5 +14,5 @@ urlpatterns = [
     url(r'^products/', include('products.urls')),
     url(r'^schedule/', include('schedule.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^webhook/', WebhookView.as_view(), name = 'webhook'),
+    url(r'^webhook/$', WebhookView.as_view(), name = 'webhook'),
 ]
