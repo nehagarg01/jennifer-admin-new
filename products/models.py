@@ -76,13 +76,20 @@ class Product(models.Model):
                     'sku': v.sku,
                     'barcode': v.barcode,
                     'compare_at_price': v.compare_at_price or 0,
-                    'price': v.price or 0,
+                    # 'price': v.price or 0,
                     'pieces': v.grams,
                     'option1': v.option1,
                     'option2': v.option2,
                     'option3': v.option3,
                     'position': v.position,
                 })
+            if variant.sale_price:
+                variant.sale_price = v.price
+            else:
+                variant.price = v.price
+            variant.save()
+
+
         attributes = []
         for tag in shopify_product.tags:
             if 'style' in tag:
