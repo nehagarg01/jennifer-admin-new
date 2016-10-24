@@ -54,6 +54,51 @@ class Product(models.Model):
     def features(self):
         return self.attributes.filter(attribute_type="FT")
 
+    @classmethod
+    def shopify_sync(cls, shopify_product):
+        from vendors.models import Vendor
+        product, created = cls.objects.update_or_create(
+            shopify_id=shopify_product.id,
+            defaults={
+                'title': shopify_product.title,
+                'body_html': shopify_product.body_html,
+                'handle': shopify_product.handle,
+                'product_type': ProductType.objects.get_or_create(
+                    title=shopify_product.product_type)[0],
+                'published_at': shopify_product.published_at,
+                'published_scope': shopify_product.published_scope,
+                'vendor': Vendor.objects.get_or_create(name=shopify_product.vendor)[0],
+            })
+        for v in shopify_product.variants:
+            variant, created = Variant.objects.update_or_create(
+                shopify_id=v.id, product=product,
+                defaults={
+                    'sku': v.sku,
+                    'barcode': v.barcode,
+                    'compare_at_price': v.compare_at_price or 0,
+                    'price': v.price or 0,
+                    'pieces': v.grams,
+                    'option1': v.option1,
+                    'option2': v.option2,
+                    'option3': v.option3,
+                    'position': v.position,
+                })
+        attributes = []
+        for tag in shopify_product.tags:
+            if 'style' in tag:
+                att, created = ProductAttribute.objects.get_or_create(
+                    attribute_type='ST', title=tag.split('-')[1],
+                    handle=tag
+                )
+                attributes.append(att)
+            elif 'material' in tag:
+                att, created = ProductAttribute.objects.get_or_create(
+                    attribute_type='MA', title=tag.split('-')[1],
+                    handle=tag
+                )
+                attributes.append(att)
+        product.attributes.add(*attributes)
+
 
 class Variant(models.Model):
     product = models.ForeignKey(Product, related_name='variants')
