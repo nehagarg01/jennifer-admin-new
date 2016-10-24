@@ -4,14 +4,13 @@ from decimal import Decimal
 from django.db import models
 from django.forms.models import model_to_dict
 
-from .tasks import (execute_change, discount_product, restore_product,
-                    update_theme)
 from products.models import Product
 
 
 class Schedule(models.Model):
     SCHEDULE_STATUS = (
         ('p', 'pending'),
+        ('i', 'in progress'),
         ('e', 'error'),
         ('c', 'completed'),
     )
@@ -29,23 +28,42 @@ class Schedule(models.Model):
     discount = models.IntegerField(blank=True, null=True)
     clearance_discount = models.IntegerField(blank=True, null=True)
     theme = models.BigIntegerField(blank=True, null=True)
+    task_total = models.IntegerField(default=0)
+    task_count = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.title
 
     def run_schedule(self):
+        from .tasks import discount_product, restore_product, update_theme
+        self.status = 'i'
+        self.task_total = 1 if self.theme else 0
         if self.schedule_type == 'manual':
+            self.task_total += self.changes.count()
             for change in self.changes.all():
                 change.execute()
         elif self.schedule_type == 'storewide':
+            self.task_total += Product.main_products.count()
             for product in Product.main_products.all():
                 discount_product.delay(
                     model_to_dict(product), model_to_dict(self))
         elif self.schedule_type == 'restore':
+            self.task_total += Product.main_products.count()
             for product in Product.main_products.all():
-                restore_product.delay(model_to_dict(product))
+                restore_product.delay(model_to_dict(product), self.id)
         if self.theme:
-            update_theme.delay(self.theme)
+            update_theme.delay(self.theme, self.id)
+
+    @classmethod
+    def update_status(cls, schedule_id, result):
+        schedule = cls.objects.get(id=schedule_id)
+        if result:
+            schedule.task_count += 1
+            if schedule.task_count == schedule.task_total and schedule.status == 'i':
+                schedule.status = 'c'
+        else:
+            schedule.status = 'e'
+        schedule.save()
 
 
 class Change(models.Model):
@@ -59,5 +77,6 @@ class Change(models.Model):
                                      default=Decimal('0.00'))
 
     def run(self):
+        from .tasks import execute_change
         execute_change.delay(
             self.variant.shopify_id, model_to_dict(self))

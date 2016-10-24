@@ -6,24 +6,14 @@ from celery import shared_task
 
 from products.utils import shopify
 from products.models import Variant
+from .models import *
 
 
 @shared_task
 def run_schedule():
-    from schedule.models import Schedule
     date = now().date()
     for schedule in Schedule.objects.filter(date=date):
         schedule.run_schedule()
-
-
-@shared_task
-def test_hello():
-    print 'helo'
-    from schedule.models import Schedule
-    date = now().date()
-    for schedule in Schedule.objects.filter(date=date):
-        schedule.run_schedule()
-        print 'hellooooo'
 
 
 @shared_task
@@ -32,15 +22,14 @@ def execute_change(variant_shopify_id, changes):
     if variant:
         variant.compare_at_price = float(changes['compare_at_price'])
         variant.price = float(changes['sale_price'] or changes['price'])
-        success = variant.save()
-        if success:
+        result = variant.save()
+        if result:
             v = Variant.objects.get(id=changes['variant'])
             v.compare_at_price = changes['compare_at_price']
             v.price = changes['price']
             v.sale_price = changes['sale_price']
             v.save()
-        return success
-    return variant
+            Schedule.update_status(changes['schedule'], result)
 
 
 @shared_task
@@ -60,11 +49,12 @@ def discount_product(product, schedule):
             price = (v_map[v.id] * discount).quantize(
                 Decimal('1.'), rounding=ROUND_UP) - Decimal('0.01')
             v.price = float(price)
-        s_product.save()
+        result = s_product.save()
+        Schedule.update_status(schedule['id'], result)
 
 
 @shared_task
-def restore_product(product):
+def restore_product(product, schedule_id=None):
     s_product = shopify.Product.find(product['shopify_id'])
     if s_product:
         variants = Variant.objects.filter(product_id=product['id']).values('shopify_id', 'price')
@@ -73,11 +63,15 @@ def restore_product(product):
             v_map[d['shopify_id']] = d['price']
         for v in s_product.variants:
             v.price = float(v_map[v.id])
-        s_product.save()
+        result = s_product.save()
+        if result and schedule_id:
+            Schedule.update_status(schedule_id, result)
 
 
 @shared_task
-def update_theme(theme_id):
+def update_theme(theme_id, schedule_id=None):
     theme = shopify.Theme.find(theme_id)
     theme.role = 'main'
-    theme.save()
+    result = theme.save()
+    if result and schedule_id:
+        Schedule.update_status(schedule_id, result)
