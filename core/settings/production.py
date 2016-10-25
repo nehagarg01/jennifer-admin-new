@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'products',
     'schedule',
     'webhooks',
+    'series',
 
     # External apps
     'django_extensions',

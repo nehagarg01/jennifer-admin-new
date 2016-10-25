@@ -38,6 +38,7 @@ class Product(models.Model):
     vendor = models.ForeignKey('vendors.Vendor')
     attributes = models.ManyToManyField(ProductAttribute)
     shopify_id = models.BigIntegerField(null=True, blank=True)
+    series = models.ForeignKey('series.Series', null=True, blank=True)
 
     objects = models.Manager()
     main_products = MainProductManager()

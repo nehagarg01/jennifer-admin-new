@@ -1,4 +1,4 @@
-{% extends 'schedule/schedule_list.html' %}
+{% extends 'series/series_list.html' %}
 {% load bootstrap3 %}
 
 {% block title %}Delete {{ object }}?{% endblock %}
@@ -10,9 +10,9 @@
 	<div class="panel-body">
 		<form method="post">
 			{% csrf_token %}
-      <p>Are you sure you want to delete this schedule?</p>
+      <p>Are you sure you want to delete this series?</p>
 			<button class="btn btn-danger">Delete</button>
-			<a class="btn btn-default" href="{% url 'schedule-list' %}">Cancel</a>
+			<a class="btn btn-default" href="{% url 'series-list' %}">Cancel</a>
     </form>
   </div>
 </div>

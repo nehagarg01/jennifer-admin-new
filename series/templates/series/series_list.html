@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Series{% endblock %}
+
+{% block breadcrumbs %}
+<li><a href="{% url 'series-list' %}">Series</a></li>
+{% endblock %}
+
+{% block actions %}
+<a class="btn btn-primary" href="{% url 'series-create' %}">Add Series</a>
+{% endblock %}
+
+{% block content %}
+<div class="hpanel">
+  <div class="panel-body">
+    <input type="text" class="form-control input-sm m-b-md" id="filter" placeholder="Search in table">
+    <table class="table footable table-striped" data-filter="#filter">
+      <thead>
+        <tr>
+          <th>SKU</th>
+          <th>Name</th>
+          <th>Vendor Name</th>
+          <th>Vendor</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for object in object_list %}
+      <tr>
+        <td>{{ object.sku }}</td>
+        <td><a href="{% url 'series-detail' object.pk %}">{{ object.title }}</a></td>
+        <td>{{ object.vendor_title }}</td>
+        <td>{{ object.vendor }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="4" class="text-center">There are no series.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'series/series_list.html' %}
+{% load bootstrap3 %}
+
+{% block title %}{{ object|default:"Create Series" }}{% endblock %}
+
+{% block actions %}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+{% if object %}
+	<li><a href="{% url 'series-update' object.pk %}">{{ object }}</a></li>
+{% else %}
+	<li><a href="{% url 'series-create' %}">Create</a></li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="hpanel">
+	<div class="panel-body">
+		<form method="post">
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-md-2">
+          {% bootstrap_field form.sku %}
+        </div>
+				<div class="col-md-4">
+          {% bootstrap_field form.title %}
+        </div>
+        <div class="col-md-4">
+          {% bootstrap_field form.vendor_title %}
+        </div>
+				<div class="col-md-2">
+          {% bootstrap_field form.vendor %}
+        </div>
+			</div>
+			{% bootstrap_field form.description %}
+
+			<button class="btn btn-success">Save Changes</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

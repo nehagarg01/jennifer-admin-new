@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^accounts/', include('authentication.urls', namespace='user')),
     url(r'^vendors/', include('vendors.urls')),
     url(r'^products/', include('products.urls')),
+    url(r'^series/', include('series.urls')),
     url(r'^schedule/', include('schedule.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^webhook/', include('webhooks.urls', namespace='webhooks')),
