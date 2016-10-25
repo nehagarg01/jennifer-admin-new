@@ -32,13 +32,14 @@ class Product(models.Model):
     title = models.CharField(max_length = 255, db_index = True)
     body_html = models.TextField(verbose_name="Description")
     handle = models.CharField(max_length = 255)
-    product_type = models.ForeignKey(ProductType)
+    product_type = models.ForeignKey(ProductType, related_name="products")
     published_at = models.DateTimeField(null = True)
     published_scope = models.CharField(max_length = 64, default = 'global')
     vendor = models.ForeignKey('vendors.Vendor')
     attributes = models.ManyToManyField(ProductAttribute)
     shopify_id = models.BigIntegerField(null=True, blank=True)
-    series = models.ForeignKey('series.Series', null=True, blank=True)
+    series = models.ForeignKey('series.Series', null=True, blank=True,
+                               related_name="products")
 
     objects = models.Manager()
     main_products = MainProductManager()

@@ -1,0 +1,63 @@
+{% extends 'series/series_list.html' %}
+{% load bootstrap3 %}
+
+{% block title %}{{ object }}{% endblock %}
+
+{% block actions %}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'series-update' object.pk %}">{{ object }}</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="hpanel">
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-2">
+        <label>SKU</label>
+				<p class="form-control-static">{{ object.sku }}</p>
+      </div>
+			<div class="col-md-4">
+				<label>Name</label>
+				<p class="form-control-static">{{ object.title }}</p>
+      </div>
+      <div class="col-md-4">
+				<label>Vendor Name</label>
+				<p class="form-control-static">{{ object.vendor_title }}</p>
+      </div>
+			<div class="col-md-2">
+				<label>Vendor</label>
+				<p class="form-control-static">{{ object.vendor }}</p>
+      </div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<label>Description</label>
+				<p class="form-control-static">{{ object.description }}</p>
+			</div>
+		</div>
+  </div>
+</div>
+
+<div class="hpanel">
+	<div class="panel-body">
+		<h3>Products</h3>
+		<table class="table">
+			<thead>
+				<th>Name</th>
+				<th>Type</th>
+			</thead>
+			<tbody>
+				{% for product in object.products.all %}
+				<tr>
+					<td>{{ product.title }}</td>
+					<td>{{ product.product_type }}</td>
+					<td></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}

@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Series(models.Model):
@@ -14,3 +15,6 @@ class Series(models.Model):
 
     class Meta:
         ordering = ['title']
+
+    def get_absolute_url(self):
+        return reverse('series-detail', kwargs={'pk': self.pk})

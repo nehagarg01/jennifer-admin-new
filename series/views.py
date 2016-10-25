@@ -5,11 +5,12 @@ from django.views.generic import (ListView, CreateView, UpdateView,
 from django.core.urlresolvers import reverse_lazy, reverse
 
 from .models import *
+from .forms import SeriesCreateForm
 
 
 class SeriesMixin(LoginRequiredMixin):
     model = Series
-    fields = ['title', 'vendor_title', 'description', 'sku', 'vendor']
+
 
 
 class SeriesListView(SeriesMixin, ListView):
@@ -17,11 +18,11 @@ class SeriesListView(SeriesMixin, ListView):
 
 
 class SeriesCreateView(SeriesMixin, CreateView):
-    pass
+    form_class = SeriesCreateForm
 
 
 class SeriesUpdateView(SeriesMixin, UpdateView):
-    pass
+    fields = ['title', 'vendor_title', 'description', 'sku', 'vendor']
 
 
 class SeriesDetailView(SeriesMixin, DetailView):
