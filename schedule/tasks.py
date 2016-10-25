@@ -53,19 +53,26 @@ def discount_product(product, schedule):
         Schedule.update_status(schedule['id'], result)
 
 
-@shared_task
+@shared_task(rate_limit=1)
 def restore_product(product, schedule_id=None):
-    s_product = shopify.Product.find(product['shopify_id'])
-    if s_product:
-        variants = Variant.objects.filter(product_id=product['id']).values('shopify_id', 'price')
-        v_map = {}
-        for d in variants:
-            v_map[d['shopify_id']] = d['price']
-        for v in s_product.variants:
-            v.price = float(v_map[v.id])
-        result = s_product.save()
-        if result and schedule_id:
-            Schedule.update_status(schedule_id, result)
+    try:
+        s_product = shopify.Product.find(product['shopify_id'])
+        if s_product:
+            variants = Variant.objects.filter(
+                product_id=product['id'])
+            v_map = {}
+            for d in variants.values('shopify_id', 'price'):
+                v_map[d['shopify_id']] = d['price']
+            for v in s_product.variants:
+                v.price = float(v_map[v.id])
+            result = s_product.save()
+            if result and schedule_id:
+                Schedule.update_status(schedule_id, result)
+                variants.update(sale_price=Decimal('0.00'))
+            return result
+    except Exception as e:
+        print e
+        self.retry(exc=e, countdown=60)
 
 
 @shared_task
