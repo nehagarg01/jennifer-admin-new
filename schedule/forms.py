@@ -12,7 +12,7 @@ class ScheduleForm(forms.ModelForm):
     class Meta:
         model = Schedule
         fields = ['title', 'date', 'schedule_type', 'discount',
-                  'clearance_discount', 'theme']
+                  'clearance_discount', 'theme', 'coupons']
 
     def __init__(self, *args, **kwargs):
         super(ScheduleForm, self).__init__(*args, **kwargs)

@@ -28,6 +28,7 @@ class Schedule(models.Model):
     discount = models.IntegerField(blank=True, null=True)
     clearance_discount = models.IntegerField(blank=True, null=True)
     theme = models.BigIntegerField(blank=True, null=True)
+    coupons = models.CharField(max_length=250, default="None")
     task_total = models.IntegerField(default=0)
     task_count = models.IntegerField(default=0)
 

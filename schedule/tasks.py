@@ -75,3 +75,17 @@ def update_theme(theme_id, schedule_id=None):
     result = theme.save()
     if result and schedule_id:
         Schedule.update_status(schedule_id, result)
+
+
+@shared_task
+def disable_discounts(schedule_id=None):
+    discounts = shopify.Discount.find(page=1)
+    for discount in discounts:
+        discount.disable()
+
+
+@shared_task
+def enable_discounts(codes):
+    for code in codes.split(','):
+        discount = shopify.Discount.find(code.strip())
+        discount.enable()
