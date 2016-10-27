@@ -22,8 +22,11 @@ class SeriesCreateForm(forms.ModelForm):
         # Create Products from Product Types
             for product_type in self.cleaned_data['product_types']:
                 title = "%s %s" % (self.cleaned_data['title'], product_type.title)
-                product_type.products.create(
+                product = product_type.products.create(
                     title=title.title(), handle=slugify(title),
                     body_html=self.cleaned_data['description'],
                     vendor=self.cleaned_data['vendor'], series=instance)
+                variant = product.variants.create(
+                    sku="%s-%s" % (self.cleaned_data['sku'], product_type.code)
+                )
         return instance

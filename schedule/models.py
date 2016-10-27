@@ -41,15 +41,18 @@ class Schedule(models.Model):
         self.task_total = 1 if self.theme else 0
         if self.schedule_type == 'manual':
             self.task_total += self.changes.count()
+            self.save()
             for change in self.changes.all():
                 change.execute()
         elif self.schedule_type == 'storewide':
             self.task_total += Product.main_products.count()
+            self.save()
             for product in Product.main_products.all():
                 discount_product.delay(
                     model_to_dict(product), model_to_dict(self))
         elif self.schedule_type == 'restore':
             self.task_total += Product.main_products.count()
+            self.save()
             for product in Product.main_products.all():
                 restore_product.delay(model_to_dict(product), self.id)
         if self.theme:

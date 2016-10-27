@@ -10,6 +10,8 @@ from .managers import *
 
 class ProductType(models.Model):
     title = models.CharField(max_length=250)
+    code = models.CharField(max_length=50, blank=True)
+
     def __unicode__(self):
          return self.title
 
