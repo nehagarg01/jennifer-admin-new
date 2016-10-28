@@ -116,6 +116,7 @@ class Product(models.Model):
                 )
                 attributes.append(att)
         product.attributes.add(*attributes)
+        return product
 
 
 class Variant(models.Model):

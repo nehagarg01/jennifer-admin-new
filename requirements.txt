@@ -17,3 +17,4 @@ redis
 flower
 django-shopify-webhook
 django-bootstrap-pagination
+bunch
