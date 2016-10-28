@@ -1,5 +1,5 @@
 from django import forms
-from django.utils.timezone import now
+from django.utils.timezone import now, localtime
 
 from core.forms import SearchForm
 from .models import Product, ProductAttribute
@@ -30,7 +30,8 @@ class ProductForm(forms.ModelForm):
 
 
 class ProductScheduleChangeForm(forms.Form):
-    schedule = forms.ModelChoiceField(queryset=Schedule.objects.filter(date__gt=now().date()))
+    schedule = forms.ModelChoiceField(queryset=Schedule.objects.filter(
+        date__gt=localtime(now()).date()))
 
 
 class ProductSearchForm(SearchForm):
