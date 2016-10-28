@@ -18,18 +18,21 @@ def run_schedule():
 
 @shared_task
 def execute_change(variant_shopify_id, changes):
-    variant = shopify.Variant.find(variant_shopify_id)
-    if variant:
-        variant.compare_at_price = float(changes['compare_at_price'])
-        variant.price = float(changes['sale_price'] or changes['price'])
-        result = variant.save()
-        if result:
-            v = Variant.objects.get(id=changes['variant'])
-            v.compare_at_price = changes['compare_at_price']
-            v.price = changes['price']
-            v.sale_price = changes['sale_price']
-            v.save()
-            Schedule.update_status(changes['schedule'], result)
+    try:
+        variant = shopify.Variant.find(variant_shopify_id)
+        if variant:
+            variant.compare_at_price = float(changes['compare_at_price'])
+            variant.price = float(changes['sale_price'] or changes['price'])
+            result = variant.save()
+            if result:
+                v = Variant.objects.get(id=changes['variant'])
+                v.compare_at_price = changes['compare_at_price']
+                v.price = changes['price']
+                v.sale_price = changes['sale_price']
+                v.save()
+                Schedule.update_status(changes['schedule'], result)
+    except Exception as e:
+        self.retry(exc=e, countdown=60)
 
 
 @shared_task
@@ -71,17 +74,19 @@ def restore_product(product, schedule_id=None):
                 variants.update(sale_price=Decimal('0.00'))
             return result
     except Exception as e:
-        print e
         self.retry(exc=e, countdown=60)
 
 
 @shared_task
 def update_theme(theme_id, schedule_id=None):
-    theme = shopify.Theme.find(theme_id)
-    theme.role = 'main'
-    result = theme.save()
-    if result and schedule_id:
-        Schedule.update_status(schedule_id, result)
+    try:
+        theme = shopify.Theme.find(theme_id)
+        theme.role = 'main'
+        result = theme.save()
+        if result and schedule_id:
+            Schedule.update_status(schedule_id, result)
+    except Exception as e:
+        self.retry(exc=e, countdown=60)
 
 
 @shared_task
