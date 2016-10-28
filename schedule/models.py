@@ -39,14 +39,17 @@ class Schedule(models.Model):
         return self.title
 
     def run_schedule(self):
-        from .tasks import discount_product, restore_product, update_theme, disable_discounts
+        from .tasks import (discount_product, restore_product, update_theme,
+                            disable_discounts, execute_change)
         self.status = 'i'
         self.task_total = 1 if self.theme else 0
         if self.schedule_type == 'manual':
             self.task_total += self.changes.count()
             self.save()
-            for change in self.changes.all():
-                change.run()
+            for product in Product.objects.filter(variants__changes__schedule=self):
+                execute_change.delay(product.id, self.id)
+            # for change in self.changes.all():
+            #     change.run()
         elif self.schedule_type == 'storewide':
             self.task_total += Product.main_products.count()
             self.save()
@@ -78,13 +81,14 @@ class Schedule(models.Model):
 
 class Change(models.Model):
     schedule = models.ForeignKey(Schedule, related_name="changes")
-    variant = models.ForeignKey('products.Variant')
+    variant = models.ForeignKey('products.Variant', related_name="changes")
     compare_at_price = models.DecimalField(max_digits=14, decimal_places=2,
                                            default=Decimal('0.00'))
     price = models.DecimalField(max_digits=14, decimal_places=2,
                                 default=Decimal('0.00'))
     sale_price = models.DecimalField(max_digits=14, decimal_places=2,
                                      default=Decimal('0.00'))
+    completed = models.BooleanField(default=False)
 
     def run(self):
         from .tasks import execute_change

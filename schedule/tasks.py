@@ -16,33 +16,62 @@ def run_schedule():
         schedule.run_schedule()
 
 
+# @shared_task(bind=True)
+# def execute_change(self, variant_shopify_id, changes):
+#     try:
+#         variant = shopify.Variant.find(variant_shopify_id)
+#         variant.compare_at_price = float(changes['compare_at_price'])
+#         variant.price = float(changes['sale_price'] or changes['price'])
+#         # variant = shopify.Variant({
+#         #     'id': variant_shopify_id,
+#         #     'compare_at_price': float(changes['compare_at_price']),
+#         #     'price': float(changes['sale_price'] or changes['price']),
+#         # })
+#         result = variant.save()
+#         if result:
+#             Variant.objects.filter(id=changes['variant']).update(
+#                 compare_at_price=changes['compare_at_price'],
+#                 price=changes['price'], sale_price=changes['sale_price']
+#             )
+#             Schedule.update_status(changes['schedule'], result)
+#     except Exception as e:
+#         print e
+#         self.retry(exc=e, countdown=60)
+
+
 @shared_task(bind=True)
-def execute_change(self, variant_shopify_id, changes):
+def execute_change(self, product_id, schedule_id):
     try:
-        variant = shopify.Variant.find(variant_shopify_id)
-        variant.compare_at_price = float(changes['compare_at_price'])
-        variant.price = float(changes['sale_price'] or changes['price'])
-        # variant = shopify.Variant({
-        #     'id': variant_shopify_id,
-        #     'compare_at_price': float(changes['compare_at_price']),
-        #     'price': float(changes['sale_price'] or changes['price']),
-        # })
-        result = variant.save()
+        product = Product.objects.get(id=product_id)
+        changes = Change.objects.filter(variant__product=product,
+                                        schedule_id=schedule_id)
+        variants = []
+        for change in changes:
+            variants.append({
+                'id': change.variant.shopify_id,
+                'compare_at_price': float(change.compare_at_price),
+                'price': float(change.sale_price or change.price),
+            })
+        s_product = shopify.Product({
+            'id': product.shopify_id,
+            'variants': variants,
+        })
+        result = s_product.save()
         if result:
-            Variant.objects.filter(id=changes['variant']).update(
-                compare_at_price=changes['compare_at_price'],
-                price=changes['price'], sale_price=changes['sale_price']
-            )
-            Schedule.update_status(changes['schedule'], result)
+            for change in changes:
+                Variant.objects.filter(id=change.variant_id).update(
+                    compare_at_price=change.compare_at_price,
+                    price=change.price, sale_price=change.sale_price
+                )
+            changes.update(completed=True)
+            Schedule.update_status(schedule_id, result)
     except Exception as e:
-        print e
         self.retry(exc=e, countdown=60)
 
 
 @shared_task(bind=True)
 def discount_product(self, product, schedule):
     try:
-
         s_product = shopify.Product({
             'id': product['shopify_id'],
             'variants': [],
