@@ -12,7 +12,7 @@ from .models import *
 @shared_task
 def run_schedule():
     date = now().date()
-    for schedule in Schedule.objects.filter(date=date):
+    for schedule in Schedule.objects.filter(date=date).order_by('-schedule_type'):
         schedule.run_schedule()
 
 

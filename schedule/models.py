@@ -32,6 +32,9 @@ class Schedule(models.Model):
     task_total = models.IntegerField(default=0)
     task_count = models.IntegerField(default=0)
 
+    class Meta:
+        ordering = ['-date']
+
     def __unicode__(self):
         return self.title
 
@@ -43,7 +46,7 @@ class Schedule(models.Model):
             self.task_total += self.changes.count()
             self.save()
             for change in self.changes.all():
-                change.execute()
+                change.run()
         elif self.schedule_type == 'storewide':
             self.task_total += Product.main_products.count()
             self.save()

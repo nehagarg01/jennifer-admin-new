@@ -1,16 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import (ListView, CreateView, UpdateView,
-                                  DeleteView, DetailView)
+                                  DeleteView, DetailView, FormView)
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.forms import inlineformset_factory
+from django.forms import inlineformset_factory, modelformset_factory
 from django.conf import settings
 
 import shopify
 from .utils import shopify
 
 from .models import *
-from .forms import ProductForm
+from schedule.models import Change
+from .forms import ProductForm, ProductScheduleChangeForm
 
 
 class ProductMixin(LoginRequiredMixin):
@@ -55,7 +56,12 @@ class ProductCreate(ProductFormMixin, CreateView):
 
 
 class ProductDetail(ProductMixin, DetailView):
-    pass
+
+     def get_context_data(self, **kwargs):
+         context = super(ProductDetail, self).get_context_data(**kwargs)
+         context['changes'] = Change.objects.filter(
+            variant__product=self.object).order_by('schedule__date')
+         return context
 
 
 class ProductUpdate(ProductFormMixin, UpdateView):
@@ -70,3 +76,34 @@ class ProductUpdate(ProductFormMixin, UpdateView):
 
 class ProductDelete(ProductMixin, DeleteView):
     pass
+
+
+class ProductScheduleChange(ProductMixin, DetailView):
+    form_class = ProductScheduleChangeForm
+    template_name = 'products/product_schedule_change.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductScheduleChange, self).get_context_data(**kwargs)
+        context['form'] = ProductScheduleChangeForm
+        ChangeFormSet = modelformset_factory(
+            Change, fields=('compare_at_price', 'price', 'sale_price', 'variant'),
+            extra=self.object.variants.count())
+        context['formset'] = ChangeFormSet()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = ProductScheduleChangeForm(request.POST)
+        formset = modelformset_factory(
+            Change, fields=('compare_at_price', 'price', 'sale_price', 'variant'),
+            extra=self.object.variants.count())
+        formset = formset(request.POST)
+        if form.is_valid() and formset.is_valid():
+            for f in formset:
+                f.instance.schedule = form.cleaned_data['schedule']
+                f.save()
+            return redirect('product-detail', self.object.pk)
+        return redirect('product-schedule-change', self.object.pk)
+
+    def get_success_url(self):
+        return self.product.get_absolute_url()

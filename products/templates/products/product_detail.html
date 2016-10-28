@@ -6,6 +6,7 @@
 {% block actions %}
 <a class="btn btn-primary btn-sm" href="{% url 'product-update' object.pk %}">Edit</a>
 <a class="btn btn-danger btn-sm" href="{% url 'product-delete' object.pk %}">Delete</a>
+
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -73,6 +74,37 @@
 					<td>{{ v.sale_price }}</td>
 					<td>{{ v.price }}</td>
 					<td>{{ v.compare_at_price }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="hpanel">
+	<div class="panel-body">
+		<h2>
+			Scheduled Changes
+			<a class="btn btn-primary btn-sm pull-right" href="{% url 'product-schedule-change' object.pk %}">Add Change</a>
+		</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Variant</th>
+					<th>Sale Price</th>
+					<th>Price</th>
+					<th>Compare</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for change in changes %}
+				<tr>
+					<td>{{ change.schedule.date }}</td>
+					<td>{{ change.variant }}</td>
+					<td>{{ change.sale_price }}</td>
+					<td>{{ change.price }}</td>
+					<td>{{ change.compare_at_price }}</td>
 				</tr>
 				{% endfor %}
 			</tbody>

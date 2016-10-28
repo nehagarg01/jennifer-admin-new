@@ -18,10 +18,18 @@ class ScheduleForm(forms.ModelForm):
         super(ScheduleForm, self).__init__(*args, **kwargs)
         from products.utils import shopify
         themes = shopify.Theme.find()
-        choices = []
+        choices = [
+            (None, 'None'),
+        ]
         for theme in themes:
             choices.append((theme.id, theme.name))
         self.fields['theme'].choices = choices
+
+    def clean_theme(self):
+        data = self.cleaned_data['theme']
+        if not data:
+            return None
+        return data
 
     def clean(self):
         data = super(ScheduleForm, self).clean()

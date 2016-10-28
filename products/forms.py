@@ -1,6 +1,8 @@
 from django import forms
+from django.utils.timezone import now
 
 from .models import Product, ProductAttribute
+from schedule.models import Schedule
 
 
 class ProductForm(forms.ModelForm):
@@ -24,3 +26,7 @@ class ProductForm(forms.ModelForm):
             self.fields['materials'].initial = self.instance.materials()
             self.fields['styles'].initial = self.instance.styles()
             self.fields['features'].initial = self.instance.features()
+
+
+class ProductScheduleChangeForm(forms.Form):
+    schedule = forms.ModelChoiceField(queryset=Schedule.objects.filter(date__gt=now().date()))

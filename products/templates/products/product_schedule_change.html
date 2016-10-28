@@ -1,0 +1,57 @@
+{% extends 'products/product_detail.html' %}
+{% load bootstrap3 %}
+
+{% block title %}{{ object }}: Schedule Change{% endblock %}
+
+{% block actions %}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'product-schedule-change' object.pk %}">Schedule Change</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="hpanel">
+	<div class="panel-body">
+		<form method="post">
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-sm-4">
+					{% bootstrap_field form.schedule %}
+				</div>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Title</th>
+						<th>Sale Price</th>
+						<th>Price</th>
+						<th>Compare At Price</th>
+					</tr>
+				</thead>
+				{{ formset.management_form }}
+				{% for v in object.variants.all %}
+				<tr>
+					<td>
+						{{ v }}
+						<input class="form-control" name="form-{{ forloop.counter0 }}-variant" value="{{ v.id }}" type="hidden">
+					</td>
+					<td>
+						<input class="form-control" name="form-{{ forloop.counter0 }}-sale_price" value="{{ v.sale_price }}">
+					</td>
+					<td>
+						<input class="form-control" name="form-{{ forloop.counter0 }}-price" value="{{ v.price }}">
+					</td>
+					<td>
+						<input class="form-control" name="form-{{ forloop.counter0 }}-compare_at_price" value="{{ v.compare_at_price }}">
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+
+			<button type="submit" class="btn btn-success">Save Changes</button>
+		</form>
+	</div>
+</div>
+
+{% endblock %}

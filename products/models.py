@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from decimal import Decimal
 
 from django.db import models
+from django.urls import reverse
 from localflavor.us.models import PhoneNumberField
 from django_extensions.db.models import TitleDescriptionModel
 
@@ -48,6 +49,9 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('product-detail', kwargs={'pk': self.pk})
 
     def materials(self):
         return self.attributes.filter(attribute_type="MA")
@@ -132,6 +136,14 @@ class Variant(models.Model):
 
     class Meta:
         ordering = ['position']
+
+    def __unicode__(self):
+        output = self.option1
+        if self.option2:
+            output += " / %s" % self.option2
+        if self.option3:
+            output += " / %s" % self.option3
+        return output
 
 
 class Dimension(models.Model):
