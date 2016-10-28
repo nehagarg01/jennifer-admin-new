@@ -89,7 +89,7 @@ class ProductScheduleChange(ProductMixin, DetailView):
         context['form'] = ProductScheduleChangeForm
         ChangeFormSet = modelformset_factory(
             Change, fields=('compare_at_price', 'price', 'sale_price', 'variant'),
-            extra=self.object.variants.count())
+            extra=self.object.variants.count()-1)
         context['formset'] = ChangeFormSet()
         return context
 
@@ -98,7 +98,7 @@ class ProductScheduleChange(ProductMixin, DetailView):
         form = ProductScheduleChangeForm(request.POST)
         formset = modelformset_factory(
             Change, fields=('compare_at_price', 'price', 'sale_price', 'variant'),
-            extra=self.object.variants.count())
+            extra=self.object.variants.count()-1)
         formset = formset(request.POST)
         if form.is_valid() and formset.is_valid():
             for f in formset:

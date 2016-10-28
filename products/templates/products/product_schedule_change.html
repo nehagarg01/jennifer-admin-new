@@ -30,6 +30,9 @@
 					</tr>
 				</thead>
 				{{ formset.management_form }}
+				{% for f in formset %}
+				{{ f.id }}
+				{% endfor %}
 				{% for v in object.variants.all %}
 				<tr>
 					<td>

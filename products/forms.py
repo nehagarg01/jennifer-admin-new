@@ -31,7 +31,7 @@ class ProductForm(forms.ModelForm):
 
 class ProductScheduleChangeForm(forms.Form):
     schedule = forms.ModelChoiceField(queryset=Schedule.objects.filter(
-        date__gt=localtime(now()).date()))
+        schedule_type='manual', date__gt=localtime(now()).date()))
 
 
 class ProductSearchForm(SearchForm):
