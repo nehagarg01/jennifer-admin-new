@@ -16,3 +16,4 @@ django-celery
 redis
 flower
 django-shopify-webhook
+django-bootstrap-pagination

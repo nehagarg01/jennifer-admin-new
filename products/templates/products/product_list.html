@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
+{% load bootstrap_pagination %}
 
 {% block title %}Products{% endblock %}
 
@@ -26,8 +27,7 @@
 </div>
 <div class="hpanel">
   <div class="panel-body">
-    <input type="text" class="form-control input-sm m-b-md" id="filter" placeholder="Search in table">
-    <table class="table footable table-striped" data-filter="#filter">
+    <table class="table table-striped" data-filter="#filter">
       <thead>
         <tr>
           <th>Name</th>
@@ -53,6 +53,7 @@
       {% endfor %}
       </tbody>
     </table>
+    {% bootstrap_paginate page_obj range=10 %}
   </div>
 </div>
 

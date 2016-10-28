@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'bootstrap3',
     'localflavor',
     'djcelery',
+    'bootstrap_pagination',
 )
 
 MIDDLEWARE_CLASSES = (

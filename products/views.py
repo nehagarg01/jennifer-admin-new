@@ -22,7 +22,7 @@ class ProductMixin(LoginRequiredMixin):
 
 class ProductList(ProductMixin, SearchView):
     search_form = ProductSearchForm
-    paginate_by = 25
+    paginate_by = 20
 
 
 class ProductFormMixin(ProductMixin):
