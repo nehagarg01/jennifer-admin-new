@@ -19,11 +19,14 @@ def run_schedule():
 @shared_task(bind=True)
 def execute_change(self, variant_shopify_id, changes):
     try:
-        variant = shopify.Variant({
-            'id': variant_shopify_id,
-            'compare_at_price': float(changes['compare_at_price']),
-            'price': float(changes['sale_price'] or changes['price']),
-        })
+        variant = shopify.Variant.find(variant_shopify_id)
+        variant.compare_at_price = float(changes['compare_at_price'])
+        variant.price = float(changes['sale_price'] or changes['price'])
+        # variant = shopify.Variant({
+        #     'id': variant_shopify_id,
+        #     'compare_at_price': float(changes['compare_at_price']),
+        #     'price': float(changes['sale_price'] or changes['price']),
+        # })
         result = variant.save()
         if result:
             Variant.objects.filter(id=changes['variant']).update(
