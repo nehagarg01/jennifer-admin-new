@@ -1,15 +1,8 @@
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
-from shopify_webhook.signals import products_create
 from .utils import shopify
 from .models import *
-
-
-@receiver(products_create)
-def update_product(sender, data, **kwargs):
-    from core.celery import add
-    add.delay(1,2)
 
 
 @receiver(post_save, sender=Product)
