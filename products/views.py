@@ -11,7 +11,8 @@ from .utils import shopify
 
 from .models import *
 from schedule.models import Change
-from .forms import ProductForm, ProductScheduleChangeForm
+from .forms import ProductForm, ProductScheduleChangeForm, ProductSearchForm
+from core.views import SearchView
 
 
 class ProductMixin(LoginRequiredMixin):
@@ -19,7 +20,8 @@ class ProductMixin(LoginRequiredMixin):
     success_url = reverse_lazy('product-list')
 
 
-class ProductList(ProductMixin, ListView):
+class ProductList(ProductMixin, SearchView):
+    search_form = ProductSearchForm
     paginate_by = 25
 
 

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap3 %}
 
 {% block title %}Products{% endblock %}
 
@@ -16,8 +17,10 @@
     <form>
       {% csrf_token %}
       <div class="row">
-        <div class="col-md-4"></div>
+        <div class="col-md-4">{% bootstrap_field form.name %}</div>
+        <div class="col-md-4">{% bootstrap_field form.sku %}</div>
       </div>
+      <button class="btn btn-primary">Search</button>
     </form>
   </div>
 </div>

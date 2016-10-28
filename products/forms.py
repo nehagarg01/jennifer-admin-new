@@ -1,6 +1,7 @@
 from django import forms
 from django.utils.timezone import now
 
+from core.forms import SearchForm
 from .models import Product, ProductAttribute
 from schedule.models import Schedule
 
@@ -30,3 +31,17 @@ class ProductForm(forms.ModelForm):
 
 class ProductScheduleChangeForm(forms.Form):
     schedule = forms.ModelChoiceField(queryset=Schedule.objects.filter(date__gt=now().date()))
+
+
+class ProductSearchForm(SearchForm):
+    name = forms.CharField(required=False)
+    sku = forms.CharField(required=False)
+
+    def search(self):
+        queryset = self.queryset
+        data = self.cleaned_data
+        if data['name']:
+            queryset = queryset.filter(title__icontains=data['name'])
+        if data['sku']:
+            queryset = queryset.filter(variants__sku__icontains=data['sku'])
+        return queryset.distinct()
