@@ -16,27 +16,28 @@ def run_schedule():
         schedule.run_schedule()
 
 
-@shared_task
-def execute_change(variant_shopify_id, changes):
+@shared_task(bind=True)
+def execute_change(self, variant_shopify_id, changes):
     try:
         variant = shopify.Variant({
             'id': variant_shopify_id,
             'compare_at_price': float(changes['compare_at_price']),
-            'price': float(changes['sale_price'] or changes['price'])
+            'price': float(changes['sale_price'] or changes['price']),
         })
         result = variant.save()
         if result:
             Variant.objects.filter(id=changes['variant']).update(
-                compare_at_price = changes['compare_at_price'],
-                price = changes['price'], sale_price = changes['sale_price']
+                compare_at_price=changes['compare_at_price'],
+                price=changes['price'], sale_price=changes['sale_price']
             )
             Schedule.update_status(changes['schedule'], result)
     except Exception as e:
+        print e
         self.retry(exc=e, countdown=60)
 
 
-@shared_task
-def discount_product(product, schedule):
+@shared_task(bind=True)
+def discount_product(self, product, schedule):
     try:
 
         s_product = shopify.Product({
@@ -79,8 +80,8 @@ def discount_product(product, schedule):
     #     Schedule.update_status(schedule['id'], result)
 
 
-@shared_task(rate_limit=1)
-def restore_product(product, schedule_id=None):
+@shared_task(bind=True)
+def restore_product(self, product, schedule_id=None):
     try:
         variants = Variant.objects.filter(product_id=product['id'])
         v_map = {}
@@ -99,8 +100,8 @@ def restore_product(product, schedule_id=None):
         self.retry(exc=e, countdown=60)
 
 
-@shared_task
-def update_theme(theme_id, schedule_id=None):
+@shared_task(bind=True)
+def update_theme(self, theme_id, schedule_id=None):
     try:
         theme = shopify.Theme({'id': theme_id, 'role': 'main'})
         result = theme.save()
@@ -110,8 +111,8 @@ def update_theme(theme_id, schedule_id=None):
         self.retry(exc=e, countdown=60)
 
 
-@shared_task
-def disable_discounts(schedule_id=None):
+@shared_task(bind=True)
+def disable_discounts(self, schedule_id=None):
     try:
         discounts = shopify.Discount.find(page=1)
         for discount in discounts:

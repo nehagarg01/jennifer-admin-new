@@ -47,6 +47,9 @@ class Product(models.Model):
     objects = models.Manager()
     main_products = MainProductManager()
 
+    class Meta:
+        ordering = ['title']
+
     def __unicode__(self):
         return self.title
 
@@ -135,7 +138,7 @@ class Variant(models.Model):
     position = models.IntegerField(default=1)
 
     class Meta:
-        ordering = ['position']
+        ordering = ['product__title', 'position']
 
     def __unicode__(self):
         output = self.option1
