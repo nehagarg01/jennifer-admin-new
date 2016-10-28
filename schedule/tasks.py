@@ -91,9 +91,13 @@ def update_theme(theme_id, schedule_id=None):
 
 @shared_task
 def disable_discounts(schedule_id=None):
-    discounts = shopify.Discount.find(page=1)
-    for discount in discounts:
-        discount.disable()
+    try:
+        discounts = shopify.Discount.find(page=1)
+        for discount in discounts:
+            if discount.status == 'enabled':
+                discount.disable()
+    except Exception as e:
+        self.retry(exc=e, countdown=60)
 
 
 @shared_task

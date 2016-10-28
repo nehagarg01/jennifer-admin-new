@@ -39,7 +39,7 @@ class Schedule(models.Model):
         return self.title
 
     def run_schedule(self):
-        from .tasks import discount_product, restore_product, update_theme
+        from .tasks import discount_product, restore_product, update_theme, disable_discounts
         self.status = 'i'
         self.task_total = 1 if self.theme else 0
         if self.schedule_type == 'manual':
@@ -60,6 +60,9 @@ class Schedule(models.Model):
                 restore_product.delay(model_to_dict(product), self.id)
         if self.theme:
             update_theme.delay(self.theme, self.id)
+        if self.coupons == '':
+            disable_discounts.delay()
+
 
     @classmethod
     def update_status(cls, schedule_id, result):
