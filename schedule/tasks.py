@@ -53,6 +53,8 @@ def discount_product(product, schedule):
                 'id': variant.shopify_id,
                 'price': float(price)
             })
+            variant.sale_price = price
+            variant.save()
         result = s_product.save()
         if result:
             Schedule.update_status(schedule['id'], result)
