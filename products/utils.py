@@ -17,7 +17,7 @@ def sync_products():
         products = shopify.Product.find(page=page)
         if len(products):
             for sp in products:
-                Product.shopify_sync(sp)
+                Product.update_from_shopify(sp)
             page += 1
         else:
             incomplete = False

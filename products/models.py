@@ -7,6 +7,7 @@ from localflavor.us.models import PhoneNumberField
 from django_extensions.db.models import TitleDescriptionModel
 
 from .managers import *
+from .utils import shopify
 
 
 class ProductType(models.Model):
@@ -66,7 +67,7 @@ class Product(models.Model):
         return self.attributes.filter(attribute_type="FT")
 
     @classmethod
-    def shopify_sync(cls, shopify_product):
+    def update_from_shopify(cls, shopify_product):
         from vendors.models import Vendor
         product, created = cls.objects.update_or_create(
             shopify_id=shopify_product.id,
@@ -117,6 +118,28 @@ class Product(models.Model):
                 attributes.append(att)
         product.attributes.add(*attributes)
         return product
+
+    def update_to_shopify(self):
+        product = shopify.Product({
+            'id': self.shopify_id,
+            'title': self.title,
+            'body_html': self.body_html,
+            'variants': [],
+        })
+        for variant in self.variants.all():
+            product.variants.append({
+                'id': variant.shopify_id,
+                'sku': variant.sku,
+                'barcode': variant.barcode,
+                'compare_at_price': float(variant.compare_at_price),
+                'price': float(variant.sale_price or variant.price),
+                'option1': variant.option1,
+                'option2': variant.option2,
+                'option3': variant.option3,
+                'position': variant.position,
+                'grams': variant.pieces,
+            })
+        return product.save()
 
 
 class Variant(models.Model):

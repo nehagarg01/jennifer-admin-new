@@ -10,5 +10,6 @@ urlpatterns = [
         url(r'^update/$', views.ProductUpdate.as_view(), name='product-update'),
         url(r'^delete/$', views.ProductDelete.as_view(), name='product-delete'),
         url(r'^schedule/$', views.ProductScheduleChange.as_view(), name='product-schedule-change'),
+        url(r'^variants/$', views.ProductVariantsUpdateView.as_view(), name='product-variants-update'),
     ])),
 ]

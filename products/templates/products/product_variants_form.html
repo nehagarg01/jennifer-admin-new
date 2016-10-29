@@ -1,0 +1,51 @@
+{% extends 'products/product_detail.html' %}
+{% load bootstrap3 %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'product-variants-update' object.pk %}">Variants</a></li>
+{% endblock %}
+
+{% block actions %}{% endblock %}
+
+{% block content %}
+<div class="hpanel">
+  <div class="panel-body">
+    <form method="post">
+      {% csrf_token %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Sku</th>
+            <th>Option 1</th>
+            <th>Option 2</th>
+            <th>Option 3</th>
+            <th>Sale Price</th>
+            <th>Price</th>
+            <th>Compare At Price</th>
+            <th>Barcode</th>
+            <th>Pieces</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ formset.management_form }}
+          {% for f in formset %}
+          <tr>
+            <td>{{ f.id }}{% bootstrap_field f.sku show_label=False %}</td>
+            <td>{% bootstrap_field f.option1 show_label=False %}</td>
+            <td>{% bootstrap_field f.option2 show_label=False %}</td>
+            <td>{% bootstrap_field f.option3 show_label=False %}</td>
+            <td>{% bootstrap_field f.sale_price show_label=False %}</td>
+            <td>{% bootstrap_field f.price show_label=False %}</td>
+            <td>{% bootstrap_field f.compare_at_price show_label=False %}</td>
+            <td>{% bootstrap_field f.barcode show_label=False %}</td>
+            <td>{% bootstrap_field f.pieces show_label=False %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <button class="btn btn-success">Save Changes</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

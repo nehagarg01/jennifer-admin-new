@@ -51,7 +51,10 @@
 
 <div class="hpanel">
 	<div class="panel-body">
-		<h2>Variants</h2>
+		<h2>
+			Variants
+			<a class="btn btn-primary btn-sm pull-right" href="{% url 'product-variants-update' object.pk %}">Edit Variants</a>
+		</h2>
 		<table class="table">
 			<thead>
 				<tr>
@@ -62,6 +65,7 @@
 					<th>Sale Price</th>
 					<th>Price</th>
 					<th>Compare</th>
+					<th>Pieces</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -74,6 +78,7 @@
 					<td>{{ v.sale_price }}</td>
 					<td>{{ v.price }}</td>
 					<td>{{ v.compare_at_price }}</td>
+					<td>{{ v.pieces }}</td>
 				</tr>
 				{% endfor %}
 			</tbody>

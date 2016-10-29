@@ -9,4 +9,4 @@ from products.models import Product
 
 @receiver(products_update)
 def update_product(sender, data, **kwargs):
-    return Product.shopify_sync(bunchify(data))
+    return Product.update_from_shopify(bunchify(data))

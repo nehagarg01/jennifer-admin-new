@@ -5,10 +5,12 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory, modelformset_factory
 from django.conf import settings
+from django.contrib import messages
+
+from extra_views import InlineFormSetView
 
 import shopify
 from .utils import shopify
-
 from .models import *
 from schedule.models import Change
 from .forms import ProductForm, ProductScheduleChangeForm, ProductSearchForm
@@ -17,7 +19,12 @@ from core.views import SearchView
 
 class ProductMixin(LoginRequiredMixin):
     model = Product
-    success_url = reverse_lazy('product-list')
+
+    def update_to_shopify(self):
+        if self.object.update_to_shopify():
+            messages.success(self.request, "Updated to Shopify")
+        else:
+            messages.error(self.request, "Unable to update to shopify. Please Try again.")
 
 
 class ProductList(ProductMixin, SearchView):
@@ -69,15 +76,24 @@ class ProductDetail(ProductMixin, DetailView):
 class ProductUpdate(ProductFormMixin, UpdateView):
 
     def get_success_url(self):
-        product = shopify.Product.find(self.object.shopify_id)
-        for k in ['title', 'body_html']:
-            setattr(product, k, getattr(self.object, k))
-        product.save()
+        self.update_to_shopify()
         return super(ProductUpdate, self).get_success_url()
 
 
+class ProductVariantsUpdateView(ProductMixin, InlineFormSetView):
+    template_name = 'products/product_variants_form.html'
+    inline_model = Variant
+    fields = ['sku', 'option1', 'option2', 'option3',
+              'sale_price', 'price', 'compare_at_price',
+              'barcode', 'pieces']
+
+    def get_success_url(self):
+        self.update_to_shopify()
+        return self.object.get_absolute_url()
+
+
 class ProductDelete(ProductMixin, DeleteView):
-    pass
+    success_url = reverse_lazy('product-list')
 
 
 class ProductScheduleChange(ProductMixin, DetailView):
