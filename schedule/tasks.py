@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 from decimal import Decimal, ROUND_UP
+from copy import copy
 
 from django.utils.timezone import now
 from celery import shared_task
@@ -39,32 +40,60 @@ def run_schedule():
 #         self.retry(exc=e, countdown=60)
 
 
+# @shared_task(bind=True)
+# def execute_change(self, product_id, schedule_id):
+#     try:
+#         product = Product.objects.get(id=product_id)
+#         changes = Change.objects.filter(variant__product=product,
+#                                         schedule_id=schedule_id)
+#         variants = []
+#         for change in changes:
+#             variants.append({
+#                 'id': change.variant.shopify_id,
+#                 'compare_at_price': float(change.compare_at_price),
+#                 'price': float(change.sale_price or change.price),
+#             })
+#         s_product = shopify.Product({
+#             'id': product.shopify_id,
+#             'variants': variants,
+#         })
+#         result = s_product.save()
+#         if result:
+#             for change in changes:
+#                 Variant.objects.filter(id=change.variant_id).update(
+#                     compare_at_price=change.compare_at_price,
+#                     price=change.price, sale_price=change.sale_price
+#                 )
+#             changes.update(completed=True)
+#             Schedule.update_status(schedule_id, result)
+#     except Exception as e:
+#         self.retry(exc=e, countdown=60)
+
+
 @shared_task(bind=True)
-def execute_change(self, product_id, schedule_id):
+def execute_change(self, change_id):
     try:
-        product = Product.objects.get(id=product_id)
-        changes = Change.objects.filter(variant__product=product,
-                                        schedule_id=schedule_id)
-        variants = []
-        for change in changes:
-            variants.append({
-                'id': change.variant.shopify_id,
-                'compare_at_price': float(change.compare_at_price),
-                'price': float(change.sale_price or change.price),
+        change = Change.objects.filter(id=change_id).first()
+        if change:
+            shopify_data = copy(change.json)
+            for v in shopify_data:
+                if v.get('sale_price', None):
+                    v['price'] = v['sale_price']
+            s_product = shopify.Product({
+                'id': change.product.shopify_id,
+                'variants': shopify_data,
             })
-        s_product = shopify.Product({
-            'id': product.shopify_id,
-            'variants': variants,
-        })
-        result = s_product.save()
-        if result:
-            for change in changes:
-                Variant.objects.filter(id=change.variant_id).update(
-                    compare_at_price=change.compare_at_price,
-                    price=change.price, sale_price=change.sale_price
-                )
-            changes.update(completed=True)
-            Schedule.update_status(schedule_id, result)
+            result = s_product.save()
+            if result:
+                for variant in change.json:
+                    Variant.objects.filter(shopify_id=variant['id']).update(
+                        compare_at_price=variant['compare_at_price'],
+                        price=variant['price'], sale_price=variant['sale_price']
+                    )
+                change.completed = True
+                change.save()
+                Schedule.update_status(change.schedule_id, result)
+            return result
     except Exception as e:
         self.retry(exc=e, countdown=60)
 

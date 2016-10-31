@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'localflavor',
     'djcelery',
     'bootstrap_pagination',
+    'jsonify',
 )
 
 MIDDLEWARE_CLASSES = (

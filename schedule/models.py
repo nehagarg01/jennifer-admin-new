@@ -3,6 +3,7 @@ from decimal import Decimal
 
 from django.db import models
 from django.forms.models import model_to_dict
+from django.contrib.postgres.fields import JSONField
 
 from products.models import Product
 
@@ -82,16 +83,10 @@ class Schedule(models.Model):
 
 class Change(models.Model):
     schedule = models.ForeignKey(Schedule, related_name="changes")
-    variant = models.ForeignKey('products.Variant', related_name="changes")
-    compare_at_price = models.DecimalField(max_digits=14, decimal_places=2,
-                                           default=Decimal('0.00'))
-    price = models.DecimalField(max_digits=14, decimal_places=2,
-                                default=Decimal('0.00'))
-    sale_price = models.DecimalField(max_digits=14, decimal_places=2,
-                                     default=Decimal('0.00'))
+    product = models.ForeignKey('products.Product', related_name="changes")
+    json = JSONField()
     completed = models.BooleanField(default=False)
 
     def run(self):
         from .tasks import execute_change
-        execute_change.delay(
-            self.variant.shopify_id, model_to_dict(self))
+        execute_change.delay(self.id)

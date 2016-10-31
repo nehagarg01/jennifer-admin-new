@@ -1,19 +1,23 @@
+import json
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import (ListView, CreateView, UpdateView,
                                   DeleteView, DetailView, FormView)
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.forms import inlineformset_factory, modelformset_factory
+from django.forms import inlineformset_factory, modelformset_factory, formset_factory
 from django.conf import settings
 from django.contrib import messages
+from django.core.serializers.json import DjangoJSONEncoder
+from django.utils.timezone import now, localtime
 
-from extra_views import InlineFormSetView
+from extra_views import InlineFormSetView, FormSetView
 
 import shopify
 from .utils import shopify
 from .models import *
 from schedule.models import Change
-from .forms import ProductForm, ProductScheduleChangeForm, ProductSearchForm
+from .forms import *
 from core.views import SearchView
 
 
@@ -68,8 +72,8 @@ class ProductDetail(ProductMixin, DetailView):
 
      def get_context_data(self, **kwargs):
          context = super(ProductDetail, self).get_context_data(**kwargs)
-         context['changes'] = Change.objects.filter(
-            variant__product=self.object).order_by('schedule__date')
+         context['changes'] = self.object.changes.filter(
+            completed=False, schedule__date__gte=localtime(now()).date())
          return context
 
 
@@ -103,23 +107,34 @@ class ProductScheduleChange(ProductMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProductScheduleChange, self).get_context_data(**kwargs)
         context['form'] = ProductScheduleChangeForm
-        ChangeFormSet = modelformset_factory(
-            Change, fields=('compare_at_price', 'price', 'sale_price', 'variant'),
-            extra=self.object.variants.count())
-        context['formset'] = ChangeFormSet(queryset=Change.objects.none())
+        ChangeFormSet = formset_factory(form=ChangeForm, extra=0)
+        initial = []
+        for variant in self.object.variants.all():
+            initial.append({
+                'title': str(variant),
+                'shopify_id': variant.shopify_id,
+                'price': variant.price,
+                'compare_at_price': variant.compare_at_price,
+                'sale_price': variant.sale_price,
+            })
+        context['formset'] = ChangeFormSet(initial=initial)
         return context
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = ProductScheduleChangeForm(request.POST)
-        formset = modelformset_factory(
-            Change, fields=('compare_at_price', 'price', 'sale_price', 'variant'),
-            extra=self.object.variants.count())
+        formset = formset_factory(form=ChangeForm)
         formset = formset(request.POST)
         if form.is_valid() and formset.is_valid():
-            for f in formset:
-                f.instance.schedule = form.cleaned_data['schedule']
-                f.save()
+            for data in formset.cleaned_data:
+                data['id'] = data.pop('shopify_id')
+                for k in ['price', 'sale_price', 'compare_at_price']:
+                    data[k] = float(data[k])
+
+            # print formset.cleaned_data
+            Change.objects.create(
+                product=self.object, schedule=form.cleaned_data['schedule'],
+                json=formset.cleaned_data)
             return redirect('product-detail', self.object.pk)
         return redirect('product-schedule-change', self.object.pk)
 

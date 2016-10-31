@@ -1,5 +1,6 @@
 {% extends 'products/product_list.html' %}
 {% load bootstrap3 %}
+{% load core %}
 
 {% block title %}{{ object }}{% endblock %}
 
@@ -100,17 +101,26 @@
 					<th>Sale Price</th>
 					<th>Price</th>
 					<th>Compare</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
+
 				{% for change in changes %}
+				{% for v in change.json %}
 				<tr>
-					<td>{{ change.schedule.date }}</td>
-					<td>{{ change.variant }}</td>
-					<td>{{ change.sale_price }}</td>
-					<td>{{ change.price }}</td>
-					<td>{{ change.compare_at_price }}</td>
+					<td>{% if forloop.first %}{{ change.schedule.date }}{% endif %}</td>
+					<td>{{ v.title }}</td>
+					<td>{{ v.sale_price }}</td>
+					<td>{{ v.price }}</td>
+					<td>{{ v.compare_at_price }}</td>
+					<td>
+						{% if forloop.first %}
+							<a class="btn btn-xs btn-danger" href="{% url 'change-delete' change.pk %}">Delete</a>
+						{% endif %}
+					</td>
 				</tr>
+				{% endfor %}
 				{% endfor %}
 			</tbody>
 		</table>

@@ -1,0 +1,25 @@
+{% extends 'products/product_list.html' %}
+{% load bootstrap3 %}
+
+{% block title %}Delete Change?{% endblock %}
+
+{% block actions %}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'product-detail' object.product.pk %}">{{ object.product }}</a></li>
+<li><a href="{% url 'change-delete' object.pk %}">Delete Change</a></li>
+{% endblock %}
+
+{% block content %}
+<div class="hpanel">
+	<div class="panel-body">
+		<form method="post">
+			{% csrf_token %}
+      <p>Are you sure you want to delete this change?</p>
+			<button class="btn btn-danger">Delete</button>
+			<a class="btn btn-default" href="{% url 'product-detail' object.product.pk %}">Cancel</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

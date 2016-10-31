@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django import forms
 from django.utils.timezone import now, localtime
 
@@ -30,8 +32,18 @@ class ProductForm(forms.ModelForm):
 
 
 class ProductScheduleChangeForm(forms.Form):
-    schedule = forms.ModelChoiceField(queryset=Schedule.objects.filter(
-        schedule_type='manual', date__gt=localtime(now()).date()))
+    schedule = forms.ModelChoiceField(
+        empty_label=None,
+        queryset=Schedule.objects.filter(date__gt=localtime(now()).date()))
+
+
+class ChangeForm(forms.Form):
+    title = forms.CharField()
+    compare_at_price = forms.DecimalField(decimal_places=2, min_value=Decimal('0.00'))
+    price = forms.DecimalField(decimal_places=2, min_value=Decimal('0.00'))
+    sale_price = forms.DecimalField(decimal_places=2, min_value=Decimal('0.00'))
+    shopify_id = forms.IntegerField()
+
 
 
 class ProductSearchForm(SearchForm):

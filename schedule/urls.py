@@ -10,5 +10,7 @@ urlpatterns = [
         # url(r'^(?P<pk>[0-9]+)/update$', views.ProductUpdate.as_view(), name='product-update'),
         url(r'^delete/$', views.ScheduleDeleteView.as_view(), name='schedule-delete'),
     ])),
-
+    url(r'^changes/(?P<pk>[0-9]+)/', include([
+        url(r'^delete/$', views.ChangeDeleteView.as_view(), name='change-delete'),
+    ])),
 ]

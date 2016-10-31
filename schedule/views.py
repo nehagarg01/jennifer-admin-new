@@ -33,3 +33,10 @@ class ScheduleExecute(ScheduleMixin, RedirectView):
         schedule = get_object_or_404(Schedule, pk=kwargs['pk'])
         schedule.run_schedule()
         return reverse('schedule-list')
+
+
+class ChangeDeleteView(LoginRequiredMixin, DeleteView):
+    model = Change
+
+    def get_success_url(self):
+        return self.object.product.get_absolute_url()

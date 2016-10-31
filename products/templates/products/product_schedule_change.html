@@ -32,21 +32,20 @@
 				{{ formset.management_form }}
 				{% for f in formset %}
 				{{ f.id }}
-				{% endfor %}
-				{% for v in object.variants.all %}
 				<tr>
 					<td>
-						{{ v }}
-						<input class="form-control" name="form-{{ forloop.counter0 }}-variant" value="{{ v.id }}" type="hidden">
+						{{ f.title.value }}
+						<input class="form-control" name="form-{{ forloop.counter0 }}-title" value="{{ f.title.value }}" type="hidden">
+						<input class="form-control" name="form-{{ forloop.counter0 }}-shopify_id" value="{{ f.shopify_id.value }}" type="hidden">
 					</td>
 					<td>
-						<input class="form-control" name="form-{{ forloop.counter0 }}-sale_price" value="{{ v.sale_price }}">
+						{% bootstrap_field f.sale_price show_label=False %}
 					</td>
 					<td>
-						<input class="form-control" name="form-{{ forloop.counter0 }}-price" value="{{ v.price }}">
+						{% bootstrap_field f.price show_label=False %}
 					</td>
 					<td>
-						<input class="form-control" name="form-{{ forloop.counter0 }}-compare_at_price" value="{{ v.compare_at_price }}">
+						{% bootstrap_field f.compare_at_price show_label=False %}
 					</td>
 				</tr>
 				{% endfor %}
