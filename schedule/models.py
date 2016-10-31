@@ -57,9 +57,10 @@ class Schedule(models.Model):
                 discount_product.delay(
                     model_to_dict(product), model_to_dict(self))
         elif self.schedule_type == 'restore':
-            self.task_total += Product.main_products.count()
+            queryset = Product.main_products.all()
+            self.task_total += queryset.count()
             self.save()
-            for product in Product.main_products.all():
+            for product in queryset:
                 restore_product.delay(model_to_dict(product), self.id)
         if self.theme:
             update_theme.delay(self.theme, self.id)

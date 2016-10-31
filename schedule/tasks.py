@@ -116,9 +116,12 @@ def discount_product(self, product, schedule):
 def restore_product(self, product, schedule_id=None):
     try:
         variants = Variant.objects.filter(product_id=product['id'])
-        v_map = {}
-        for d in variants.values('shopify_id', 'price'):
-            v_map[d['shopify_id']] = float(d['price'])
+        v_map = []
+        for v in variants:
+            v_map.append({
+                'id': v.shopify_id,
+                'price': float(v.price),
+            })
         s_product = shopify.Product({
             'id': product['shopify_id'],
             'variants': v_map
