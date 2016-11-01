@@ -28,7 +28,7 @@
       <tbody>
       {% for object in object_list %}
       <tr>
-        <td><a href="">{{ object.title }}</a></td>
+        <td><a href="{% url 'schedule-detail' object.pk %}">{{ object.title }}</a></td>
         <td>{{ object.date }}</td>
         <td>{{ object.get_schedule_type_display }}</td>
         <td>{{ object.changes.count }}</td>

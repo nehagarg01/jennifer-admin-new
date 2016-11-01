@@ -38,21 +38,10 @@ class ScheduleForm(forms.ModelForm):
                 self.add_error('discount', "Please add a discount rate.")
 
 
-    # def save(self, commit=True):
-    #     instance = super(ScheduleForm, self).save(commit=False)
-    #     if commit:
-    #         instance.save()
-    #         if self.cleaned_data['schedule_type'] == 'storewide':
-    #             variants = Variant.main_products.all().values(
-    #                 'id', 'compare_at_price', 'price')
-    #             discount = Decimal('1.00') - (Decimal(self.cleaned_data['discount']) / Decimal(100))
-    #             batch = []
-    #             for v in variants:
-    #                 sale_price = (v['price'] * discount).quantize(
-    #                     Decimal('1.'), rounding=ROUND_UP) - Decimal('0.01')
-    #                 c = Change(schedule_id=instance.id, sale_price=sale_price,
-    #                            variant_id=v['id'], compare_at_price=v['compare_at_price'],
-    #                            price=v['price'])
-    #                 batch.append(c)
-    #             Change.objects.bulk_create(batch)
-    #     return instance
+    def save(self, commit=True):
+        instance = super(ScheduleForm, self).save(commit=False)
+        if commit:
+            instance.save()
+            from schedule.tasks import generate_schedule_changes
+            generate_schedule_changes.delay(instance.id)
+        return instance

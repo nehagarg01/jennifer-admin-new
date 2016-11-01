@@ -6,7 +6,7 @@ from django.utils.timezone import now
 from celery import shared_task
 
 from products.utils import shopify
-from products.models import Variant
+from products.models import Variant, Product
 from .models import *
 
 
@@ -77,6 +77,7 @@ def execute_change(self, change_id):
         if change:
             shopify_data = copy(change.json)
             for v in shopify_data:
+                v['id'] = v.pop('shopify_id')
                 if v.get('sale_price', None):
                     v['price'] = v['sale_price']
             s_product = shopify.Product({
@@ -86,7 +87,7 @@ def execute_change(self, change_id):
             result = s_product.save()
             if result:
                 for variant in change.json:
-                    Variant.objects.filter(shopify_id=variant['id']).update(
+                    Variant.objects.filter(shopify_id=variant['shopify_id']).update(
                         compare_at_price=variant['compare_at_price'],
                         price=variant['price'], sale_price=variant['sale_price']
                     )
@@ -191,3 +192,46 @@ def enable_discounts(codes):
     for code in codes.split(','):
         discount = shopify.Discount.find(code.strip())
         discount.enable()
+
+
+@shared_task(bind=True)
+def generate_schedule_changes(self, schedule_id):
+    schedule = Schedule.objects.get(id=schedule_id)
+    if schedule.schedule_type == 'storewide':
+        products = Product.main_products.prefetch_related('variants')
+        batch = []
+        for product in products:
+            discount = schedule.clearance_discount \
+                if product.is_clearance() else schedule.discount
+            discount = Decimal('1.00') - (Decimal(discount) / Decimal(100))
+            variants = []
+            for variant in product.variants.all():
+                sale_price = (variant.price * discount).quantize(
+                    Decimal('1.'), rounding=ROUND_UP) - Decimal('0.01')
+                variants.append({
+                    'shopify_id': variant.shopify_id,
+                    'title': str(variant),
+                    'sale_price': float(sale_price),
+                    'price': float(variant.price),
+                    'compare_at_price': float(variant.compare_at_price),
+                })
+            c = Change(schedule_id=schedule.id, product_id=product.id, json=variants)
+            batch.append(c)
+        Change.objects.bulk_create(batch)
+    elif schedule.schedule_type == 'restore':
+        products = Product.main_products.filter(
+            variants__sale_price__gt=0).prefetch_related('variants')
+        batch = []
+        for product in products:
+            variants = []
+            for variant in product.variants.all():
+                variants.append({
+                    'shopify_id': variant.shopify_id,
+                    'title': str(variant),
+                    'price': float(variant.price),
+                    'compare_at_price': float(variant.compare_at_price),
+                })
+            c = Change(schedule_id=schedule.id, product_id=product.id, json=list(variants))
+            batch.append(c)
+        Change.objects.bulk_create(batch)
+    return True

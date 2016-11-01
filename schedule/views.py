@@ -40,3 +40,20 @@ class ChangeDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_success_url(self):
         return self.object.product.get_absolute_url()
+
+
+class ChangeListView(LoginRequiredMixin, ListView):
+    model = Change
+    paginate_by = 20
+
+    def dispatch(self, request, *args, **kwargs):
+        self.object = get_object_or_404(Schedule, pk=self.kwargs.get('pk'))
+        return super(ChangeListView, self).dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return super(ChangeListView, self).get_queryset().filter(schedule=self.object)
+
+    def get_context_data(self, **kwargs):
+        context = super(ChangeListView, self).get_context_data(**kwargs)
+        context['object'] = self.object
+        return context

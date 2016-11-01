@@ -1,0 +1,52 @@
+{% extends 'schedule/schedule_list.html' %}
+{% load bootstrap_pagination %}
+
+{% block title %}{{ object }}{% endblock %}
+
+{% block breadcrumbs %}
+{{ block.super }}
+<li><a href="{% url 'schedule-detail' object.pk %}">{{ object }}</a></li>
+{% endblock %}
+
+{% block actions %}
+<a class="btn btn-primary" href="{% url 'schedule-delete' object.pk %}">Delete</a>
+{% endblock %}
+
+{% block content %}
+<div class="hpanel">
+  <div class="panel-body">
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Variant</th>
+          <th>Sale Price</th>
+          <th>Price</th>
+          <th>Compare At Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for change in object_list %}
+        {% for v in change.json %}
+        <tr>
+          <td>{% if forloop.first %}{{ change.product }}{% endif %}</td>
+          <td>{{ v.title }}</td>
+          <td>{{ v.sale_price }}</td>
+          <td>{{ v.price }}</td>
+          <td>{{ v.compare_at_price }}</td>
+          <td>
+            {% if forloop.first %}
+              <a class="btn btn-xs btn-danger" href="{% url 'change-delete' change.pk %}">Delete</a>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+        {% endfor %}
+      </tbody>
+    </table>
+    {% bootstrap_paginate page_obj range=10 %}
+  </div>
+</div>
+
+{% endblock %}

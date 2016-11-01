@@ -44,6 +44,7 @@ class Product(models.Model):
     shopify_id = models.BigIntegerField(null=True, blank=True)
     series = models.ForeignKey('series.Series', null=True, blank=True,
                                related_name="products")
+    tags = models.TextField(blank=True)
 
     objects = models.Manager()
     main_products = MainProductManager()
@@ -80,6 +81,7 @@ class Product(models.Model):
                 'published_at': shopify_product.published_at,
                 'published_scope': shopify_product.published_scope,
                 'vendor': Vendor.objects.get_or_create(name=shopify_product.vendor)[0],
+                'tags': shopify_product.tags,
             })
         for v in shopify_product.variants:
             variant, created = Variant.objects.update_or_create(
@@ -140,6 +142,9 @@ class Product(models.Model):
                 'grams': variant.pieces,
             })
         return product.save()
+
+    def is_clearance(self):
+        return 'clearance' in self.tags
 
 
 class Variant(models.Model):
