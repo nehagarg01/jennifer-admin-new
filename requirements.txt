@@ -19,3 +19,4 @@ django-shopify-webhook
 django-bootstrap-pagination
 bunch
 django-extra-views
+django-braces
