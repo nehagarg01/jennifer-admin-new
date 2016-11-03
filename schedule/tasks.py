@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 from decimal import Decimal, ROUND_UP
-from copy import copy
+from copy import deepcopy
 
 from django.utils.timezone import now
 from celery import shared_task
@@ -75,7 +75,7 @@ def execute_change(self, change_id):
     try:
         change = Change.objects.filter(id=change_id).first()
         if change:
-            shopify_data = copy(change.json)
+            shopify_data = deepcopy(change.json)
             for v in shopify_data:
                 v['id'] = v.pop('shopify_id')
                 if v.get('sale_price', None):
