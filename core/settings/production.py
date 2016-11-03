@@ -216,7 +216,7 @@ SHOPIFY_URL = "https://%s:%s@%s.myshopify.com/admin" % (
     SHOPIFY_API_KEY, SHOPIFY_PASSWORD, SHOPIFY_SHOP_NAME,)
 
 
-CELERY_DEFAULT_RATE_LIMIT = 2
+CELERY_DEFAULT_RATE_LIMIT = 6
 from celery.schedules import crontab
 CELERYBEAT_SCHEDULE = {
     'run-schedule-of-the-day': {
