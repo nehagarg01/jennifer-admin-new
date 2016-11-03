@@ -5,7 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 from dashboard.views import Dashboard
-from .views import CarrierView
+from .views import carrier_webhook
 
 
 urlpatterns = [
@@ -17,5 +17,5 @@ urlpatterns = [
     url(r'^schedule/', include('schedule.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^webhooks/', WebhookView.as_view(), name="webhooks"),
-    url(r'^carrier/$', CarrierView.as_view(), name='carrier-calculate'),
+    url(r'^carrier/$', carrier_webhook, name='carrier-calculate'),
 ]

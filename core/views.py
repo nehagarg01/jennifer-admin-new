@@ -1,8 +1,11 @@
+import json
+import googlemaps
+
 from django.views.generic import ListView, View
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-
-from braces.views import StaffuserRequiredMixin
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 
 class SearchView(ListView):
@@ -20,10 +23,23 @@ class SearchView(ListView):
         return queryset
 
 
-class CarrierView(StaffuserRequiredMixin, View):
+@csrf_exempt
+def carrier_webhook(request):
+    if request.method == "POST":
+        data = json.loads(request.body)['rate']
+        state = data['destination']['province']
+        zipcode = data['destination']['postal_code']
 
-    def post(self, request, *args, **kwargs):
-        items = request.POST['items']
+        gmaps = googlemaps.Client(key=settings.GOOGLE_API_KEY)
+        response = gmaps.geocode("%s %s USA" % (state, zipcode))
+        if len(response):
+            loc = response[0]
+            county = ''
+            for obj in loc['address_components']:
+                if "administrative_area_level_2" in obj['types']:
+                    county = obj['long_name']
+            print county
+        items = data['items']
         return JsonResponse({
            "rates": [
                {

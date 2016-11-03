@@ -229,3 +229,5 @@ CELERY_TIMEZONE = 'US/Eastern'
 
 BROKER_URL = os.environ.get('REDIS_URL', '')
 CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL', '')
+
+GOOGLE_API_KEY = "AIzaSyDdyh07oa5DtA3D48EgVrEd2XGT_VJBI8E"

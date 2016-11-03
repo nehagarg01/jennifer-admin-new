@@ -20,3 +20,4 @@ django-bootstrap-pagination
 bunch
 django-extra-views
 django-braces
+googlemaps
