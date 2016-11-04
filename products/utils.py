@@ -21,3 +21,6 @@ def sync_products():
             page += 1
         else:
             incomplete = False
+
+
+# def 

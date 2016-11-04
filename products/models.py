@@ -45,6 +45,7 @@ class Product(models.Model):
     series = models.ForeignKey('series.Series', null=True, blank=True,
                                related_name="products")
     tags = models.TextField(blank=True)
+    gmc_id = models.CharField(max_length=255, blank=True)
 
     objects = models.Manager()
     main_products = MainProductManager()
