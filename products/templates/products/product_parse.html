@@ -1,0 +1,10 @@
+{% load bootstrap3 %}
+<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div class="row">
+		<div class="col-sm-4">
+			{% bootstrap_field form.file %}
+		</div>
+	</div>
+	<button type="submit" class="btn btn-success">Upload</button>
+</form>

@@ -1,4 +1,5 @@
 import json
+import csv
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import (ListView, CreateView, UpdateView,
@@ -10,6 +11,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.serializers.json import DjangoJSONEncoder
 from django.utils.timezone import now, localtime
+from django.http import HttpResponse
 
 from extra_views import InlineFormSetView, FormSetView
 
@@ -19,6 +21,7 @@ from .models import *
 from schedule.models import Change
 from .forms import *
 from core.views import SearchView
+from core.forms import FileForm
 
 
 class ProductMixin(LoginRequiredMixin):
@@ -140,3 +143,21 @@ class ProductScheduleChange(ProductMixin, DetailView):
 
     def get_success_url(self):
         return self.product.get_absolute_url()
+
+
+class ProductParse(FormView):
+    form_class = FileForm
+    template_name = 'products/product_parse.html'
+
+    def form_valid(self, form):
+        reader = csv.reader(form.cleaned_data['file'])
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="parsed.csv"'
+        writer = csv.writer(response)
+        for idx, row in enumerate(reader):
+            if idx >= 6 and row[3]:
+                p = Product.objects.filter(gmc_id__icontains=row[3]).first()
+                if p:
+                    row[3] = p.title
+            writer.writerow(row)
+        return response
