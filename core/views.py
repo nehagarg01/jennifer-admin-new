@@ -22,6 +22,12 @@ class SearchView(ListView):
             queryset = form.search()
         return queryset
 
+NY_COUNTY = ['New York County', 'Kings County', 'Queens County', 'Roosevelt Island Zone',
+             'Bronx County', 'Staten Island County', 'Nassau County', 'West Suffolk',
+            'East Suffolk', 'Shelter Island', 'Rockland County', 'Westchester County',
+            'Putnam County', 'Dutchess County', 'Ulster County', 'Orange County',
+            'Columbia County', 'Sullivan County']
+
 
 @csrf_exempt
 def carrier_webhook(request):
@@ -29,17 +35,26 @@ def carrier_webhook(request):
         data = json.loads(request.body)['rate']
         state = data['destination']['province']
         zipcode = data['destination']['postal_code']
+        if state in ('NY', "NJ", "CT", "PA"):
+            gmaps = googlemaps.Client(key=settings.GOOGLE_API_KEY)
+            response = gmaps.geocode("%s %s USA" % (state, zipcode))
+            if len(response):
+                loc = response[0]
+                county = ''
+                for obj in loc['address_components']:
+                    if "administrative_area_level_2" in obj['types']:
+                        county = obj['long_name']
+                        loc['county'] = county
+                if county:
+                    return JsonResponse(county, safe=False)
+                else:
+                    return JsonResponse(loc, safe=False)
+                ny = (state == 'NY' and county in NY_COUNTY)
+                # if (state == 'NY' and county in NY_COUNTY):
+            # Local
 
-        gmaps = googlemaps.Client(key=settings.GOOGLE_API_KEY)
-        response = gmaps.geocode("%s %s USA" % (state, zipcode))
-        if len(response):
-            loc = response[0]
-            county = ''
-            for obj in loc['address_components']:
-                if "administrative_area_level_2" in obj['types']:
-                    county = obj['long_name']
-            print county
         items = data['items']
+
         return JsonResponse({
            "rates": [
                {
