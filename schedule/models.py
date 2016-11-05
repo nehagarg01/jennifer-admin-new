@@ -42,31 +42,33 @@ class Schedule(models.Model):
     def run_schedule(self):
         from .tasks import (discount_product, restore_product, update_theme,
                             disable_discounts, execute_change)
-        self.status = 'i'
-        self.task_total = 1 if self.theme else 0
-        if self.schedule_type == 'manual':
-            self.task_total += self.changes.count()
-            self.save()
-            for product in Product.objects.filter(variants__changes__schedule=self):
-                execute_change.delay(product.id, self.id)
-            # for change in self.changes.all():
-            #     change.run()
-        elif self.schedule_type == 'storewide':
-            self.task_total += Product.main_products.count()
-            self.save()
-            for product in Product.main_products.all():
-                discount_product.delay(
-                    model_to_dict(product), model_to_dict(self))
-        elif self.schedule_type == 'restore':
-            queryset = Product.main_products.all()
-            self.task_total += queryset.count()
-            self.save()
-            for product in queryset:
-                restore_product.delay(model_to_dict(product), self.id)
+        for change in self.changes.all():
+            execute_change(change.id)
+        # self.status = 'i'
+        # self.task_total = 1 if self.theme else 0
+        # if self.schedule_type == 'manual':
+        #     self.task_total += self.changes.count()
+        #     self.save()
+        #     for product in Product.objects.filter(variants__changes__schedule=self):
+        #         execute_change.delay(product.id, self.id)
+        #     # for change in self.changes.all():
+        #     #     change.run()
+        # elif self.schedule_type == 'storewide':
+        #     self.task_total += Product.main_products.count()
+        #     self.save()
+        #     for product in Product.main_products.all():
+        #         discount_product.delay(
+        #             model_to_dict(product), model_to_dict(self))
+        # elif self.schedule_type == 'restore':
+        #     queryset = Product.main_products.all()
+        #     self.task_total += queryset.count()
+        #     self.save()
+        #     for product in queryset:
+        #         restore_product.delay(model_to_dict(product), self.id)
         if self.theme:
             update_theme.delay(self.theme, self.id)
-        if self.coupons == '':
-            disable_discounts.delay()
+        # if self.coupons == '':
+        #     disable_discounts.delay()
 
 
     @classmethod

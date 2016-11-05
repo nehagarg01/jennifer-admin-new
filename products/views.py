@@ -130,7 +130,7 @@ class ProductScheduleChange(ProductMixin, DetailView):
         formset = formset(request.POST)
         if form.is_valid() and formset.is_valid():
             for data in formset.cleaned_data:
-                data['id'] = data.pop('shopify_id')
+                # data['id'] = data.pop('shopify_id')
                 for k in ['price', 'sale_price', 'compare_at_price']:
                     data[k] = float(data[k])
 
