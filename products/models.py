@@ -148,6 +148,7 @@ class Product(models.Model):
         return 'clearance' in self.tags
 
 
+
 class Variant(models.Model):
     product = models.ForeignKey(Product, related_name='variants')
     sku = models.CharField(max_length=255, blank=True, null=True)
@@ -177,6 +178,27 @@ class Variant(models.Model):
         if self.option3:
             output += " / %s" % self.option3
         return output
+
+    def get_product_group(self):
+        if self.product.product_type.title in ['sofas', 'chaises', 'sofa chaises',
+                                       'loveseats', 'daybeds']:
+            return 'upholstery'
+        elif self.product.product_type.title == 'sectionals':
+            return 'sectionals'
+        elif self.product.product_type.title in ['living room sets', 'dining sets', 'bedroom sets']:
+            price = self.sale_price or self.price
+            if price < 1000:
+                return 'set_lt_1000'
+            elif price < 2000:
+                return 'set_lt_2000'
+            else:
+                return 'set_gt_2000'
+        elif self.product.product_type.title in ['sofa chairs', 'recliners', 'accent chairs']:
+            return 'chairs'
+        elif self.product.product_type.title == 'beds':
+            return 'beds'
+        else:
+            return 'ancillary'
 
 
 class Dimension(models.Model):
