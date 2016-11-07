@@ -1,11 +1,9 @@
 from django.conf.urls import include, url
 
-from shopify_webhook.views import WebhookView
 from django.contrib import admin
 admin.autodiscover()
 
 from dashboard.views import Dashboard
-from .views import carrier_webhook
 
 
 urlpatterns = [
@@ -16,6 +14,5 @@ urlpatterns = [
     url(r'^series/', include('series.urls')),
     url(r'^schedule/', include('schedule.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^webhooks/', WebhookView.as_view(), name="webhooks"),
-    url(r'^carrier/$', carrier_webhook, name='carrier-calculate'),
+    url(r'^webhooks/', include('webhooks.urls')),
 ]
