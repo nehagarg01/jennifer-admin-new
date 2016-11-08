@@ -167,6 +167,7 @@ class Variant(models.Model):
     option3 = models.CharField(max_length=255, blank=True, null=True)
     shopify_id = models.BigIntegerField(null=True, blank=True)
     position = models.IntegerField(default=1)
+    mattress_pieces = models.IntegerField(default=0)
 
     class Meta:
         ordering = ['product__title', 'position']

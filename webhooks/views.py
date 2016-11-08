@@ -31,6 +31,7 @@ def carrier_webhook(request):
             cnt['pieces'] += item['quantity'] * variant.pieces
             cnt['cart_total'] += item['quantity'] * item['price']
         cnt[p_group] += item['quantity']
+        cnt['mattress_pieces'] += variant.mattress_pieces
 
     totals = Counter()
 
@@ -116,6 +117,10 @@ def carrier_webhook(request):
                 totals['delivery'] += 6500
         service_name = "Long Distance Delivery"
         service_code = "LDD"
+
+    if state == "CT" and cnt['mattress_pieces'] > 0:
+        service_name += ' + Mattress Recycling Fee ($9 per mattress/boxspring)'
+        totals['delivery'] += 900 * cnt['mattress_pieces']
 
     totals['delivery'] += cnt['slipcovers'] * 3000
     return JsonResponse({
