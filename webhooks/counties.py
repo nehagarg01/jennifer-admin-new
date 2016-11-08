@@ -19,6 +19,7 @@ LOCAL100 = [
 ]
 
 LOCAL = [
+    ('NY', 'New York'),
     ('NY', 'New York County'),
     ('NY', 'Kings County'),
     ('NY', 'Queens County'),

@@ -39,15 +39,18 @@ def carrier_webhook(request):
         response = gmaps.geocode("%s %s USA" % (state, zipcode))
         if len(response):
             loc = response[0]
+
             for obj in loc['address_components']:
                 if "administrative_area_level_2" in obj['types']:
                     county = obj['long_name']
                 if "locality" in obj['types']:
                     city = obj['long_name']
-            if not county:
+            if not county and city:
+                print loc['address_components']
                 county = city
+            print zipcode, county
 
-    if (state, county) in LOCAL or zipcode in PHILADELPHIA_PLUS:
+    if (state, county) in LOCAL or int(zipcode) in PHILADELPHIA_PLUS:
         if cnt['quantity'] == cnt['ancillary']:
             totals['delivery'] += cnt['ancillary'] * 6999
         else:

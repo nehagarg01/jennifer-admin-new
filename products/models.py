@@ -197,6 +197,8 @@ class Variant(models.Model):
             return 'chairs'
         elif self.product.product_type.title == 'beds':
             return 'beds'
+        elif self.product.product_type.title in ['mattresses', 'box springs']:
+            return 'mattress_n_boxspring'
         else:
             return 'ancillary'
 

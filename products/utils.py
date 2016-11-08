@@ -2,7 +2,6 @@ import shopify
 import datetime
 from django.conf import settings
 
-from .models import *
 from vendors.models import Vendor
 
 
@@ -11,6 +10,7 @@ shopify.ShopifyResource.set_site(settings.SHOPIFY_URL)
 
 
 def sync_products():
+    from .models import Product
     page = 1
     incomplete = True
     while incomplete:
@@ -23,4 +23,4 @@ def sync_products():
             incomplete = False
 
 
-# def 
+# def

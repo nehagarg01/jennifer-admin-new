@@ -8,6 +8,7 @@ from dashboard.views import Dashboard
 
 urlpatterns = [
     url(r'^$', Dashboard.as_view(), name="dashboard"),
+    url(r'^index/$', Dashboard.as_view(), name="index"),
     url(r'^accounts/', include('authentication.urls', namespace='user')),
     url(r'^vendors/', include('vendors.urls')),
     url(r'^products/', include('products.urls')),
