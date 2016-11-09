@@ -21,3 +21,4 @@ bunch
 django-extra-views
 django-braces
 googlemaps
+django-redis-cache

@@ -9,15 +9,16 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 from .counties import *
+from .models import *
 
 @require_POST
 @csrf_exempt
 def carrier_webhook(request):
-    from .counties import *
     from products.models import Variant
     data = json.loads(request.body)['rate']
     state = data['destination']['province']
     zipcode = data['destination']['postal_code']
+    shipping_setting = ShippingSetting.objects.get(active=True)
     county = ''
     cart_total = quantity = 0
     cnt = Counter()
@@ -47,9 +48,7 @@ def carrier_webhook(request):
                 if "locality" in obj['types']:
                     city = obj['long_name']
             if not county and city:
-                print loc['address_components']
                 county = city
-            print zipcode, county
 
     if (state, county) in LOCAL or int(zipcode) in PHILADELPHIA_PLUS:
         if cnt['quantity'] == cnt['ancillary']:
@@ -85,7 +84,8 @@ def carrier_webhook(request):
         if totals['delivery'] > tenp and tenp > 11999:
             totals['delivery'] = tenp
 
-        totals['delivery'] = 19999 if totals['delivery'] > 19999 else totals['delivery']
+        if totals['delivery'] > (shipping_setting.shipping_max * 100):
+            totals['delivery'] = int(shipping_setting.shipping_max * 100)
 
         if (state, county) in LOCAL20 or int(zipcode) in PHILADELPHIA_PLUS:
             totals['delivery'] += 2000

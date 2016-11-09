@@ -1,0 +1,7 @@
+- model: webhooks.ShippingSetting
+  pk: 1
+  fields:
+    active: true
+    free_shipping: false
+    free_shipping_minimum: 0
+    shipping_max: 99.99
