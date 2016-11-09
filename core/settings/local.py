@@ -25,3 +25,9 @@ SHOPIFY_APP_API_SECRET = "289dd0854e0d5e3d031b394d16fba24da6b66a0845123d03b9bfcf
 
 SHOPIFY_URL = "https://%s:%s@%s.myshopify.com/admin" % (
     SHOPIFY_API_KEY, SHOPIFY_PASSWORD, SHOPIFY_SHOP_NAME,)
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}

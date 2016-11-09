@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.core.cache import cache
 
 from .counties import *
 from .models import *
@@ -37,18 +38,22 @@ def carrier_webhook(request):
     totals = Counter()
 
     if state in ('NY', "NJ", "CT", "PA", "DE", "MD", "VA", "WV"):
-        gmaps = googlemaps.Client(key=settings.GOOGLE_API_KEY)
-        response = gmaps.geocode("%s %s USA" % (state, zipcode))
-        if len(response):
-            loc = response[0]
+        county = cache.get('county_%s' % zipcode)
+        if not county:
+            print 'not cached'
+            gmaps = googlemaps.Client(key=settings.GOOGLE_API_KEY)
+            response = gmaps.geocode("%s %s USA" % (state, zipcode))
+            if len(response):
+                loc = response[0]
 
-            for obj in loc['address_components']:
-                if "administrative_area_level_2" in obj['types']:
-                    county = obj['long_name']
-                if "locality" in obj['types']:
-                    city = obj['long_name']
-            if not county and city:
-                county = city
+                for obj in loc['address_components']:
+                    if "administrative_area_level_2" in obj['types']:
+                        county = obj['long_name']
+                    if "locality" in obj['types']:
+                        city = obj['long_name']
+                if not county and city:
+                    county = city
+                cache.set('county_%s' % zipcode, county)
 
     if (state, county) in LOCAL or int(zipcode) in PHILADELPHIA_PLUS:
         if cnt['quantity'] == cnt['ancillary']:
