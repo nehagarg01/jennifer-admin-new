@@ -92,6 +92,11 @@ def carrier_webhook(request):
         if totals['delivery'] > (shipping_setting.shipping_max * 100):
             totals['delivery'] = int(shipping_setting.shipping_max * 100)
 
+        if shipping_setting.free_shipping:
+            if cnt['cart_total'] > shipping_setting.free_shipping_minimum * 100:
+                totals['delivery'] = 0
+                service_name = "Free Local Delivery"
+
         if (state, county) in LOCAL20 or int(zipcode) in PHILADELPHIA_PLUS:
             totals['delivery'] += 2000
         elif (state, county) in LOCAL75 or zipcode in ["11964", "11965"]:
