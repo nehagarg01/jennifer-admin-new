@@ -43,7 +43,7 @@ class Schedule(models.Model):
         from .tasks import (discount_product, restore_product, update_theme,
                             disable_discounts, execute_change)
         for change in self.changes.all():
-            execute_change(change.id)
+            execute_change.delay(change.id)
         # self.status = 'i'
         # self.task_total = 1 if self.theme else 0
         # if self.schedule_type == 'manual':

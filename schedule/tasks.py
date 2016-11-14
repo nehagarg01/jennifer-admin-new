@@ -89,7 +89,7 @@ def execute_change(self, change_id):
                 for variant in change.json:
                     Variant.objects.filter(shopify_id=variant['shopify_id']).update(
                         compare_at_price=variant['compare_at_price'],
-                        price=variant['price'], sale_price=variant['sale_price']
+                        price=variant['price'], sale_price=variant.get('sale_price', 0)
                     )
                 change.completed = True
                 change.save()
