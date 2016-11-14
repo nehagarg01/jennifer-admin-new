@@ -220,7 +220,7 @@ def generate_schedule_changes(self, schedule_id):
         Change.objects.bulk_create(batch)
     elif schedule.schedule_type == 'restore':
         products = Product.main_products.filter(
-            variants__sale_price__gt=0).prefetch_related('variants')
+            variants__sale_price__gt=0).prefetch_related('variants').distinct()
         batch = []
         for product in products:
             variants = []
