@@ -25,6 +25,7 @@
             <th>Compare At Price</th>
             <th>Barcode</th>
             <th>Pieces</th>
+            <th>Del</th>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +41,7 @@
             <td>{% bootstrap_field f.compare_at_price show_label=False %}</td>
             <td>{% bootstrap_field f.barcode show_label=False %}</td>
             <td>{% bootstrap_field f.pieces show_label=False %}</td>
+            <td>{{ f.DELETE }}</td>
           </tr>
           {% endfor %}
         </tbody>

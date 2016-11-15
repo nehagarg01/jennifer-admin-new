@@ -93,6 +93,7 @@ class ProductVariantsUpdateView(ProductMixin, InlineFormSetView):
     fields = ['sku', 'option1', 'option2', 'option3',
               'sale_price', 'price', 'compare_at_price',
               'barcode', 'pieces']
+    can_delete = True
 
     def get_success_url(self):
         self.update_to_shopify()

@@ -84,6 +84,7 @@ class Product(models.Model):
                 'vendor': Vendor.objects.get_or_create(name=shopify_product.vendor)[0],
                 'tags': shopify_product.tags,
             })
+        variants = []
         for v in shopify_product.variants:
             variant, created = Variant.objects.update_or_create(
                 shopify_id=v.id, product=product,
@@ -103,7 +104,8 @@ class Product(models.Model):
             else:
                 variant.price = v.price
             variant.save()
-
+            variants.append(v.id)
+        product.variants.exclude(shopify_id__in=variants).delete()
 
         attributes = []
         for tag in shopify_product.tags:
