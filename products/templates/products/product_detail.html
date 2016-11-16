@@ -7,6 +7,8 @@
 {% block actions %}
 <a class="btn btn-primary btn-sm" href="{% url 'product-update' object.pk %}">Edit</a>
 <a class="btn btn-danger btn-sm" href="{% url 'product-delete' object.pk %}">Delete</a>
+<a class="btn btn-default btn-sm" href="{% url 'product-push' object.pk %}">Push</a>
+<a class="btn btn-default btn-sm" href="{% url 'product-pull' object.pk %}">Pull</a>
 
 {% endblock %}
 

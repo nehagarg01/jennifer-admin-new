@@ -124,7 +124,7 @@ class Product(models.Model):
         product.attributes.add(*attributes)
         return product
 
-    def update_to_shopify(self):
+    def update_to_shopify(self, override=False):
         product = shopify.Product({
             'id': self.shopify_id,
             'title': self.title,
@@ -132,8 +132,7 @@ class Product(models.Model):
             'variants': [],
         })
         for variant in self.variants.all():
-            product.variants.append({
-                'id': variant.shopify_id,
+            obj = {
                 'sku': variant.sku,
                 'barcode': variant.barcode,
                 'compare_at_price': float(variant.compare_at_price),
@@ -143,7 +142,10 @@ class Product(models.Model):
                 'option3': variant.option3,
                 'position': variant.position,
                 'grams': variant.pieces,
-            })
+            }
+            if not override:
+                obj['id'] = variant.id
+            product.variants.append(obj)
 
         success = product.save()
         return success, product.errors

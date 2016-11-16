@@ -12,5 +12,7 @@ urlpatterns = [
         url(r'^delete/$', views.ProductDelete.as_view(), name='product-delete'),
         url(r'^schedule/$', views.ProductScheduleChange.as_view(), name='product-schedule-change'),
         url(r'^variants/$', views.ProductVariantsUpdateView.as_view(), name='product-variants-update'),
+        url(r'^push/$', views.ProductPushShopifyView.as_view(), name='product-push'),
+        url(r'^pull/$', views.ProductPullShopifyView.as_view(), name='product-pull'),
     ])),
 ]

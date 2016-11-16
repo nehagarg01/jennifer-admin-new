@@ -3,7 +3,7 @@ import csv
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import (ListView, CreateView, UpdateView,
-                                  DeleteView, DetailView, FormView)
+                                  DeleteView, DetailView, FormView, RedirectView)
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory, modelformset_factory, formset_factory
@@ -164,3 +164,21 @@ class ProductParse(FormView):
                     row[3] = p.title
             writer.writerow(row)
         return response
+
+
+class ProductPushShopifyView(ProductMixin, RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, *args, **kwargs):
+        product = get_object_or_404(Product, pk=kwargs['pk'])
+        product.update_to_shopify(override=True)
+        return product.get_absolute_url()
+
+
+class ProductPullShopifyView(ProductMixin, RedirectView):
+    permanent = False
+
+    def get_redirect_url(self, *args, **kwargs):
+        product = get_object_or_404(Product, pk=kwargs['pk'])
+        product.update_from_shopify()
+        return product.get_absolute_url()
