@@ -28,10 +28,12 @@ class ProductMixin(LoginRequiredMixin):
     model = Product
 
     def update_to_shopify(self):
-        if self.object.update_to_shopify():
+        success, error = self.object.update_to_shopify()
+        if success:
             messages.success(self.request, "Updated to Shopify")
         else:
-            messages.error(self.request, "Unable to update to shopify. Please Try again.")
+            messages.error(self.request,
+                           "Unable to update to shopify. %s" % error.full_messages())
 
 
 class ProductList(ProductMixin, SearchView):

@@ -144,7 +144,9 @@ class Product(models.Model):
                 'position': variant.position,
                 'grams': variant.pieces,
             })
-        return product.save()
+
+        success = product.save()
+        return success, product.errors
 
     def is_clearance(self):
         return 'clearance' in self.tags
