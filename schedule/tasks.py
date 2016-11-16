@@ -206,17 +206,21 @@ def generate_schedule_changes(self, schedule_id):
             discount = Decimal('1.00') - (Decimal(discount) / Decimal(100))
             variants = []
             for variant in product.variants.all():
-                sale_price = (variant.price * discount).quantize(
-                    Decimal('1.'), rounding=ROUND_UP) - Decimal('0.01')
-                variants.append({
-                    'shopify_id': variant.shopify_id,
-                    'title': str(variant),
-                    'sale_price': float(sale_price),
-                    'price': float(variant.price),
-                    'compare_at_price': float(variant.compare_at_price),
-                })
-            c = Change(schedule_id=schedule.id, product_id=product.id, json=variants)
-            batch.append(c)
+                promotion = (schedule.exclude_promotion and
+                             variant.price < variant.compare_at_price)
+                if not promotion:
+                    sale_price = (variant.price * discount).quantize(
+                        Decimal('1.'), rounding=ROUND_UP) - Decimal('0.01')
+                    variants.append({
+                        'shopify_id': variant.shopify_id,
+                        'title': str(variant),
+                        'sale_price': float(sale_price),
+                        'price': float(variant.price),
+                        'compare_at_price': float(variant.compare_at_price),
+                    })
+            if len(variants):
+                c = Change(schedule_id=schedule.id, product_id=product.id, json=variants)
+                batch.append(c)
         Change.objects.bulk_create(batch)
     elif schedule.schedule_type == 'restore':
         products = Product.main_products.filter(
