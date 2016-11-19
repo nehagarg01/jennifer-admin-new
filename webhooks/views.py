@@ -20,7 +20,7 @@ def carrier_webhook(request):
     state = data['destination']['province']
     zipcode = data['destination']['postal_code']
     shipping_setting = ShippingSetting.objects.get(active=True)
-    county = ''
+    county = city = ''
     cart_total = quantity = 0
     cnt = Counter()
 
@@ -49,11 +49,15 @@ def carrier_webhook(request):
                 for obj in loc['address_components']:
                     if "administrative_area_level_2" in obj['types']:
                         county = obj['long_name']
-                    if "locality" in obj['types']:
+                    if "administrative_area_level_1" in obj['types']:
+                        city = obj['long_name']
+                    elif "locality" in obj['types']:
                         city = obj['long_name']
                 if not county and city:
                     county = city
+                print county
                 cache.set('county_%s' % zipcode, county)
+
 
     if (state, county) in LOCAL or int(zipcode) in PHILADELPHIA_PLUS:
         if cnt['quantity'] == cnt['ancillary']:
