@@ -103,6 +103,7 @@ CACHES = {
     "default": {
          "BACKEND": "redis_cache.RedisCache",
          "LOCATION": "{0}:{1}".format(redis_url.hostname, redis_url.port),
+         "TIMEOUT": None,
          "OPTIONS": {
              "PASSWORD": redis_url.password,
              "DB": 0,
