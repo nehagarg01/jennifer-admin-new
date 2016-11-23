@@ -130,6 +130,8 @@ class Product(models.Model):
             'title': self.title,
             'body_html': self.body_html,
             'variants': [],
+            'tags': self.tags,
+            'product_type': self.product_type.title,
         })
         for variant in self.variants.all():
             obj = {
@@ -142,6 +144,7 @@ class Product(models.Model):
                 'option3': variant.option3,
                 'position': variant.position,
                 'grams': variant.pieces,
+                'image_id': variant.image_id,
             }
             if not override:
                 obj['id'] = variant.id
@@ -176,6 +179,7 @@ class Variant(models.Model):
     shopify_id = models.BigIntegerField(null=True, blank=True)
     position = models.IntegerField(default=1)
     mattress_pieces = models.IntegerField(default=0)
+    image_id = models.BigIntegerField(null=True, blank=True)
 
     class Meta:
         ordering = ['product__title', 'position']

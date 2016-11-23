@@ -22,6 +22,21 @@ def pull_products():
             incomplete = False
 
 
+def pull_variant_image_id():
+    from .models import Variant
+    page = 1
+    incomplete = True
+    while incomplete:
+        products = shopify.Product.find(page=page)
+        if len(products):
+            for sp in products:
+                for v in sp.variants:
+                    Variant.objects.filter(shopify_id=v.id).update(image_id=v.image_id)
+            page += 1
+        else:
+            incomplete = False
+
+
 def push_products(restore=False):
     from .tasks import push_product
     from .models import Product

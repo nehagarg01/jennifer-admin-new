@@ -20,6 +20,8 @@ def push_product(self, product_id, restore=False):
     try:
         product = Product.objects.filter(id=product_id).first()
         if product:
-            product.update_to_shopify(override=True, restore=restore)
+            product, errors = product.update_to_shopify(override=True, restore=restore)
+            # product returns True or False depending on shopify success
+        return product
     except Exception as e:
         self.retry(exc=e, countdown=60)
