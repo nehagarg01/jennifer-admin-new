@@ -13,3 +13,13 @@ def sync_gmc_id(shopify_id):
                 gmc_id=metafield.attributes['value'])
             return True
     return 'No GMC_ID'
+
+
+@shared_task(bind=True)
+def push_product(self, product_id, restore=False):
+    try:
+        product = Product.objects.filter(id=product_id).first()
+        if product:
+            product.update_to_shopify(override=True, restore=restore)
+    except Exception as e:
+        self.retry(exc=e, countdown=60)

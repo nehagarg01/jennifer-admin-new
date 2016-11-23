@@ -4,12 +4,11 @@ from django.conf import settings
 
 from vendors.models import Vendor
 
-
 shopify.ShopifyResource.set_site(settings.SHOPIFY_URL)
 # shop = shopify.Shop.current()
 
 
-def sync_products():
+def pull_products():
     from .models import Product
     page = 1
     incomplete = True
@@ -23,4 +22,8 @@ def sync_products():
             incomplete = False
 
 
-# def
+def push_products(restore=False):
+    from .tasks import push_product
+    from .models import Product
+    for product in Product.objects.all():
+        push_product.delay(product.id, restore)
