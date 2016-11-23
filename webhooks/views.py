@@ -56,7 +56,7 @@ def carrier_webhook(request):
                 if not county and city:
                     county = city
                 print county
-                cache.set('county_%s' % zipcode, county)
+                cache.set('county_%s' % zipcode, county, timeout=None)
 
 
     if (state, county) in LOCAL or int(zipcode) in PHILADELPHIA_PLUS:
