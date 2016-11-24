@@ -199,6 +199,10 @@ def generate_schedule_changes(self, schedule_id):
     schedule = Schedule.objects.get(id=schedule_id)
     if schedule.schedule_type == 'storewide':
         products = Product.main_products.prefetch_related('variants')
+        if schedule.exclude_promotion:
+            products = products.exclude(tags__contains="CURRENT_SALE")
+        if not schedule.clearance_discount:
+            products = products.exclude(tags__contains="clearance")
         batch = []
         for product in products:
             discount = schedule.clearance_discount \
@@ -206,18 +210,15 @@ def generate_schedule_changes(self, schedule_id):
             discount = Decimal('1.00') - (Decimal(discount) / Decimal(100))
             variants = []
             for variant in product.variants.all():
-                promotion = (schedule.exclude_promotion and
-                             variant.price < variant.compare_at_price)
-                if not promotion:
-                    sale_price = (variant.price * discount).quantize(
-                        Decimal('1.'), rounding=ROUND_UP) - Decimal('0.01')
-                    variants.append({
-                        'shopify_id': variant.shopify_id,
-                        'title': str(variant),
-                        'sale_price': float(sale_price),
-                        'price': float(variant.price),
-                        'compare_at_price': float(variant.compare_at_price),
-                    })
+                sale_price = (variant.price * discount).quantize(
+                    Decimal('1.'), rounding=ROUND_UP) - Decimal('0.01')
+                variants.append({
+                    'shopify_id': variant.shopify_id,
+                    'title': str(variant),
+                    'sale_price': float(sale_price),
+                    'price': float(variant.price),
+                    'compare_at_price': float(variant.compare_at_price),
+                })
             if len(variants):
                 c = Change(schedule_id=schedule.id, product_id=product.id, json=variants)
                 batch.append(c)
