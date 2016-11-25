@@ -100,6 +100,9 @@ LODESTAR75 = [
     ('VA', 'Fairfax County'),
     ('VA', 'Loudoun County'),
     ('VA', 'Prince William County'),
+    ('DC', 'Washington County'),
+    ('DC', 'Washington'),
+    ('DC', 'District of Columbia'),
 ]
 
 PHILADELPHIA_PLUS = [
