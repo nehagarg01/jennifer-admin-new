@@ -2,15 +2,20 @@ import json
 from collections import Counter
 import googlemaps
 from decimal import Decimal
+import csv
 
 from django.http import JsonResponse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.core.cache import cache
+from django.shortcuts import redirect
+from django.views.generic import FormView
 
 from .counties import *
 from .models import *
+from core.forms import FileForm
+
 
 @require_POST
 @csrf_exempt
@@ -43,7 +48,7 @@ def carrier_webhook(request):
 
     totals = Counter()
 
-    if state in ('NY', "NJ", "CT", "PA", "DE", "MD", "VA", "WV"):
+    if state in ('NY', "NJ", "CT", "PA", "DE", "MD", "VA", "WV", "DC"):
         county = cache.get('county_%s' % zipcode)
         if not county:
             print 'not cached'
@@ -153,3 +158,18 @@ def carrier_webhook(request):
            },
        ]
     })
+
+
+class ZipcodeParse(FormView):
+    form_class = FileForm
+    template_name = 'products/product_parse.html'
+
+    def form_valid(self, form):
+        reader = csv.reader(form.cleaned_data['file'])
+        for idx, row in enumerate(reader):
+            if row[0]:
+                zipcode = str(row[0])
+                if len(zipcode) == 4:
+                    zipcode = "0" + zipcode
+                cache.set('county_%s' % zipcode, "%s County" % row[5])
+        return redirect('zipcode-parse')

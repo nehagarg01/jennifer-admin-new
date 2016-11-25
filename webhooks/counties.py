@@ -77,6 +77,7 @@ LODESTAR150 = [
     ('VA', 'Fauquier County'),
     ('VA', 'Frederick County'),
     ('VA', 'Fredericksburg'),
+    ('VA', 'Fredericksburg County'),
     ('VA', 'King George County'),
     ('VA', 'Stafford County'),
     ('VA', 'Warren County'),
@@ -96,6 +97,7 @@ LODESTAR75 = [
     ('MD', "Prince George's County"),
     ('MD', "St. Mary's County"),
     ('VA', 'Alexandria'),
+    ('VA', 'Alexandria County'),
     ('VA', 'Arlington County'),
     ('VA', 'Fairfax County'),
     ('VA', 'Loudoun County'),
@@ -103,6 +105,7 @@ LODESTAR75 = [
     ('DC', 'Washington County'),
     ('DC', 'Washington'),
     ('DC', 'District of Columbia'),
+    ('DC', 'District of Columbia County'),
 ]
 
 PHILADELPHIA_PLUS = [
