@@ -27,7 +27,10 @@ def carrier_webhook(request):
     for item in data['items']:
         variant = Variant.objects.filter(
             shopify_id=item['variant_id']).select_related('product').first()
-        p_group = variant.get_product_group()
+        if variant:
+            p_group = variant.get_product_group()
+        else:
+            p_group = 'upholstery'
         if p_group not in ['protection plans', 'slip covers']:
             cnt['quantity'] += item['quantity']
             cnt['pieces'] += item['quantity'] * variant.pieces

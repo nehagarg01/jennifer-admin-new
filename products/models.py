@@ -193,7 +193,9 @@ class Variant(models.Model):
         return output
 
     def get_product_group(self):
-        if self.product.product_type.title in ['sofas', 'chaises', 'sofa chaises',
+        if 'FREE_DELIVERY' in self.product.tags:
+            return "free"
+        elif self.product.product_type.title in ['sofas', 'chaises', 'sofa chaises',
                                        'loveseats', 'daybeds']:
             return 'upholstery'
         elif self.product.product_type.title == 'sectionals':
