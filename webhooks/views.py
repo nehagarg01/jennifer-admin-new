@@ -171,5 +171,5 @@ class ZipcodeParse(FormView):
                 zipcode = str(row[0])
                 if len(zipcode) == 4:
                     zipcode = "0" + zipcode
-                cache.set('county_%s' % zipcode, "%s County" % row[5])
+                cache.set('county_%s' % zipcode, "%s County" % row[5], timeout=None)
         return redirect('zipcode-parse')

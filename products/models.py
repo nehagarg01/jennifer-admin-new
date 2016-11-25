@@ -124,6 +124,45 @@ class Product(models.Model):
         product.attributes.add(*attributes)
         return product
 
+    def pull(self):
+        from vendors.models import Vendor
+        shopify_product = shopify.Product.find(self.shopify_id)
+        if shopify_product:
+            self.title = shopify_product.title
+            self.body_html = shopify_product.body_html
+            self.handle = shopify_product.handle
+            self.product_type = ProductType.objects.get_or_create(
+                title=shopify_product.product_type)[0]
+            self.published_at = shopify_product.published_at
+            self.published_scope = shopify_product.published_scope
+            self.vendor = Vendor.objects.get_or_create(name=shopify_product.vendor)[0]
+            self.tags = shopify_product.tags
+            self.save()
+            variants = []
+            for v in shopify_product.variants:
+                variant, created = Variant.objects.update_or_create(
+                    shopify_id=v.id, product=self,
+                    defaults={
+                        'sku': v.sku,
+                        'barcode': v.barcode,
+                        'compare_at_price': v.compare_at_price or 0,
+                        # 'price': v.price or 0,
+                        'pieces': v.grams,
+                        'option1': v.option1,
+                        'option2': v.option2,
+                        'option3': v.option3,
+                        'position': v.position,
+                    })
+                if variant.sale_price:
+                    variant.sale_price = v.price
+                else:
+                    variant.price = v.price
+                variant.save()
+                variants.append(v.id)
+            self.variants.exclude(shopify_id__in=variants).delete()
+        else:
+            return False
+
     def update_to_shopify(self, override=False, restore=False):
         product = shopify.Product({
             'id': self.shopify_id,

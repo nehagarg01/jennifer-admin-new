@@ -180,5 +180,5 @@ class ProductPullShopifyView(ProductMixin, RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
         product = get_object_or_404(Product, pk=kwargs['pk'])
-        product.update_from_shopify()
+        product.pull()
         return product.get_absolute_url()

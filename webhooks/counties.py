@@ -105,7 +105,7 @@ LODESTAR75 = [
     ('DC', 'Washington County'),
     ('DC', 'Washington'),
     ('DC', 'District of Columbia'),
-    ('DC', 'District of Columbia County'),
+    ('DC', 'District Of Columbia County'),
 ]
 
 PHILADELPHIA_PLUS = [
