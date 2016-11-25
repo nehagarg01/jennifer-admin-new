@@ -29,14 +29,17 @@ def carrier_webhook(request):
             shopify_id=item['variant_id']).select_related('product').first()
         if variant:
             p_group = variant.get_product_group()
+            if p_group not in ['protection plans', 'slip covers']:
+                cnt['quantity'] += item['quantity']
+                cnt['pieces'] += item['quantity'] * variant.pieces
+                cnt['cart_total'] += item['quantity'] * item['price']
+                cnt['mattress_pieces'] += variant.mattress_pieces
         else:
             p_group = 'upholstery'
-        if p_group not in ['protection plans', 'slip covers']:
             cnt['quantity'] += item['quantity']
-            cnt['pieces'] += item['quantity'] * variant.pieces
+            cnt['pieces'] += item['quantity'] * item['grams']
             cnt['cart_total'] += item['quantity'] * item['price']
         cnt[p_group] += item['quantity']
-        cnt['mattress_pieces'] += variant.mattress_pieces
 
     totals = Counter()
 
