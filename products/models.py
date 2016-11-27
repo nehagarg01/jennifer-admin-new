@@ -232,7 +232,10 @@ class Variant(models.Model):
         return output
 
     def get_product_group(self):
-        if 'FREE_DELIVERY' in self.product.tags:
+        free_delivery = 'FREE_DELIVERY' in self.product.tags
+        non_delivery = self.product.product_type.title in [
+            'protection plans', 'Gift Card']
+        if free_delivery or non_delivery:
             return "free"
         elif self.product.product_type.title in ['sofas', 'chaises', 'sofa chaises',
                                        'loveseats', 'daybeds']:
