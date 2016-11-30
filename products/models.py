@@ -197,6 +197,27 @@ class Product(models.Model):
     def is_clearance(self):
         return 'clearance' in self.tags
 
+    def discontinue(self):
+        self.product_type = ProductType.objects.get(title="DISCONTINUED")
+        if "DISCONTINUED" not in self.tags:
+            self.tags += ", DISCONTINUED"
+        self.save()
+        product = shopify.Product({
+            'id': self.shopify_id,
+            'variants': [],
+            'tags': self.tags,
+            'product_type': self.product_type.title,
+        })
+        for variant in self.variants.all():
+            obj = {
+                'id': variant.shopify_id,
+                "inventory_management" : "shopify",
+                "inventory_quantity" : 0,
+            }
+            product.variants.append(obj)
+        success = product.save()
+        return success, product.errors
+
 
 
 class Variant(models.Model):
