@@ -194,6 +194,23 @@ class Product(models.Model):
         success = product.save()
         return success, product.errors
 
+    def push_price(self, restore=False):
+        product = shopify.Product({
+            'id': self.shopify_id,
+            'variants': [],
+        })
+        for variant in self.variants.all():
+            obj = {
+                'id': variant.id,
+                'compare_at_price': float(variant.compare_at_price),
+                'price': float(variant.sale_price or variant.price),
+            }
+            if restore:
+                obj['price'] = float(variant.price)
+            product.variants.append(obj)
+        success = product.save()
+        return success, product.errors
+
     def is_clearance(self):
         return 'clearance' in self.tags
 

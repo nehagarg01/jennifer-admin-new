@@ -37,8 +37,11 @@ def pull_variant_image_id():
             incomplete = False
 
 
-def push_products(restore=False):
+def push_products(restore=False, exclude=None):
     from .tasks import push_product
     from .models import Product
-    for product in Product.objects.all():
+    products = Product.objects.exclude(tags__icontains="clearance")
+    if exclude:
+        products = products.exclude(tags__icontains=exclude)
+    for product in products:
         push_product.delay(product.id, restore)

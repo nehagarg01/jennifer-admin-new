@@ -20,7 +20,7 @@ def push_product(self, product_id, restore=False):
     try:
         product = Product.objects.filter(id=product_id).first()
         if product:
-            product, errors = product.update_to_shopify(override=True, restore=restore)
+            product, errors = product.push_price(restore=restore)
             # product returns True or False depending on shopify success
         return product
     except Exception as e:
