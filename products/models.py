@@ -122,6 +122,12 @@ class Product(models.Model):
                 )
                 attributes.append(att)
         product.attributes.add(*attributes)
+        # Update metafields
+        metafields = shopify_product.metafields()
+        for metafield in metafields:
+            if metafield.attributes.get('key', None) == 'gmc_id':
+                product.gmc_id = metafield.attributes['value']
+                product.save()
         return product
 
     def pull(self):
