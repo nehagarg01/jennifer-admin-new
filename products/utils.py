@@ -45,3 +45,18 @@ def push_products(restore=False, exclude=None):
         products = products.exclude(tags__icontains=exclude)
     for product in products:
         push_product.delay(product.id, restore)
+
+
+def clean_products():
+    from .models import Product
+    page = 1
+    incomplete = True
+    products = []
+    while incomplete:
+        shopify_products = shopify.Product.find(page=page)
+        if len(shopify_products):
+            products += [sp.id for sp in shopify_products]
+            page += 1
+        else:
+            incomplete = False
+    print Product.objects.exclude(shopify_id__in=products).count()
