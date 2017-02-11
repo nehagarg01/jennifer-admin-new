@@ -29,25 +29,6 @@ def carrier_webhook(request):
     cart_total = quantity = 0
     cnt = Counter()
 
-    for item in data['items']:
-        variant = Variant.objects.filter(
-            shopify_id=item['variant_id']).select_related('product').first()
-        if variant:
-            p_group = variant.get_product_group()
-            if p_group not in ['protection plans', 'slip covers']:
-                cnt['quantity'] += item['quantity']
-                cnt['pieces'] += item['quantity'] * variant.pieces
-                cnt['cart_total'] += item['quantity'] * item['price']
-                cnt['mattress_pieces'] += variant.mattress_pieces
-        else:
-            p_group = 'upholstery'
-            cnt['quantity'] += item['quantity']
-            cnt['pieces'] += item['quantity'] * item['grams']
-            cnt['cart_total'] += item['quantity'] * item['price']
-        cnt[p_group] += item['quantity']
-
-    totals = Counter()
-
     if state in ('NY', "NJ", "CT", "PA", "DE", "MD", "VA", "WV", "DC"):
         county = cache.get('county_%s' % zipcode)
         if not county:
@@ -69,6 +50,28 @@ def carrier_webhook(request):
                 print county
                 cache.set('county_%s' % zipcode, county, timeout=None)
 
+    for item in data['items']:
+        variant = Variant.objects.filter(
+            shopify_id=item['variant_id']).select_related('product').first()
+        if variant:
+            p_group = variant.get_product_group()
+            if p_group not in ['protection plans', 'slip covers']:
+                cnt['quantity'] += item['quantity']
+                cnt['pieces'] += item['quantity'] * variant.pieces
+                cnt['cart_total'] += item['quantity'] * item['price']
+                cnt['mattress_pieces'] += variant.mattress_pieces
+        else:
+            p_group = 'upholstery'
+            cnt['quantity'] += item['quantity']
+            cnt['pieces'] += item['quantity'] * item['grams']
+            cnt['cart_total'] += item['quantity'] * item['price']
+        # Exceptions: For mattress special delivery pricing
+        if (state, county) in LOCAL or int(zipcode) in PHILADELPHIA_PLUS:
+            if p_group == 'mattress_n_boxspring' and item['price'] >= 59999:
+                continue
+        cnt[p_group] += item['quantity']
+
+    totals = Counter()
 
     if (state, county) in LOCAL or int(zipcode) in PHILADELPHIA_PLUS:
         if cnt['quantity'] == cnt['ancillary']:
@@ -78,7 +81,7 @@ def carrier_webhook(request):
             totals['delivery'] += cnt['upholstery'] * 9999
             totals['delivery'] += cnt['beds'] * 8999
             totals['delivery'] += cnt['dinnete'] * 9999
-            totals['delivery'] += cnt['mattress_n_boxspring'] * 7999
+            totals['delivery'] += cnt['mattress_n_boxspring'] * 6999
             totals['delivery'] += cnt['set_lt_1000'] * 9999
             totals['delivery'] += cnt['set_lt_2000'] * 16999
             totals['delivery'] += cnt['set_gt_2000'] * 19999
