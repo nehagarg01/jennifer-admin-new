@@ -115,14 +115,17 @@ def carrier_webhook(request):
                 totals['delivery'] = 0
                 service_name = "Free Local Delivery"
 
+        service_name = "Local Delivery"
+
         if (state, county) in LOCAL20 or int(zipcode) in PHILADELPHIA_PLUS:
             totals['delivery'] += 2000
+            service_name = "Local Remote Delivery"
         elif (state, county) in LOCAL75 or zipcode in ["11964", "11965"]:
             totals['delivery'] += 7500
+            service_name = "Local Remote Delivery"
         elif (state, county) in LOCAL100:
             totals['delivery'] += 10000
-
-        service_name = "Local Delivery"
+            service_name = "Local Remote Delivery"
         service_code = "LD"
     elif (state, county) in LODESTAR150 + LODESTAR75:
         rate = cnt['cart_total'] * 0.05
@@ -131,7 +134,7 @@ def carrier_webhook(request):
         elif (state, county) in LODESTAR150:
             totals['delivery'] = 14999 if rate < 15000 else rate
         totals['delivery'] += cnt['pieces'] * 500
-        service_name = "Local Delivery"
+        service_name = "Local Remote Delivery"
         service_code = "LD"
     else:  # LONG DISTANCE
         for i in range(1, cnt['pieces'] + 1):
