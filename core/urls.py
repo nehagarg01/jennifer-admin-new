@@ -16,4 +16,5 @@ urlpatterns = [
     url(r'^schedule/', include('schedule.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^webhooks/', include('webhooks.urls')),
+    url(r'^discount/', include('discount.urls')),
 ]
