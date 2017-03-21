@@ -21,10 +21,14 @@ class ExportDiscount(FormView):
 
         handle = ""
         exclude = []
+        if form.cleaned_data['exclude_tags']:
+            for tag in form.cleaned_data['exclude_tags'].split(","):
+                exclude.append(tag.strip())
 
         discount = Decimal(100 - form.cleaned_data['discount']) / Decimal(100)
         if form.cleaned_data['exclude_closeout']:
             exclude.append('clearance')
+
         for idx, row in enumerate(reader):
             if idx > 0 and row[0] and row[0] not in ['guardsman-5-year-elite-plan', 'gift-card']:
                 if row[5] and not any(x in row[5] for x in exclude):

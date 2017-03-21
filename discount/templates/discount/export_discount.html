@@ -1,7 +1,21 @@
+{% extends 'base.html' %}
 {% load bootstrap3 %}
-<form method="post" enctype="multipart/form-data">
-	{% csrf_token %}
-	<div class="row">
-		{{ form }}
-	<button type="submit" class="btn btn-success">Upload</button>
-</form>
+
+{% block title %}Discount Export{% endblock %}
+
+{% block content %}
+<div class="hpanel">
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-sm-12">
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="row">
+						{% bootstrap_form form %}
+					<button type="submit" class="btn btn-success">Upload</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
